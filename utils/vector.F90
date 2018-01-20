@@ -1,5 +1,10 @@
 module m_vector
 
+    !----------------------------------------------------
+    ! our init need some callback mechanism , and the 
+    ! implementation of type data is ugly
+    !----------------------------------------------------
+
     implicit none
     
     type vector
@@ -13,6 +18,11 @@ module m_vector
     public :: init
     public :: push_back
     public :: v
+
+    interface init; module procedure &
+
+
+    end interface
 
     interface push_back; module procedure &
         push_backi_, &
@@ -38,6 +48,7 @@ subroutine init(vec, types)
         call initr_(vec)
     endif
 end subroutine init
+
 
 subroutine initi_(vec)
 

@@ -12,13 +12,14 @@
         第一次实现，可以使用计数器，之后需要修改一下，关键是如何表示耦合频率
 ## 2，项目目录组织
   /baseCpl</br>
-      &emsp;/cpl </br>
-      &emsp;&emsp;/procManage</br>
-      &emsp;&emsp;/transfer</br>
-      &emsp;&emsp;/TimeManger</br>
-      &emsp;/model1</br>
-      &emsp;/model2</br>
-      &emsp;/model3</br>
+      &emsp;/procManage</br>
+      &emsp;/transfer</br>
+      &emsp;/TimeManger</br>
+      &emsp;/model</br>
+      &emsp;&emsp;/cpl</br>
+      &emsp;&emsp;/model1</br>
+      &emsp;&emsp;/model2</br>
+      &emsp;&emsp;/model3</br>
 
 ## 3,代码实现
 
