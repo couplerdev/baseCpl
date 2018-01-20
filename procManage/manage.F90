@@ -15,8 +15,19 @@ include"mpif.h"
         integer :: val
     end type IFlag
 
+    type cplVariable
+        character(len=20) :: var_name
+        integer, dimension(:) :: array
+    end type cplVariable   
+
+    type cplMapper
+        character(len=20) :: mapper_name
+    end type cplMapper
+
     type model
         character(len=20) :: model_name
+        type(cplVariable), dimension(:) :: cplVars
+        type(cplManager), dimension(:) :: mappers
     end type model    
 
     type proc
@@ -168,5 +179,38 @@ subroutine add_model(my_proc, model_name, ierr)
     end if
 
 end subroutine add_model
+
+subroutine comm_union(my_proc, comm_x, comm_y, ierr)
+
+    implicit none
+    type(proc), intent(inout) :: my_proc
+    integer, intent(in) :: comm_x
+    integer, intent(in) :: comm_y
+    integer, intent(inout) :: ierr
+    integer :: mpi_grp
+    integer :: x_grp
+    integer :: y_grp
+    integer :: x_comm
+    integer :: y_comm
+    integer :: mpi_comm
+    type(commInfo) :: new_comm
+
+    ierr = 0
+    if(my_proc%num_comms<comm_x .or. my_proc%num_comms<comm_y .or. comm_x == comm_y)then
+        ierr = 1
+    else
+        call MPI_Comm_group(my_proc%comms(comm_x)%my_comm, x_grp, ierr)
+        call MPI_Comm_group(my_proc%comms(comm_y)%my_comm, y_grp, ierr)
+        call MPI_Group_union(x_grp, y_grp, mpi_grp, ierr)
+        call MPI_Comm_create(MPI_COMM_WORLD,mpi_grp, mpi_comm, ierr)
+        new_comm%commName = my_proc%comms(comm_x)%commName + my_proc%comms(comm_y)%commName
+        call MPI_Comm_rank(mpi_comm, new_comm%num_proc, ierr) 
+        call MPI_Comm_size(mpi_comm, new_comm%num_size, ierr)
+        new_comm%my_comm = mpi_comm
+        my_proc%num_comms = my_proc%num_comms + 1
+        my_proc%comms(my_proc%num_comms) = new_comm
+    end if
+
+end subroutine comm_union
 
 end module procM
