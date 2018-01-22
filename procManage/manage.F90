@@ -16,7 +16,7 @@ include"mpif.h"
         !-------------------------------------------------
         ! define flags
         !-------------------------------------------------
-        integer :: nothing
+        logical :: nothing
 
 
 
@@ -92,7 +92,7 @@ subroutine init(my_proc)
     integer :: num_size 
 
     my_proc%num_models = 3
-    my_proc%num_comms = my_proc%models*2+2
+    my_proc%num_comms = my_proc%num_models*2+2
     my_proc%num_flags = -1
     
     call MPI_Init(ierr)
@@ -123,15 +123,15 @@ subroutine init(my_proc)
     my_proc%b_mapper = "b_mapper"
     my_proc%c_mapper = "c_mapper"
 
-    my_proc%mpi_glocom = MPI_COMM_WORLD
-    my_proc%mpi_cpl = my_proc%mpi_glocom
-    my_proc%mpi_modela = my_proc%mpi_glocom
-    my_proc%mpi_modelb = my_proc%mpi_glocom
-    my_proc%mpi_modelc = my_proc%mpi_glocom
+    my_proc%mpi_glocomm = MPI_COMM_WORLD
+    my_proc%mpi_cpl = my_proc%mpi_glocomm
+    my_proc%mpi_modela = my_proc%mpi_glocomm
+    my_proc%mpi_modelb = my_proc%mpi_glocomm
+    my_proc%mpi_modelc = my_proc%mpi_glocomm
     
-    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl)
-    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl)
-    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl)
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl, ierr)
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, ierr)
 
     if(num_rank==0) then
         my_proc%iam_root = .true.
@@ -153,7 +153,7 @@ subroutine init(my_proc)
 
     my_proc%nothing = .false.
 
-end subroutine initv
+end subroutine init
 
 subroutine clean(my_proc)
     
@@ -190,10 +190,10 @@ subroutine union_comm(comm_x, comm_y, comm_union, ierr)
     integer :: y_grp
     integer :: union_grp    
  
-    call MPI_Comm_group(comm_x, x_grp)
-    call MPI_Comm_group(comm_y, y_grp)
-    call MPI_Group_union(x_grp, y_grp, union_grp)
-    call MPI_Comm_create(MPI_COMM_WORLD, union_grp, comm_union)
+    call MPI_Comm_group(comm_x, x_grp, ierr)
+    call MPI_Comm_group(comm_y, y_grp, ierr)
+    call MPI_Group_union(x_grp, y_grp, union_grp, ierr)
+    call MPI_Comm_create(MPI_COMM_WORLD, union_grp, comm_union, ierr)
 
 end subroutine union_comm
 
@@ -208,7 +208,7 @@ subroutine iamin_comm_root(comm_x, iamin, iamroot, ierr)
     integer :: me
   
     call MPI_Comm_group(comm_x, x_grp, ierr)
-    call MPI_Group(x_grp, me, ierr)
+    call MPI_Group_rank(x_grp, me, ierr)
     if( me .ne. MPI_UNDEFINED) then
         iamin = .true.
         if( me .eq. 0) then

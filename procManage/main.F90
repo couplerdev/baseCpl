@@ -8,7 +8,7 @@ use procm
 
 
     call init(my_proc)
-    call printProc(my_proc, ierr)    
+    !call printProc(my_proc, ierr)    
     call clean(my_proc)
 
 end program main
