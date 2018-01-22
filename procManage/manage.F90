@@ -2,58 +2,89 @@ module procM
     implicit none
 include"mpif.h"
 
-#define MAX_SIZE 100
-    type commInfo
-        character(len=20) :: commName
-        integer :: num_proc
-        integer :: num_size   
-        integer  :: my_comm
-    end type commInfo
-    
-    type IFlag
-        character(len=20) :: flag_name
-        integer :: val
-    end type IFlag
-
-    type cplVariable
-        character(len=20) :: var_name
-        integer, dimension(:) :: array
-    end type cplVariable   
-
-    type cplMapper
-        character(len=20) :: mapper_name
-    end type cplMapper
-
-    type model
-        character(len=20) :: model_name
-        type(cplVariable), dimension(:) :: cplVars
-        type(cplManager), dimension(:) :: mappers
-    end type model    
-
     type proc
-        type(commInfo), dimension(:), pointer :: comms
-        type(IFlag), dimension(:), pointer :: flags        
-        type(model), dimension(:), pointer :: models
+        !type(commInfo), dimension(:), pointer :: comms     
+        !type(model), dimension(:), pointer :: models
+        !-------------------------------------------------
+        ! Meta desc of proc
+        !-------------------------------------------------
         integer :: num_comms
         integer :: num_flags
         integer :: num_models
-        integer :: max_size
+        integer :: my_rank
+        integer :: my_size
+        !-------------------------------------------------
+        ! define flags
+        !-------------------------------------------------
+        integer :: nothing
+
+
+
+
+        !-------------------------------------------------
+        ! define model variables
+        !-------------------------------------------------
+        character(len=20) :: modela
+        character(len=20) :: modelb
+        character(len=20) :: modelc
+        integer :: a_size
+        integer :: b_size
+        integer :: c_size
+        integer, dimension(:), pointer :: a2x_aa ! ? whether the _a in aa important
+        integer, dimension(:), pointer :: x2a_aa
+        integer, dimension(:), pointer :: a2x_ax
+        integer, dimension(:), pointer :: x2a_ax
+        integer, dimension(:), pointer :: b2x_bb
+        integer, dimension(:), pointer :: x2b_bb
+        integer, dimension(:), pointer :: b2x_bx
+        integer, dimension(:), pointer :: x2b_bx
+        integer, dimension(:), pointer :: c2x_cc
+        integer, dimension(:), pointer :: x2c_cc
+        integer, dimension(:), pointer :: c2x_cx
+        integer, dimension(:), pointer :: x2c_cx
+        character(len=20) :: a_mapper
+        character(len=20) :: b_mapper
+        character(len=20) :: c_mapper
+        !-------------------------------------------------
+        ! define relative comm variables
+        !-------------------------------------------------
+        integer :: mpi_glocomm
+        integer :: mpi_cpl
+        integer :: mpi_modela
+        integer :: mpi_modelb
+        integer :: mpi_modelc
+        integer :: mpi_modela2cpl
+        integer :: mpi_modelb2cpl
+        integer :: mpi_modelc2cpl
+        !-------------------------------------------------
+        ! define comm control variables and run control
+        !-------------------------------------------------
+        logical :: iam_root
+        logical :: iamin_modela
+        logical :: iamin_modelb
+        logical :: iamin_modelc
+        logical :: iamin_modela2cpl
+        logical :: iamin_modelb2cpl
+        logical :: iamin_modelc2cpl
+        logical :: iamroot_modela
+        logical :: iamroot_modelb
+        logical :: iamroot_modelc
+        logical :: iamroot_modela2cpl
+        logical :: iamroot_modelb2cpl
+        logical :: iamroot_modelc2cpl
+        logical :: a_run
+        logical :: b_run
+        logical :: c_run
     end type proc
 
     public :: init
-    public :: add_model
-    public :: add_flag
-    public :: printProc
+    public :: union_comm
     public :: clean
 
-    interface init; module procedure &
-        initv_, &
-        initf_
-    end interface
 
 contains
 
-subroutine initv_(my_proc)
+subroutine init(my_proc)
     
     implicit none 
     type(proc), intent(inout) :: my_proc 
@@ -61,35 +92,71 @@ subroutine initv_(my_proc)
     integer :: num_rank
     integer :: num_size 
 
-    allocate(my_proc%comms(MAX_SIZE))
-    allocate(my_proc%flags(MAX_SIZE))
-    allocate(my_proc%models(MAX_SIZE))
-   
-    my_proc%num_comms = 1
-    my_proc%num_flags = 0
-    my_proc%num_models = 0
-    my_proc%max_size = MAX_SIZE
-
+    my_proc%num_models = 3
+    my_proc%num_comms = my_proc%models*2+2
+    my_proc%num_flags = -1
+    
     call MPI_Init(ierr)
     call MPI_Comm_rank(MPI_COMM_WORLD, num_rank, ierr)
     call MPI_Comm_size(MPI_COMM_WORLD, num_size, ierr)
    
-    my_proc%comms(my_proc%num_comms)%my_comm = MPI_COMM_WORLD
-    my_proc%comms(my_proc%num_comms)%num_proc = num_rank
-    my_proc%comms(my_proc%num_comms)%num_size = num_size
-    my_proc%comms(my_proc%num_comms)%commName = "MPI_COMM_WORLD"
-
-end subroutine initv_
-
-subroutine initf_(my_proc, filename)
+    my_proc%modela = "modela"
+    my_proc%modelb = "modelb"
+    my_proc%modelc = "modelc"
+    my_proc%a_size = 100
+    my_proc%b_size = 100
+    my_proc%c_size = 100
     
-    implicit none
-    type(proc), intent(inout) :: my_proc
-    character(len=20), intent(in):: filename
-  
-    
+    allocate(my_proc%a2x_aa(my_proc%a_size))
+    allocate(my_proc%x2a_aa(my_proc%a_size))
+    allocate(my_proc%a2x_ax(my_proc%a_size))
+    allocate(my_proc%x2a_ax(my_proc%a_size))
+    allocate(my_proc%b2x_bb(my_proc%b_size))
+    allocate(my_proc%x2b_bb(my_proc%b_size))
+    allocate(my_proc%b2x_bx(my_proc%b_size))
+    allocate(my_proc%x2b_bx(my_proc%b_size))
+    allocate(my_proc%c2x_cc(my_proc%c_size))
+    allocate(my_proc%x2c_cc(my_proc%c_size))
+    allocate(my_proc%c2x_cx(my_proc%c_size))
+    allocate(my_proc%x2c_cx(my_proc%c_size))
 
-end subroutine initf_
+    my_proc%a_mapper = "a_mapper"
+    my_proc%b_mapper = "b_mapper"
+    my_proc%c_mapper = "c_mapper"
+
+    my_proc%mpi_glocom = MPI_COMM_WORLD
+    my_proc%mpi_cpl = my_proc%mpi_glocom
+    my_proc%mpi_modela = my_proc%mpi_glocom
+    my_proc%mpi_modelb = my_proc%mpi_glocom
+    my_proc%mpi_modelc = my_proc%mpi_glocom
+    my_proc%mpi_modela2cpl = my_proc%mpi_glocom
+    my_proc%mpi_modelb2cpl = my_proc%mpi_glocom
+    my_proc%mpi_modelc2cpl = my_proc%mpi_glocom
+
+    if(num_rank==0) then
+        my_proc%iam_root = .true.
+    else
+        my_proc%iam_root = .false.
+    end if
+    my_proc%iamin_modela = .true.
+    my_proc%iamin_modelb = .true.
+    my_proc%iamin_modelc = .true.
+    my_proc%iamin_modela2cpl = .true.
+    my_proc%iamin_modelb2cpl = .true.
+    my_proc%iamin_modelc2cpl = .true.
+    my_proc%iamroot_modela = .false.
+    my_proc%iamroot_modelb = .false.
+    my_proc%iamroot_modelc = .false.
+    my_proc%iamroot_modela2cpl = .false.
+    my_proc%iamroot_modelb2cpl = .false.
+    my_proc%iamroot_modelc2cpl = .false.
+    my_proc%a_run = .true.
+    my_proc%b_run = .true.
+    my_proc%c_run = .true.
+
+    my_proc%nothing = .false.
+
+end subroutine initv
 
 subroutine clean(my_proc)
     
