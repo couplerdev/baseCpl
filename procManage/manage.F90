@@ -76,7 +76,6 @@ include"mpif.h"
         logical :: b_run
         logical :: c_run
     end type proc
-
     public :: init
     public :: union_comm
     public :: clean
@@ -129,30 +128,28 @@ subroutine init(my_proc)
     my_proc%mpi_modela = my_proc%mpi_glocom
     my_proc%mpi_modelb = my_proc%mpi_glocom
     my_proc%mpi_modelc = my_proc%mpi_glocom
-    my_proc%mpi_modela2cpl = my_proc%mpi_glocom
-    my_proc%mpi_modelb2cpl = my_proc%mpi_glocom
-    my_proc%mpi_modelc2cpl = my_proc%mpi_glocom
+    
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl)
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl)
+    call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl)
 
     if(num_rank==0) then
         my_proc%iam_root = .true.
     else
         my_proc%iam_root = .false.
     end if
-    my_proc%iamin_modela = .true.
-    my_proc%iamin_modelb = .true.
-    my_proc%iamin_modelc = .true.
-    my_proc%iamin_modela2cpl = .true.
-    my_proc%iamin_modelb2cpl = .true.
-    my_proc%iamin_modelc2cpl = .true.
-    my_proc%iamroot_modela = .false.
-    my_proc%iamroot_modelb = .false.
-    my_proc%iamroot_modelc = .false.
-    my_proc%iamroot_modela2cpl = .false.
-    my_proc%iamroot_modelb2cpl = .false.
-    my_proc%iamroot_modelc2cpl = .false.
-    my_proc%a_run = .true.
-    my_proc%b_run = .true.
-    my_proc%c_run = .true.
+    call iamin_comm_root(my_proc%mpi_modela, my_proc%iamin_modela, &
+                         my_proc%iamroot_modela, ierr)
+    call iamin_comm_root(my_proc%mpi_modelb, my_proc%iamin_modelb, &
+                         my_proc%iamroot_modelb, ierr)
+    call iamin_comm_root(my_proc%mpi_modelc, my_proc%iamin_modelc, &
+                         my_proc%iamroot_modelc, ierr)
+    call iamin_comm_root(my_proc%mpi_modela2cpl, my_proc%iamin_modela2cpl, &
+                         my_proc%iamroot_modela2cpl, ierr)
+    call iamin_comm_root(my_proc%mpi_modelb2cpl, my_proc%iamin_modelb2cpl, &
+                         my_proc%iamroot_modelb2cpl, ierr)
+    call iamin_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamin_modelc2cpl, &
+                         my_proc%iamroot_modelc2cpl, ierr)
 
     my_proc%nothing = .false.
 
@@ -164,120 +161,66 @@ subroutine clean(my_proc)
     type(proc), intent(inout) :: my_proc
     integer :: ierr
 
-    deallocate(my_proc%comms)
-    deallocate(my_proc%flags)
-    deallocate(my_proc%models)
+    deallocate(my_proc%a2x_aa)
+    deallocate(my_proc%x2a_aa)
+    deallocate(my_proc%a2x_ax)
+    deallocate(my_proc%x2a_ax)
+    deallocate(my_proc%b2x_bb)
+    deallocate(my_proc%x2b_bb)
+    deallocate(my_proc%b2x_bx)
+    deallocate(my_proc%x2b_bx)
+    deallocate(my_proc%c2x_cc)
+    deallocate(my_proc%x2c_cc)
+    deallocate(my_proc%c2x_cx)
+    deallocate(my_proc%x2c_cx)
+ 
     
     call MPI_Finalize(ierr) 
 
 end subroutine clean
 
-subroutine printProc(my_proc, ierr)
-    implicit none
-    type(proc), intent(inout) :: my_proc
-    integer :: iter
-    integer :: world_rank    
-    integer, intent(inout) :: ierr
-
-    ierr = 0
-    call MPI_Comm_rank(MPI_COMM_WORLD, world_rank, ierr)
-    write(*,*) "my_proc:"
-    if(my_proc%num_comms>=1) then
-        do iter = 1, my_proc%num_comms
-            write(*,*) "the comm: ",my_proc%comms(iter)%commName, "comm size:",&
-                       my_proc%comms(iter)%num_size, "my rank in comm:", &
-                       my_proc%comms(iter)%num_proc
-        end do
-    end if
-    call MPI_Barrier(MPI_COMM_WORLD,ierr)
-    
-    if(world_rank==0) then
-        if(my_proc%num_flags>=1) then
-            do iter = 1, my_proc%num_flags
-                write(*,*) "the flags name:", my_proc%flags(iter)%flag_name, &
-                           "relative val:", my_proc%flags(iter)%val  
-            end do 
-        end if
-    end if
-
-    call MPI_Barrier(MPI_COMM_WORLD,ierr)
-    if(world_rank==0) then
-        if(my_proc%num_models>=1) then
-            do iter = 1, my_proc%num_models
-                write(*,*) "the model name:", my_proc%models(iter)%model_name
-            end do
-        end if
-     end if
-
-end subroutine printProc
-
-subroutine add_flag(my_proc, flag_name, val, ierr)
-    ! a bug!!! need to be grp to manage this
-    implicit none
-    type(proc), intent(inout) :: my_proc
-    character(len=20), intent(in) :: flag_name
-    integer, intent(in) :: val
-    integer, intent(inout) :: ierr
-
-    ierr = 0
-    my_proc%num_flags = my_proc%num_flags+1
-    if(my_proc%num_flags>MAX_SIZE)then
-        ierr = 1
-    else
-        my_proc%flags(my_proc%num_flags)%flag_name = flag_name
-        my_proc%flags(my_proc%num_flags)%val = val
-    end if
-
-end subroutine add_flag
-
-subroutine add_model(my_proc, model_name, ierr)
+subroutine union_comm(comm_x, comm_y, comm_union, ierr)
 
     implicit none
-    type(proc), intent(inout) :: my_proc
-    character(len=20), intent(in) :: model_name
-    integer, intent(inout) :: ierr
-
-    ierr = 0
-    my_proc%num_models = my_proc%num_models+1
-    if(my_proc%num_models>MAX_SIZE)then
-        ierr = 1
-    else
-        my_proc%models(my_proc%num_models)%model_name = model_name
-    end if
-
-end subroutine add_model
-
-subroutine comm_union(my_proc, comm_x, comm_y, ierr)
-
-    implicit none
-    type(proc), intent(inout) :: my_proc
     integer, intent(in) :: comm_x
     integer, intent(in) :: comm_y
+    integer, intent(inout) :: comm_union
     integer, intent(inout) :: ierr
-    integer :: mpi_grp
     integer :: x_grp
     integer :: y_grp
-    integer :: x_comm
-    integer :: y_comm
-    integer :: mpi_comm
-    type(commInfo) :: new_comm
+    integer :: union_grp    
+ 
+    call MPI_Comm_group(comm_x, x_grp)
+    call MPI_Comm_group(comm_y, y_grp)
+    call MPI_Group_union(x_grp, y_grp, union_grp)
+    call MPI_Comm_create(MPI_COMM_WORLD, union_grp, comm_union)
 
-    ierr = 0
-    if(my_proc%num_comms<comm_x .or. my_proc%num_comms<comm_y .or. comm_x == comm_y)then
-        ierr = 1
+end subroutine union_comm
+
+subroutine iamin_comm_root(comm_x, iamin, iamroot, ierr)
+
+    implicit none
+    integer, intent(in) :: comm_x
+    logical, intent(inout) :: iamin
+    logical, intent(inout) :: iamroot
+    integer, intent(inout) :: ierr
+    integer :: x_grp
+    integer :: me
+  
+    call MPI_Comm_group(comm_x, x_grp, ierr)
+    call MPI_Group(x_grp, me, ierr)
+    if( me .ne. MPI_UNDEFINED) then
+        iamin = .true.
+        if( me .eq. 0) then
+            iamroot = .true.
+        else
+            iamroot = .false.
+        end if
     else
-        call MPI_Comm_group(my_proc%comms(comm_x)%my_comm, x_grp, ierr)
-        call MPI_Comm_group(my_proc%comms(comm_y)%my_comm, y_grp, ierr)
-        call MPI_Group_union(x_grp, y_grp, mpi_grp, ierr)
-        call MPI_Comm_create(MPI_COMM_WORLD,mpi_grp, mpi_comm, ierr)
-        new_comm%commName = my_proc%comms(comm_x)%commName + my_proc%comms(comm_y)%commName
-        call MPI_Comm_rank(mpi_comm, new_comm%num_proc, ierr) 
-        call MPI_Comm_size(mpi_comm, new_comm%num_size, ierr)
-        new_comm%my_comm = mpi_comm
-        my_proc%num_comms = my_proc%num_comms + 1
-        my_proc%comms(my_proc%num_comms) = new_comm
+        iamin = .false.
+        iamroot = .false.
     end if
 
-end subroutine comm_union
+end subroutine iamin_comm_root
 
 end module procM
