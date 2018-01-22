@@ -1,4 +1,6 @@
 module procM
+use cpl_vect ,only: c_vect, cv_init => init, cv_zero => zero, &
+                  vect_size, cv_del => del
     implicit none
 include"mpif.h"
 
@@ -30,18 +32,18 @@ include"mpif.h"
         integer :: a_size
         integer :: b_size
         integer :: c_size
-        integer, dimension(:), pointer :: a2x_aa ! ? whether the _a in aa important
-        integer, dimension(:), pointer :: x2a_aa
-        integer, dimension(:), pointer :: a2x_ax
-        integer, dimension(:), pointer :: x2a_ax
-        integer, dimension(:), pointer :: b2x_bb
-        integer, dimension(:), pointer :: x2b_bb
-        integer, dimension(:), pointer :: b2x_bx
-        integer, dimension(:), pointer :: x2b_bx
-        integer, dimension(:), pointer :: c2x_cc
-        integer, dimension(:), pointer :: x2c_cc
-        integer, dimension(:), pointer :: c2x_cx
-        integer, dimension(:), pointer :: x2c_cx
+        type(c_vect) :: a2x_aa ! ? whether the _a in aa important
+        type(c_vect) :: x2a_aa
+        type(c_vect) :: a2x_ax
+        type(c_vect) :: x2a_ax
+        type(c_vect) :: b2x_bb
+        type(c_vect) :: x2b_bb
+        type(c_vect) :: b2x_bx
+        type(c_vect) :: x2b_bx
+        type(c_vect) :: c2x_cc
+        type(c_vect) :: x2c_cc
+        type(c_vect) :: c2x_cx
+        type(c_vect) :: x2c_cx
         character(len=20) :: a_mapper
         character(len=20) :: b_mapper
         character(len=20) :: c_mapper
@@ -106,18 +108,18 @@ subroutine init(my_proc)
     my_proc%b_size = 100
     my_proc%c_size = 100
     
-    allocate(my_proc%a2x_aa(my_proc%a_size))
-    allocate(my_proc%x2a_aa(my_proc%a_size))
-    allocate(my_proc%a2x_ax(my_proc%a_size))
-    allocate(my_proc%x2a_ax(my_proc%a_size))
-    allocate(my_proc%b2x_bb(my_proc%b_size))
-    allocate(my_proc%x2b_bb(my_proc%b_size))
-    allocate(my_proc%b2x_bx(my_proc%b_size))
-    allocate(my_proc%x2b_bx(my_proc%b_size))
-    allocate(my_proc%c2x_cc(my_proc%c_size))
-    allocate(my_proc%x2c_cc(my_proc%c_size))
-    allocate(my_proc%c2x_cx(my_proc%c_size))
-    allocate(my_proc%x2c_cx(my_proc%c_size))
+    call cv_init(my_proc%a2x_aa, my_proc%a_size)
+    call cv_init(my_proc%x2a_aa, my_proc%a_size)
+    call cv_init(my_proc%a2x_ax, my_proc%a_size)
+    call cv_init(my_proc%x2a_ax, my_proc%a_size)
+    call cv_init(my_proc%b2x_bb, my_proc%b_size)
+    call cv_init(my_proc%x2b_bb, my_proc%b_size)
+    call cv_init(my_proc%b2x_bx, my_proc%b_size)
+    call cv_init(my_proc%x2b_bx, my_proc%b_size)
+    call cv_init(my_proc%c2x_cc, my_proc%c_size)
+    call cv_init(my_proc%x2c_cc, my_proc%c_size)
+    call cv_init(my_proc%c2x_cx, my_proc%c_size)
+    call cv_init(my_proc%x2c_cx, my_proc%c_size)
 
     my_proc%a_mapper = "a_mapper"
     my_proc%b_mapper = "b_mapper"
@@ -161,18 +163,18 @@ subroutine clean(my_proc)
     type(proc), intent(inout) :: my_proc
     integer :: ierr
 
-    deallocate(my_proc%a2x_aa)
-    deallocate(my_proc%x2a_aa)
-    deallocate(my_proc%a2x_ax)
-    deallocate(my_proc%x2a_ax)
-    deallocate(my_proc%b2x_bb)
-    deallocate(my_proc%x2b_bb)
-    deallocate(my_proc%b2x_bx)
-    deallocate(my_proc%x2b_bx)
-    deallocate(my_proc%c2x_cc)
-    deallocate(my_proc%x2c_cc)
-    deallocate(my_proc%c2x_cx)
-    deallocate(my_proc%x2c_cx)
+    call cv_del(my_proc%a2x_aa)
+    call cv_del(my_proc%x2a_aa)
+    call cv_del(my_proc%a2x_ax)
+    call cv_del(my_proc%x2a_ax)
+    call cv_del(my_proc%b2x_bb)
+    call cv_del(my_proc%x2b_bb)
+    call cv_del(my_proc%b2x_bx)
+    call cv_del(my_proc%x2b_bx)
+    call cv_del(my_proc%c2x_cc)
+    call cv_del(my_proc%x2c_cc)
+    call cv_del(my_proc%c2x_cx)
+    call cv_del(my_proc%x2c_cx)
  
     
     call MPI_Finalize(ierr) 
