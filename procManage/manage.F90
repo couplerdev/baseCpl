@@ -44,9 +44,12 @@ include"mpif.h"
         type(c_vect) :: x2c_cc
         type(c_vect) :: c2x_cx
         type(c_vect) :: x2c_cx
-        character(len=20) :: a_mapper
-        character(len=20) :: b_mapper
-        character(len=20) :: c_mapper
+        character(len=20) :: mapper_Ca2x
+        character(len=20) :: mapper_Cb2x
+        character(len=20) :: mapper_Cc2x
+        character(len=20) :: mapper_Cx2a
+        character(len=20) :: mapper_Cx2b
+        character(len=20) :: mapper_Cx2c
         !-------------------------------------------------
         ! define relative comm variables
         !-------------------------------------------------

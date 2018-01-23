@@ -1,6 +1,14 @@
-baseCpl设计：
-进程管理如何实现---按照cpl7
-时间步如何实现？
-初始化过程有哪些需要耦合器设置
-定义一个交换类？？？
+baseCpl设计:
+
+接下来需要完善的函数：
+gsmap_extend()
+avect_extend()
+
+comm_map()
+
+mapper_rearr_init()
+
+timeM模块
+
+以及如何加入mct
 
