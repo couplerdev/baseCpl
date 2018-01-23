@@ -13,7 +13,8 @@ module comms_def
     end type gsMap
 
     public :: mapper_init   
-
+    public :: mapper_rearr_init
+    public :: mapper_spmat_init
 contains 
 
 subroutine mapper_init(mapper, ierr)
@@ -28,5 +29,13 @@ subroutine mapper_init(mapper, ierr)
     mapper%sparseMat = "spmat"
 
 end subroutine mapper_init
+
+subroutine mapper_rearr_init(mapper, gsmap_s, gsmap_d, ierr)
+
+end subroutine mapper_rearr_init
+
+subroutine mapper_spmat_init(mapper, filename, ierr)
+
+end subroutine mapper_spmat_init
 
 end module comms_def
