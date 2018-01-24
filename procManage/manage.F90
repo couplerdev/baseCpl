@@ -1,5 +1,6 @@
 module procM
-use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
+use mct_mod
+!use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
     implicit none
 include"mpif.h"
 
