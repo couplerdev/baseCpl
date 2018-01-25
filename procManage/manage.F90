@@ -10,11 +10,12 @@ include"mpif.h"
         !-------------------------------------------------
         ! Meta desc of proc
         !-------------------------------------------------
-        integer :: num_comms
+        integer :: num_comms 
         integer :: num_flags
         integer :: num_models
         integer :: my_rank
         integer :: my_size
+        integer :: ncomps = 8
         !-------------------------------------------------
         ! define flags
         !-------------------------------------------------
@@ -63,6 +64,23 @@ include"mpif.h"
         integer :: mpi_modela2cpl
         integer :: mpi_modelb2cpl
         integer :: mpi_modelc2cpl
+
+        !------------------------------------------------
+        ! to support the ncomps used in mct_world_init
+        ! add array to store mpi_comm user get it from
+        ! ID
+        !------------------------------------------------
+        integer :: gloid          = 1
+        integer :: cplid          = 2
+        integer :: modela_id      = 3
+        integer :: modelb_id      = 4
+        integer :: modelc_id      = 5
+        integer :: modela2cpl_id  = 6
+        integer :: modelb2cpl_id  = 7
+        integer :: modelc2cpl_id  = 8
+        integer, dimension(:), pointer :: comp_comm
+        integer, dimension(:), pointer :: comp_id       
+
         !-------------------------------------------------
         ! define comm control variables and run control
         !-------------------------------------------------
@@ -97,15 +115,20 @@ subroutine init(my_proc)
     integer :: ierr    
     integer :: num_rank
     integer :: num_size 
+    integer :: iter
 
     my_proc%num_models = 3
     my_proc%num_comms = my_proc%num_models*2+2
     my_proc%num_flags = -1
     
+    
+
     call MPI_Init(ierr)
     call MPI_Comm_rank(MPI_COMM_WORLD, num_rank, ierr)
     call MPI_Comm_size(MPI_COMM_WORLD, num_size, ierr)
    
+    !call mct_world_init(ncomps, MPI_COMM_WORLD, comms, comps) ! comms? comps?
+
     my_proc%modela = "modela"
     my_proc%modelb = "modelb"
     my_proc%modelc = "modelc"
@@ -113,18 +136,18 @@ subroutine init(my_proc)
     my_proc%b_size = 100
     my_proc%c_size = 100
     
-    call mct_init(my_proc%a2x_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call mct_init(my_proc%x2a_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call mct_init(my_proc%a2x_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call mct_init(my_proc%x2a_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call mct_init(my_proc%b2x_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call mct_init(my_proc%x2b_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call mct_init(my_proc%b2x_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call mct_init(my_proc%x2b_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call mct_init(my_proc%c2x_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call mct_init(my_proc%x2c_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call mct_init(my_proc%c2x_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call mct_init(my_proc%x2c_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
+    call avect_init(my_proc%a2x_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
+    call avect_init(my_proc%x2a_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
+    call avect_init(my_proc%a2x_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
+    call avect_init(my_proc%x2a_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
+    call avect_init(my_proc%b2x_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
+    call avect_init(my_proc%x2b_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
+    call avect_init(my_proc%b2x_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
+    call avect_init(my_proc%x2b_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
+    call avect_init(my_proc%c2x_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
+    call avect_init(my_proc%x2c_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
+    call avect_init(my_proc%c2x_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
+    call avect_init(my_proc%x2c_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
 
     my_proc%mapper_Ca2x = "mapper_Ca2x"
     my_proc%mapper_Cx2a = "mapper_Cx2a"
@@ -142,6 +165,23 @@ subroutine init(my_proc)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl, ierr)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, ierr)
+
+    allocate(my_proc%comp_comm(my_proc%ncomps))
+    my_proc%comp_comm(my_proc%gloid)         = my_proc%mpi_glocomm
+    my_proc%comp_comm(my_proc%cplid)         = my_proc%mpi_cpl
+    my_proc%comp_comm(my_proc%modela_id)     = my_proc%mpi_modela
+    my_proc%comp_comm(my_proc%modelb_id)     = my_proc%mpi_modelb
+    my_proc%comp_comm(my_proc%modelc_id)     = my_proc%mpi_modelc
+    my_proc%comp_comm(my_proc%modela2cpl_id) = my_proc%mpi_modela2cpl  
+    my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl
+    my_proc%comp_comm(my_proc%modelc2cpl_id) = my_proc%mpi_modelc2cpl
+
+    allocate(my_proc%comp_id(my_proc%ncomps))
+    do iter = 1, my_proc%ncomps
+        my_proc%comp_id(iter) = iter
+    end do
+
+    call mct_world_init(my_proc%ncomps, MPI_COMM_WORLD, my_proc%comp_comm, my_proc%comp_id)
 
     if(num_rank==0) then
         my_proc%iam_root = .true.
@@ -171,18 +211,18 @@ subroutine clean(my_proc)
     type(proc), intent(inout) :: my_proc
     integer :: ierr
 
-    call mct_clean(my_proc%a2x_aa)
-    call mct_clean(my_proc%x2a_aa)
-    call mct_clean(my_proc%a2x_ax)
-    call mct_clean(my_proc%x2a_ax)
-    call mct_clean(my_proc%b2x_bb)
-    call mct_clean(my_proc%x2b_bb)
-    call mct_clean(my_proc%b2x_bx)
-    call mct_clean(my_proc%x2b_bx)
-    call mct_clean(my_proc%c2x_cc)
-    call mct_clean(my_proc%x2c_cc)
-    call mct_clean(my_proc%c2x_cx)
-    call mct_clean(my_proc%x2c_cx)
+    call avect_clean(my_proc%a2x_aa)
+    call avect_clean(my_proc%x2a_aa)
+    call avect_clean(my_proc%a2x_ax)
+    call avect_clean(my_proc%x2a_ax)
+    call avect_clean(my_proc%b2x_bb)
+    call avect_clean(my_proc%x2b_bb)
+    call avect_clean(my_proc%b2x_bx)
+    call avect_clean(my_proc%x2b_bx)
+    call avect_clean(my_proc%c2x_cc)
+    call avect_clean(my_proc%x2c_cc)
+    call avect_clean(my_proc%c2x_cx)
+    call avect_clean(my_proc%x2c_cx)
  
     
     call MPI_Finalize(ierr) 

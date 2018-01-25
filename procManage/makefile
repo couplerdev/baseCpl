@@ -2,7 +2,7 @@ FC = mpif90
 EXE = main
 MCT_P = ../MCT/mct
 MPEU_P = ../MCT/mpeu
-OBJ =  manage.o  main.o $(MCT_P)/m_AttrVect.o  $(MPEU_P)/*.o \
+OBJ =  manage.o  main.o $(MCT_P)/*.o  $(MPEU_P)/*.o \
        ../MCTWrapper/mct_mod.o
 FLAG = -I../MCTWrapper
 
