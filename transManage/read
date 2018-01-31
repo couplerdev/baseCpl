@@ -1,0 +1,13 @@
+mapper的结构
+传输类型
+传输工具：rearr, sMat
+cart3d？slon_s(:), clon_s(:),slat_s(:),clat_s(:), slon_d(:)...
+npfix？ilon1(:) ilat1(:) ilon2(:) ilat2(:)
+
+seq_map_initvect
+插值算法是如何实现的？不对，应该说，插值除了矩阵乘法以外还有其他的实现
+吗？我应该如何泛化这个实现？目前的想法：初始化，smat，处理av_in, av_out
+利用MCT稀疏矩阵乘法。
+
+CESM中规范化实现比较奇怪，用了一个额外的变量组，通过对这个变量设置Norm，
+乘以这个norm以及它的倒数来实现规范化

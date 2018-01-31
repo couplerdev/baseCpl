@@ -4,9 +4,11 @@ module comms_def
     type map_mod
         character(len=20) :: map_type  ! copy::rearr::spmat
         character(len=20) :: coord
-        character(len=20) :: rearr
+        type(gRearr) :: rearr
         character(len=20) :: sparseMat 
         integer :: mpicom
+        type(gGrid) :: dom_s
+        type(gGrid) :: dom_d
     end type map_mod
 
     type gsMap
