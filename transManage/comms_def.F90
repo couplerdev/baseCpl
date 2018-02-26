@@ -21,16 +21,33 @@ module comms_def
     public :: mapper_spmat_init
 contains 
 
-subroutine mapper_init(mapper, ierr)
+subroutine mapper_init(mapper, gsmap_s,comm_s, gsmap_d, comm_d, mapper_type, filename, ierr)
  
     implicit none
-    type(map_mod), intent(inout) :: mapper
-    integer, intent(inout) :: ierr
+    type(map_mod), intent(inout)         :: mapper
+    type(gsMap), intent(in)              :: gsmap_s
+    type(gsMap), intent(in)              :: gsmap_d
+    type(mapper_type), intent(in)        :: mapper_type
+    integer, intent(in)                  :: comm_s
+    integer, intent(in)                  :: comm_d
+    type(filename), optional ,intent(in) :: filename
+    integer, intent(inout)               :: ierr
 
-    mapper%map_type = "copy"
-    mapper%coord = "coord"
-    mapper%rearr = "rearr"
-    mapper%sparseMat = "spmat"
+    mapper%map_type = mapper_type
+    mapper%comm_s = comm_s
+    mapper%comm_d = comm_d
+    if(mapper%comm_s == mapper%comm_d)then
+        mapper%mpicom = comm_s
+    else
+        call 
+    end if
+    if(mapper%map_type=="copy")then
+        print 'mapper copy init'
+    else if(mapper%map_type=='rearr')then
+        call mapper_rearr_init(mapper, gsmap_s, gsmap_d, mapper%mpicom)
+    else
+        call mapper_spmat_init(mapper, filename, ierr)
+    end if
 
 end subroutine mapper_init
 
@@ -46,7 +63,7 @@ subroutine mapper_rearr_init(mapper, gsmap_s, gsmap_d, mpicom)
         mapper%map_type = "copy"
     else
         mapper%map_type = "rearr"
-        call rearr_init(gsmap_s, gsmap_d, mpicom, mapper%rearr)
+        call mapper_rearrsplit_init(mapper, gsmap_s, mapper%comm_s, gsmap_d, mapper%comm_d, mpicom)
     end if
 
 end subroutine mapper_rearr_init

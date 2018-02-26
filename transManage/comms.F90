@@ -21,7 +21,7 @@ subroutine comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
     if(mapper%map_type=="copy")then
         call avect_copy()
     else if(mapper%map_type=="rearrange")then
-        call rearr_rearrange()
+        call rearr_rearrange(src, dst, mapper%rearr)
     else
         call comp_interpolation()
     end if
@@ -29,11 +29,13 @@ subroutine comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
 end subroutine comp_comm
 
 
+
 !------------------------------------------------------
 !   interpolation only based sparse matrix muliplation
 !------------------------------------------------------
 subroutine comp_interpolation()
-
+ 
+    write(*,*)'haha'
 
 end subroutine comp_interpolation
 

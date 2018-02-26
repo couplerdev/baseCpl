@@ -5,6 +5,7 @@ use m_attrvect ,only: AttrVect
 use m_attrvect ,only: avect_init =>init
 use m_attrvect ,only: avect_clean => clean
 use m_attrvect ,only: avect_zero => zero
+use m_attrvect ,only: avect_copy => copy
 use m_attrvect ,only: avect_lsize => lsize
 use m_attrvect ,only: avect_indexIA => indexIA
 use m_attrvect ,only: avect_indexRA => indexRA

@@ -1,5 +1,10 @@
 module extend
+!---------------------------------------------------------
+! extendMod: when src gsmap, avect etc. have a different 
+! comm set, they should extend themselves.
+!--------------------------------------------------------- 
 use mct_mod
+
 
     implicit none
     public :: gsmap_extend

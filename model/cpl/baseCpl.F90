@@ -4,7 +4,7 @@ use cpl_vect
 use timeM
     implicit none
 
-    type(proc) :: my_proc
+    type(proc) :: my_proc  ! my proc manage all info needed in this process
 
     type(mct_gsMap) :: gsMap_aa
     type(mct_gsMap) :: gsMap_ax
@@ -23,6 +23,12 @@ subroutine cpl_init()
     implicit none
     call init(my_proc)
     call init_clock(EClock)
+
+    !-----------------------------------------------------------------
+    ! below defined a order of models, if proc seperated properly
+    ! they have no order, but with generator, user can define any
+    ! order they want
+    !-----------------------------------------------------------------
     if(my_proc%iamin_modela)then
         call a_init_mct(my_proc, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     end if
