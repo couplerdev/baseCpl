@@ -10,7 +10,7 @@ module timeM
         !integer :: years
         integer :: interval
     end type Clock
-    integer :: total_days =  100 
+    integer :: total_days =  1 
     integer :: time_a_run     =  3
     integer :: time_b_run     =  7
     integer :: time_c_run     =  19
@@ -71,7 +71,7 @@ subroutine triger(EClock, flag, flag_name)
     implicit none
     type(Clock), intent(in)       :: EClock
     logical, intent(inout)        :: flag
-    character(len=20), intent(in) :: flag_name
+    character(len=*),  intent(in) :: flag_name
     integer                       :: tmp_m
     integer                       :: tmp_h
     integer                       :: tmp_d 
@@ -80,6 +80,7 @@ subroutine triger(EClock, flag, flag_name)
     flag = .false.
     if(flag_name=='stop_clock')then
         if(EClock%days >= total_days)then
+            write(*,*) 'work'
             flag=.true.
         end if
     end if
@@ -130,5 +131,29 @@ subroutine clock_print(EClock)
                EClock%seconds, "seconds"
 
 end subroutine clock_print
+
+subroutine clock_info(EClock, info)
+
+    implicit none
+    type(Clock),  intent(inout)      :: EClock
+    character(len=*), intent(inout)  :: info
+    character(len=20)                :: tmpCh  
+   
+    write(tmpCh,*)EClock%days
+    info = info//tmpCh//"days:  "
+    
+    tmpCh = ""
+    write(tmpCh,*)EClock%hours
+    info = info//tmpCh//"hours:  "
+ 
+    tmpCh = ""
+    write(tmpCh,*)EClock%minites
+    info = info//tmpCh//"minites:  "
+    
+    tmpCh = ""
+    write(tmpCh,*)EClock%seconds
+    info = info//tmpCh//"seconds:  "
+
+end subroutine clock_info
 
 end module timeM
