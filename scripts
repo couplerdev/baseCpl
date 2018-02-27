@@ -1,6 +1,0 @@
-#!/bin/bash
-
-OBJ= main.o baseCpl.o
-gfortran -c main.F90
-gfortran -c baseCpl.F90
-gfortran -o main ${OBJ} 
