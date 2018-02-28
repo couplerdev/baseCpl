@@ -1,5 +1,6 @@
 module procM
 use mct_mod
+!use deploy_mod
 !use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
     implicit none
 include"mpif.h"
@@ -21,9 +22,6 @@ include"mpif.h"
         !-------------------------------------------------
         logical :: nothing
 
-
-
-
         !-------------------------------------------------
         ! define model variables
         !-------------------------------------------------
@@ -35,24 +33,27 @@ include"mpif.h"
         integer :: c_size
         character(len=20) :: iList = "fieldi"
         character(len=20) :: rList = "fieldr"
-        type(AttrVect) :: a2x_aa ! ? whether the _a in aa important
-        type(AttrVect) :: x2a_aa
-        type(AttrVect) :: a2x_ax
-        type(AttrVect) :: x2a_ax
-        type(AttrVect) :: b2x_bb
-        type(AttrVect) :: x2b_bb
-        type(AttrVect) :: b2x_bx
-        type(AttrVect) :: x2b_bx
-        type(AttrVect) :: c2x_cc
-        type(AttrVect) :: x2c_cc
-        type(AttrVect) :: c2x_cx
-        type(AttrVect) :: x2c_cx
-        character(len=20) :: mapper_Ca2x
-        character(len=20) :: mapper_Cb2x
-        character(len=20) :: mapper_Cc2x
-        character(len=20) :: mapper_Cx2a
-        character(len=20) :: mapper_Cx2b
-        character(len=20) :: mapper_Cx2c
+
+        type(AttrVect)  :: a2x_aa
+        type(AttrVect)  :: a2x_ax
+        type(AttrVect)  :: x2a_aa
+        type(AttrVect)  :: x2a_ax
+        type(AttrVect)  :: b2x_bb
+        type(AttrVect)  :: b2x_bx
+        type(AttrVect)  :: x2b_bb
+        type(AttrVect)  :: x2b_bx
+        type(AttrVect)  :: c2x_cc
+        type(AttrVect)  :: c2x_cx
+        type(AttrVect)  :: x2c_cc
+        type(AttrVect)  :: x2c_cx
+    
+        type(map_mod)   :: mapper_Ca2x
+        type(map_mod)   :: mapper_Cb2x
+        type(map_mod)   :: mapper_Cc2x
+        type(map_mod)   :: mapper_Cx2a
+        type(map_mod)   :: mapper_Cx2b
+        type(map_mod)   :: mapper_Cx2c 
+
         !-------------------------------------------------
         ! define relative comm variables
         !-------------------------------------------------
@@ -104,7 +105,7 @@ include"mpif.h"
     public :: init
     public :: union_comm
     public :: clean
-
+    public :: deploy
 
 contains
 
@@ -136,25 +137,6 @@ subroutine init(my_proc)
     my_proc%b_size = 100
     my_proc%c_size = 100
     
-    call avect_init(my_proc%a2x_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call avect_init(my_proc%x2a_aa, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call avect_init(my_proc%a2x_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call avect_init(my_proc%x2a_ax, my_proc%iList, my_proc%rList, my_proc%a_size)
-    call avect_init(my_proc%b2x_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call avect_init(my_proc%x2b_bb, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call avect_init(my_proc%b2x_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call avect_init(my_proc%x2b_bx, my_proc%iList, my_proc%rList, my_proc%b_size)
-    call avect_init(my_proc%c2x_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call avect_init(my_proc%x2c_cc, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call avect_init(my_proc%c2x_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
-    call avect_init(my_proc%x2c_cx, my_proc%iList, my_proc%rList, my_proc%c_size)
-
-    my_proc%mapper_Ca2x = "mapper_Ca2x"
-    my_proc%mapper_Cx2a = "mapper_Cx2a"
-    my_proc%mapper_Cb2x = "mapper_Cb2x"
-    my_proc%mapper_Cx2b = "mapper_Cx2b"
-    my_proc%mapper_Cc2x = "mapper_Cc2x" 
-    my_proc%mapper_Cx2c = "mapper_Cx2c"
 
     my_proc%mpi_glocomm = MPI_COMM_WORLD
     my_proc%mpi_cpl = my_proc%mpi_glocomm
@@ -200,6 +182,13 @@ subroutine init(my_proc)
                          my_proc%iamroot_modelb2cpl, ierr)
     call iamin_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamin_modelc2cpl, &
                          my_proc%iamroot_modelc2cpl, ierr)
+
+    call mapper_init(my_proc%mapper_Ca2x, ierr)
+    call mapper_init(my_proc%mapper_Cx2a, ierr)
+    call mapper_init(my_proc%mapper_Cb2x, ierr)
+    call mapper_init(my_proc%mapper_Cx2b, ierr)
+    call mapper_init(my_proc%mapper_Cc2x, ierr)
+    call mapper_init(my_proc%mapper_Cx2c, ierr) 
 
     my_proc%nothing = .false.
 
@@ -272,5 +261,6 @@ subroutine iamin_comm_root(comm_x, iamin, iamroot, ierr)
     end if
 
 end subroutine iamin_comm_root
+
 
 end module procM
