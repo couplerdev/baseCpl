@@ -36,7 +36,7 @@ use m_GlobalSegMap ,only: gsMap_clean => clean
 use m_GlobalSegMapComms ,only: gsmap_bcast => bcast
 
 
-use m_Rearranger ,only: rearr => Rearranger
+use m_Rearranger ,only: gRearr => Rearranger
 use m_Rearranger ,only: rearr_init => init
 use m_Rearranger ,only: rearr_clean => clean
 

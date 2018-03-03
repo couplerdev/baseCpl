@@ -4,25 +4,65 @@ use cpl_vect
 use timeM
     implicit none
 
-    type(proc) :: my_proc  ! my proc manage all info needed in this process
+    type(proc), target :: my_proc  ! my proc manage all info needed in this process
 
-    type(mct_gsMap) :: gsMap_aa
-    type(mct_gsMap) :: gsMap_ax
-    type(mct_gsMap) :: gsMap_bb
-    type(mct_gsMap) :: gsMap_bx
-    type(mct_gsMap) :: gsMap_cc
-    type(mct_gsMap) :: gsMap_cx
+    type(gsMap) :: gsMap_aa
+    type(gsMap) :: gsMap_ax
+    type(gsMap) :: gsMap_bb
+    type(gsMap) :: gsMap_bx
+    type(gsMap) :: gsMap_cc
+    type(gsMap) :: gsMap_cx
+
+    type(AttrVect),pointer  :: a2x_aa
+    type(AttrVect),pointer  :: x2a_aa
+    type(AttrVect),pointer  :: a2x_ax
+    type(AttrVect),pointer  :: x2a_ax
+    type(AttrVect),pointer  :: b2x_bb
+    type(AttrVect),pointer  :: x2b_bb
+    type(AttrVect),pointer  :: b2x_bx
+    type(AttrVect),pointer  :: x2b_bx
+    type(AttrVect),pointer  :: c2x_cc
+    type(AttrVect),pointer  :: x2c_cc
+    type(AttrVect),pointer  :: c2x_cx
+    type(AttrVect),pointer  :: x2c_cx
+   
+    !type(map_mod)   :: mapper_Ca2x
+    !type(map_mod)   :: mapper_Cb2x
+    !type(map_mod)   :: mapper_Cc2x
+    !type(map_mod)   :: mapper_Cx2a
+    !type(map_mod)   :: mapper_Cx2b
+    !type(map_mod)   :: mapper_Cx2c
+
+
     public :: cpl_init
     public :: cpl_run
     public :: cpl_final
+
+
      
 contains 
 
 subroutine cpl_init()
     
     implicit none
-    call init(my_proc)
-    call init_clock(EClock)
+    call pm_init(my_proc)
+    call clock_init(EClock)
+    
+    !-----------------------------------------------------------------
+    !  variables comp2x_yy point to relative my_proc%comp2x_yy
+    !-----------------------------------------------------------------
+    a2x_aa => my_proc%a2x_aa
+    a2x_ax => my_proc%a2x_ax
+    x2a_aa => my_proc%x2a_aa
+    x2a_ax => my_proc%x2a_ax
+    b2x_bb => my_proc%b2x_bb
+    b2x_bx => my_proc%b2x_bx
+    x2b_bb => my_proc%x2b_bb
+    x2b_bx => my_proc%x2b_bx
+    c2x_cc => my_proc%c2x_cc
+    c2x_cx => my_proc%c2x_cx
+    x2c_cc => my_proc%x2c_cc
+    x2c_cx => my_proc%x2c_cx
 
     !-----------------------------------------------------------------
     ! below defined a order of models, if proc seperated properly
@@ -43,7 +83,7 @@ subroutine cpl_init()
 
     if(my_proc%iamin_modela2cpl)then
         call gsmap_extend()
-        call avect_extend()
+        call avect_extend(a2x_aa, a2x_ax)
         call mapper_rearr_init(my_proc%mapper_Ca2x, gsmap_aa, gsmap_ax, ierr)
         call mapper_rearr_init(my_proc%mapper_Cx2a, gsmap_ax, gsmap_aa, ierr)
         call MPI_Barrier(my_proc%iamin_modela2cpl, ierr)
@@ -78,7 +118,7 @@ subroutine cpl_run()
         call triger(EClock, a_run, "a_run")
         call triger(EClock, b_run, "b_run") 
         call triger(EClock, c_run, "c_run")
-        
+        call triger(EClock, stop_clock, "stop_clock") 
 
         !----------------------------------------------------------
         !   prep phase
@@ -108,19 +148,19 @@ subroutine cpl_run()
         !------------------------------------------------------------
         if(a_run)then
             if(my_proc%iamin_modela)then
-                call a_mct_run(my_proc, EClock, a2x_aa, x2a_aa, ierr) 
+                call a_run_mct(my_proc, EClock, a2x_aa, x2a_aa, ierr) 
             end if
         end if
 
         if(b_run)then
             if(my_proc%iamin_modelb)then
-                call b_mct_run(my_proc, EClock, b2x_bb, x2b_bb, ierr)
+                call b_run_mct(my_proc, EClock, b2x_bb, x2b_bb, ierr)
             end if
         end if
 
         if(c_run)then
             if(my_proc%iamin_modelc)then
-                call c_mct_run(my_proc, EClock, c2x_cc, x2c_cc, ierr)
+                call c_run_mct(my_proc, EClock, c2x_cc, x2c_cc, ierr)
             end if
         end if
 

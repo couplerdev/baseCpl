@@ -7,8 +7,11 @@ use mct_mod
 
 
     implicit none
+    
     public :: gsmap_extend
+    public :: gsmap_create
     public :: avect_extend
+    public :: avect_create
 
 contains
 

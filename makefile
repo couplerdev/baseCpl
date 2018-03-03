@@ -1,15 +1,12 @@
-CC = gfortran
-EXE = main
-OBJ =  main.o baseCpl.o
-SRC = main.F90 baseCpl.F90
-main.o : main.F90
-baseCpl.o : baseCpl.F90
+FC =mpif90
+OBJ = ./baseCpl.o 
+SRC =
+EXE = baseCpl
+LIB =
+SUBDIR = ./procManage ./
 
-EXE : ${OBJ} 
-	${CC} -o ${EXE} ${OBJ} 
+for @dir in SUBDIR: \
+	cd dir
+	make
 
-baseCpl.o : baseCpl.F90
-main.o : main.F90
-
-
-
+$(EXE)

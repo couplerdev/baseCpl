@@ -1,111 +1,16 @@
 module procM
 use mct_mod
+use comms_def
+use proc_def
+use comms
 !use deploy_mod
 !use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
     implicit none
 include"mpif.h"
 
-    type proc
-        !type(commInfo), dimension(:), pointer :: comms     
-        !type(model), dimension(:), pointer :: models
-        !-------------------------------------------------
-        ! Meta desc of proc
-        !-------------------------------------------------
-        integer :: num_comms 
-        integer :: num_flags
-        integer :: num_models
-        integer :: my_rank
-        integer :: my_size
-        integer :: ncomps = 8
-        !-------------------------------------------------
-        ! define flags
-        !-------------------------------------------------
-        logical :: nothing
-
-        !-------------------------------------------------
-        ! define model variables
-        !-------------------------------------------------
-        character(len=20) :: modela
-        character(len=20) :: modelb
-        character(len=20) :: modelc
-        integer :: a_size
-        integer :: b_size
-        integer :: c_size
-        character(len=20) :: iList = "fieldi"
-        character(len=20) :: rList = "fieldr"
-
-        type(AttrVect)  :: a2x_aa
-        type(AttrVect)  :: a2x_ax
-        type(AttrVect)  :: x2a_aa
-        type(AttrVect)  :: x2a_ax
-        type(AttrVect)  :: b2x_bb
-        type(AttrVect)  :: b2x_bx
-        type(AttrVect)  :: x2b_bb
-        type(AttrVect)  :: x2b_bx
-        type(AttrVect)  :: c2x_cc
-        type(AttrVect)  :: c2x_cx
-        type(AttrVect)  :: x2c_cc
-        type(AttrVect)  :: x2c_cx
-    
-        type(map_mod)   :: mapper_Ca2x
-        type(map_mod)   :: mapper_Cb2x
-        type(map_mod)   :: mapper_Cc2x
-        type(map_mod)   :: mapper_Cx2a
-        type(map_mod)   :: mapper_Cx2b
-        type(map_mod)   :: mapper_Cx2c 
-
-        !-------------------------------------------------
-        ! define relative comm variables
-        !-------------------------------------------------
-        integer :: mpi_glocomm
-        integer :: mpi_cpl
-        integer :: mpi_modela
-        integer :: mpi_modelb
-        integer :: mpi_modelc
-        integer :: mpi_modela2cpl
-        integer :: mpi_modelb2cpl
-        integer :: mpi_modelc2cpl
-
-        !------------------------------------------------
-        ! to support the ncomps used in mct_world_init
-        ! add array to store mpi_comm user get it from
-        ! ID
-        !------------------------------------------------
-        integer :: gloid          = 1
-        integer :: cplid          = 2
-        integer :: modela_id      = 3
-        integer :: modelb_id      = 4
-        integer :: modelc_id      = 5
-        integer :: modela2cpl_id  = 6
-        integer :: modelb2cpl_id  = 7
-        integer :: modelc2cpl_id  = 8
-        integer, dimension(:), pointer :: comp_comm
-        integer, dimension(:), pointer :: comp_id       
-
-        !-------------------------------------------------
-        ! define comm control variables and run control
-        !-------------------------------------------------
-        logical :: iam_root
-        logical :: iamin_modela
-        logical :: iamin_modelb
-        logical :: iamin_modelc
-        logical :: iamin_modela2cpl
-        logical :: iamin_modelb2cpl
-        logical :: iamin_modelc2cpl
-        logical :: iamroot_modela
-        logical :: iamroot_modelb
-        logical :: iamroot_modelc
-        logical :: iamroot_modela2cpl
-        logical :: iamroot_modelb2cpl
-        logical :: iamroot_modelc2cpl
-        logical :: a_run
-        logical :: b_run
-        logical :: c_run
-    end type proc
     public :: init
     public :: union_comm
     public :: clean
-    public :: deploy
 
 contains
 
@@ -217,50 +122,5 @@ subroutine clean(my_proc)
     call MPI_Finalize(ierr) 
 
 end subroutine clean
-
-subroutine union_comm(comm_x, comm_y, comm_union, ierr)
-
-    implicit none
-    integer, intent(in) :: comm_x
-    integer, intent(in) :: comm_y
-    integer, intent(inout) :: comm_union
-    integer, intent(inout) :: ierr
-    integer :: x_grp
-    integer :: y_grp
-    integer :: union_grp    
- 
-    call MPI_Comm_group(comm_x, x_grp, ierr)
-    call MPI_Comm_group(comm_y, y_grp, ierr)
-    call MPI_Group_union(x_grp, y_grp, union_grp, ierr)
-    call MPI_Comm_create(MPI_COMM_WORLD, union_grp, comm_union, ierr)
-
-end subroutine union_comm
-
-subroutine iamin_comm_root(comm_x, iamin, iamroot, ierr)
-
-    implicit none
-    integer, intent(in) :: comm_x
-    logical, intent(inout) :: iamin
-    logical, intent(inout) :: iamroot
-    integer, intent(inout) :: ierr
-    integer :: x_grp
-    integer :: me
-  
-    call MPI_Comm_group(comm_x, x_grp, ierr)
-    call MPI_Group_rank(x_grp, me, ierr)
-    if( me .ne. MPI_UNDEFINED) then
-        iamin = .true.
-        if( me .eq. 0) then
-            iamroot = .true.
-        else
-            iamroot = .false.
-        end if
-    else
-        iamin = .false.
-        iamroot = .false.
-    end if
-
-end subroutine iamin_comm_root
-
 
 end module procM
