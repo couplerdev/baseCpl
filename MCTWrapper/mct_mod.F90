@@ -33,6 +33,7 @@ use m_Transfer ,only: mct_recv => Recv
 use m_GlobalSegMap ,only: gsMap => GlobalSegMap
 use m_GlobalSegMap ,only: gsMap_init => init
 use m_GlobalSegMap ,only: gsMap_clean => clean
+use m_GlobalSegMap ,only: gsMap_gsize  => gsize
 use m_GlobalSegMapComms ,only: gsmap_bcast => bcast
 
 

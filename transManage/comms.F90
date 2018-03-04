@@ -10,6 +10,7 @@ use proc_def
     public :: mapper_spmat_init
     public :: comp_comm
     private :: comp_interpolation  
+    private :: gsmap_check    
 
 interface mapper_init ; module procedure &
     mapper_init_nil, &
@@ -28,11 +29,42 @@ subroutine mapper_init_nil(mapper, ierr)
 
 end subroutine mapper_init_nil
 
-subroutine mapper_init_func(mapper, gsmap_s, )
+subroutine mapper_init_func()
 
 end subroutine mapper_init_func
 
-subroutine mapper_rearrsplit_init()
+subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d, ID_join)
+
+    implicit none
+    type(map_mod), intent(inout)   :: mapper
+    type(proc),    intent(in)      :: my_proc
+    type(gsMap),   intent(in)      :: gsmap_s
+    integer,       intent(in)      :: ID_s
+    type(gsMap),   intent(in)      :: gsmap_d
+    integer,       intent(in)      :: ID_d
+    integer,       intent(in)      :: ID_join
+
+    integer    :: mpicom_s, mpicom_d, mpicom_join
+    type(gsMap) :: gsmap_s_join
+    type(gsMap) :: gsmap_d_join
+
+    mpicom_s = my_proc%comp_comm(ID_s)
+    mpicom_d = my_proc%comp_comm(ID_d)
+    mpicom_join = my_proc%comp_comm(ID_join)
+
+    if(gsmap_Identical(gsmap_s, gsmap_d))then
+        mapper%map_type = "copy"
+    else 
+        mapper%map_type = "rearr"
+        call gsmap_extend(gsmap_s, mpicom_s, gsmap_s_join, mpicom_join, ID_join)
+        call gsmap_extend(gsmap_d, mpicom_d, gsmap_d_join, mpicom_join, ID_join)
+
+        call gsmap_check(gsmap_s_join, gsmap_d_join)
+        call rearr_init(gsmap_s_join, gsmap_d_join, mpicom_join, mapper%rearr)
+
+        call gsMap_clean(gsmap_s_join)
+        call gsMap_clean(gsmap_d_join)
+   end if
 
 end subroutine mapper_rearrsplit_init
 
@@ -60,7 +92,28 @@ subroutine comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
 
 end subroutine comp_comm
 
+!-------------------------------------------------
+! check two gsmap whether they have the same gsize
+!-------------------------------------------------
+subroutine gsmap_check(gsmap1, gsmap2)
 
+    implicit none
+    type(gsMap), intent(in)   :: gsmap1
+    type(gsMap), intent(in)   :: gsmap2
+
+    integer :: gsize1, gsize2
+     
+    gsize1 = gsMap_gsize(gsmap1)
+    gsize2 = gsMap_gsize(gsmap2)
+
+    if(gsize1 /= gsize2)then
+        !--------------------------------------
+        ! need modify when sys implemented
+        !--------------------------------------
+        write(*,*)'gsize not same'
+    end if
+
+end subroutine gsmap_check
 
 !------------------------------------------------------
 !   interpolation only based sparse matrix muliplation
