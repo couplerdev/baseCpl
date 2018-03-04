@@ -4,16 +4,45 @@ module extend
 ! comm set, they should extend themselves.
 !--------------------------------------------------------- 
 use mct_mod
-
+use proc_defs
 
     implicit none
     
+    public :: gsmap_init
     public :: gsmap_extend
     public :: gsmap_create
+    public :: avect_init
     public :: avect_extend
     public :: avect_create
 
 contains
+
+subroutine gsmap_init(my_proc, gsmap_s, ID_s, gsmap_d, &
+                      ID_d, ID_join)
+
+    implicit none
+    type(proc), intent(in)     :: my_proc
+    type(gsMap), intent(in)    :: gsmap_s
+    integer,     intent(in)    :: ID_s
+    type(gsMap), intent(inout) :: gsmap_d
+    integer,     intent(inout) :: ID_d
+    integer,     intent(in)    :: ID_join
+
+end subroutine gsmap_init
+
+subroutine avect_init(my_proc, AV_s, ID_s, AV_d, ID_d, gsmap, ID_join)
+
+    implicit none
+    type(proc),     intent(in)    :: my_proc
+    type(AttrVect), intent(inout) :: AV_s
+    integer,        intent(in)    :: ID_s
+    type(AttrVect), intent(inout) :: AV_d
+    integer,        intent(in)    :: ID_d
+    type(gsMap),    intent(in)    :: gsmap
+    integer,        intent(in)    :: ID_join
+
+
+end subroutine avect_init
 
 subroutine gsmap_extend(gsmap_s, mpicom_s, gsmap_d, mpicom_d)
 
@@ -133,6 +162,63 @@ subroutine avect_extend(my_proc, av_s, id_s, id, ierr)
 
 end subroutine avect_extend
 
+subroutine gsmap_create(gsmapi, mpicomi, gsmapo, mpicomo, compido)
 
+    !-------------------------------------------------------------------------
+    ! creates a new gsmap on a subset of pes, requires setting a new decomp
+    !-------------------------------------------------------------------------
+
+    implicit none
+    type(gsMap), intent(in)      :: gsmapi
+    integer    , intent(in)      :: mpicomi
+    type(gsMap), intent(inout)   :: gsmapo
+    integer    , intent(in)      :: mpicomo
+    integer    , intent(in)      :: compido
+
+    integer  :: n,m,k
+    integer  :: ktot            ! num of active cells in gsmap
+    integer  :: apesi, apeso    ! num of active pes in gsmap
+    integer  :: lsizeo          ! local size for lindex
+    integer  :: ngsegi, ngsego  ! ngseg of mpicomi, mpicomo
+    integer  :: gsizei, gsizeo  ! gsize of mpicomi, mpicomo
+    integer  :: msizei, msizeo  ! size of mpicomi, mpicomo
+    integer  :: mranki, mranko  ! rank in mpicomi, mpicomo
+    integer  :: ierrr
+    integer  :: decomp_type
+    integer, pointer :: start(:), length(:), peloc(:), perm(:), gindex(:), lindex(:)
+    real(8)  :: rpeloc
+    logical  :: gsmap_bfbflag = .false.  ! normally this should be set to false
+    
+    !--- create a new gsmap on new pes based on the old gsmap
+    !--- gsmapi must be known on all mpicomo pes, compute the same
+    !--- thing on all pes in parallel
+
+    if(mpicomo /= MPI_COMM_NULL) then
+        call mpi_comm_rank(mpicomi, mranki, ierr)
+        call mpi_comm_size(mpicomi, msizei, ierr)
+        call mpi_comm_rank(mpicomo, mranko, ierr)
+        call mpi_comm_size(mpicomo, msizeo, ierr)
+    
+        ngsegi = gsmapi%ngseg
+        gsizei = gsmapi%gsize
+        gsizeo = gsizei
+        call mct_gsmap_activepes(gsmapi, apesi)
+   
+        decomp_type = 0
+       
+
+end subroutine gsmap_create
+
+subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID, lsize)
+
+    implicit none
+    type(proc),     intent(in)      :: my_proc
+    type(AttrVect), intent(inout)   :: AV_s
+    integer,        intent(in)      :: ID_s
+    type(AttrVect), intent(inout)   :: AV_d
+    integer,        intent(in)      :: ID
+    integer,        intent(in)      :: lsize
+
+end subroutine avect_create
 
 end module extend
