@@ -82,28 +82,34 @@ subroutine cpl_init()
     end if
 
     if(my_proc%iamin_modela2cpl)then
-        call gsmap_extend()
-        call avect_extend(a2x_aa, a2x_ax)
-        call mapper_rearr_init(my_proc%mapper_Ca2x, gsmap_aa, gsmap_ax, ierr)
-        call mapper_rearr_init(my_proc%mapper_Cx2a, gsmap_ax, gsmap_aa, ierr)
+        call gsmap_extend(gsmap_aa, my_proc%mpi_modela, gsmap_ax, my_proc%mpi_modela2cpl)
+        call avect_extend(my_proc, a2x_aa, my_proc%modela_id, my_proc%modela2cpl_id)
+        call mapper_rearrsplit_init(my_proc%mapper_Ca2x, my_proc, gsmap_aa, my_proc%modela_id, &
+                                     gsmap_ax, my_proc%cplid, my_proc%modela2cpl_id,ierr)
+        call mapper_rearrsplit_init(my_proc%mapper_Cx2a, my_proc, gsmap_ax, my_proc%cplid, &
+                                     gsmap_aa, my_proc%modela_id, my_proc%modela2cpl_id, ierr)
         call MPI_Barrier(my_proc%iamin_modela2cpl, ierr)
-        call comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, msgtag=, ierr) 
+        call comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, msgtag=100+10+1, ierr) 
     end if
     
     if(my_proc%iamin_modelb2cpl)then
-        call gsmap_extend()
-        call avect_extend()
-        call mapper_rearr_init(my_proc%mapper_Cb2x, gsmap_bb, gsmap_bx, ierr)
-        call mapper_rearr_init(my_proc%mapper_Cx2b, gsmap_bx, gsmap_bb, ierr)
-        call comp_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, msgtag=, ierr)
+        call gsmap_extend(gsmap_bb, my_proc%mpi_modelb, gsmap_bx, my_proc%mpi_modelb2cpl)
+        call avect_extend(my_proc, b2x_bb, my_proc%modelb_id, my_proc%modelb2cpl_id)
+        call mapper_rearrsplit_init(my_proc%mapper_Cb2x, my_proc, gsmap_bb, my_proc%modelb_id, &
+                                     gsmap_bx, my_proc%cplid, my_proc%modelb2cpl_id, ierr)
+        call mapper_rearrsplit_init(my_proc%mapper_Cx2b, my_proc, gsmap_bx, my_proc%cplid, &
+                                     gsmap_bb, my_proc%modelb_id, my_proc%modelb2cpl_id, ierr)
+        call comp_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, msgtag=100+20+1, ierr)
     end if
 
     if(my_proc%iamin_modelc2cpl)then
-        call gsmap_extend()
-        call avect_extend()
-        call mapper_rearr_init(my_proc%mapper_Cc2x, gsmap_cc, gsmap_cx, ierr)
-        call mapper_rearr_init(my_proc%mapper_Cx2c, gsmap_cx, gsmap_cc, ierr)
-        call comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, msgtag=, ierr)
+        call gsmap_extend(gsmap_cc, my_proc%mpi_modelc, gsmap_cx, my_proc%mpi_modelc2cpl)
+        call avect_extend(my_proc, c2x_cc, my_proc%modelc_id, my_proc%modelc2cpl_id)
+        call mapper_rearrsplit_init(my_proc%mapper_Cc2x, my_proc, gsmap_cc, my_proc%modelc_id, &
+                                     gsmap_cx, my_proc%cplid, my_proc%modelc2cpl_id, ierr)
+        call mapper_rearrsplit_init(my_proc%mapper_Cx2c, my_proc, gsmap_cx, my_proc%cplid, &
+                                     gsmap_cc, my_proc%modelc_id, my_proc%modelc2cpl_id, ierr)
+        call comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, msgtag=100+30+1, ierr)
     end if 
 
 end subroutine cpl_init
@@ -125,19 +131,19 @@ subroutine cpl_run()
         !----------------------------------------------------------  
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
-                call comm_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, msgtag=, ierr)
+                call comm_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, msgtag=100+10+2, ierr)
             end if
         end if        
 
         if(b_run)then
             if(my_proc%iamin_modelb2cpl)then
-                call comm_map(my_proc%mapper_Cx2b, x2b_bx, x2b_bb, msgtag=, ierr)
+                call comm_map(my_proc%mapper_Cx2b, x2b_bx, x2b_bb, msgtag=100+20+2, ierr)
             end if
         end if
 
         if(c_run)then
             if(my_proc%iamin_modelc2cpl)then
-                call comm_map(my_proc%mapper_Cx2c, x2c_cx, x2c_cc, msgtag=, ierr)
+                call comm_map(my_proc%mapper_Cx2c, x2c_cx, x2c_cc, msgtag=100+30+2, ierr)
             end if
         end if
 
@@ -171,19 +177,19 @@ subroutine cpl_run()
 
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
-                call comm_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, msgtag=, ierr)
+                call comm_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, msgtag=100+10+3, ierr)
             end if
         end if
 
         if(b_run)then
             if(my_proc%iamin_modelb2cpl)then
-                call comm_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, msgtag=, ierr)
+                call comm_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, msgtag=100+20+3, ierr)
             end if
         end if
 
         if(c_run)then
             if(my_proc%iamin_modelc2cpl)then
-                call comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, msgtag=, ierr)
+                call comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, msgtag=100+30+3, ierr)
             end if
         end if
 
