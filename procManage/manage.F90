@@ -3,6 +3,7 @@ use mct_mod
 use comms_def
 use proc_def
 use comms
+use deploy_mod
 !use deploy_mod
 !use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
     implicit none
@@ -43,12 +44,19 @@ subroutine init(my_proc)
     my_proc%c_size = 100
     
 
+    !----------------------------------------------------------
+    ! set up every comp's comm
+    !----------------------------------------------------------
     my_proc%mpi_glocomm = MPI_COMM_WORLD
-    my_proc%mpi_cpl = my_proc%mpi_glocomm
-    my_proc%mpi_modela = my_proc%mpi_glocomm
-    my_proc%mpi_modelb = my_proc%mpi_glocomm
-    my_proc%mpi_modelc = my_proc%mpi_glocomm
-    
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
+                my_proc%cplid, 0)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, &
+                my_proc%modela_id, 0)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb, &
+                my_proc%modelb_id, 0)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc, &
+                my_proc%modelc_id, 0)
+
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl, ierr)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, ierr)

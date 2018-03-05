@@ -1,6 +1,6 @@
 FC = mpif90
 #EXE = main
-OBJ =  manage.o  main.o 
+OBJ =  manage.o  
 LIB = -lmct -lmpeu
 FLAG = -I../MCTWrapper -I/usr/local/include
 
