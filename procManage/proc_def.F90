@@ -1,4 +1,4 @@
-module proc_desc
+module proc_def
 use mct_mod
 use comms_def
     implicit none
@@ -104,4 +104,4 @@ include "mpif.h"
 
 
 
-end module proc_desc
+end module proc_def
