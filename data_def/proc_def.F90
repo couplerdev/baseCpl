@@ -2,7 +2,7 @@ module proc_def
 use mct_mod
 use comms_def
     implicit none
-include "mpif.h"
+!include "mpif.h"
 
     type proc
         !-----------------------------------------------

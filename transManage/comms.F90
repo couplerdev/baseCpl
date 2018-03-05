@@ -1,5 +1,4 @@
 module comms
-use procM
 use mct_mod
 use comms_def
 use proc_def
@@ -8,8 +7,8 @@ use proc_def
     public :: mapper_init
     public :: mapper_rearrsplit_init
     public :: mapper_spmat_init
-    public :: comp_comm
-    private :: comp_interpolation  
+    public :: mapper_comp_comm
+    private :: mapper_comp_interpolation  
     private :: gsmap_check    
 
 interface mapper_init ; module procedure &
@@ -52,7 +51,8 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
     mpicom_d = my_proc%comp_comm(ID_d)
     mpicom_join = my_proc%comp_comm(ID_join)
 
-    if(gsmap_Identical(gsmap_s, gsmap_d))then
+    !--if(gsmap_Identical(gsmap_s, gsmap_d))then
+    if(1 == 0)then
         mapper%map_type = "copy"
     else 
         mapper%map_type = "rearr"
@@ -72,7 +72,7 @@ subroutine mapper_spmat_init()
 
 end subroutine mapper_spmat_init
 
-subroutine comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
+subroutine mapper_comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
     
     implicit none
     type(map_mod),  intent(in)     :: mapper
@@ -80,17 +80,18 @@ subroutine comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
     type(AttrVect), intent(inout)  :: src
     type(gsMap),    intent(in)     :: gsMap_d
     type(AttrVect), intent(inout)  :: dst
+    integer,        intent(in)     :: msgtag
     integer,        optional,      intent(inout) :: ierr
 
     if(mapper%map_type=="copy")then
-        call avect_copy()
+        call avect_copy(src, dst)
     else if(mapper%map_type=="rearrange")then
         call rearr_rearrange(src, dst, mapper%rearr)
     else
-        call comp_interpolation()
+        call mapper_comp_interpolation()
     end if
 
-end subroutine comp_comm
+end subroutine mapper_comp_comm
 
 !-------------------------------------------------
 ! check two gsmap whether they have the same gsize
@@ -103,8 +104,8 @@ subroutine gsmap_check(gsmap1, gsmap2)
 
     integer :: gsize1, gsize2
      
-    gsize1 = gsMap_gsize(gsmap1)
-    gsize2 = gsMap_gsize(gsmap2)
+    gsize1 = gsmap1%gsize
+    gsize2 = gsmap2%gsize
 
     if(gsize1 /= gsize2)then
         !--------------------------------------
@@ -118,10 +119,10 @@ end subroutine gsmap_check
 !------------------------------------------------------
 !   interpolation only based sparse matrix muliplation
 !------------------------------------------------------
-subroutine comp_interpolation()
+subroutine mapper_comp_interpolation()
  
     write(*,*)'haha'
 
-end subroutine comp_interpolation
+end subroutine mapper_comp_interpolation
 
 end module comms

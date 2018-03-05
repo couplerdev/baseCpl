@@ -1,16 +1,17 @@
 module procM
+
 use mct_mod
-use comms_def
-use proc_def
-use comms
-use deploy_mod
+use comms_def, only: mct_mod
+use proc_def, only: proc
+use comms, only: mapper_init
+use deploy_mod, only: deploy
+use mpi_comm, only: union_comm, iamin_comm_root
 !use deploy_mod
 !use m_attrvect, only: AttrVect, mct_init => init, mct_clean => clean
     implicit none
 include"mpif.h"
 
     public :: init
-    public :: union_comm
     public :: clean
 
 contains

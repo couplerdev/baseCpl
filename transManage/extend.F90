@@ -4,7 +4,7 @@ module extend
 ! comm set, they should extend themselves.
 !--------------------------------------------------------- 
 use mct_mod
-use proc_defs
+use proc_def
 
     implicit none
     

@@ -1,0 +1,1568 @@
+mpif-config.h:33:32: Error: Name ‘ompi_major_version’ at (1) is an ambiguous reference to ‘ompi_major_version’ from module ‘proc_def’
+mpif-config.h:34:34: Error: Name ‘ompi_release_version’ at (1) is an ambiguous reference to ‘ompi_release_version’ from module ‘proc_def’
+mpif-config.h:35:35: Error: Name ‘ompi_major_version’ at (1) is an ambiguous reference to ‘ompi_major_version’ from module ‘proc_def’
+mpif-config.h:36:35: Error: Name ‘ompi_minor_version’ at (1) is an ambiguous reference to ‘ompi_minor_version’ from module ‘proc_def’
+mpif-config.h:37:37: Error: Name ‘ompi_release_version’ at (1) is an ambiguous reference to ‘ompi_release_version’ from module ‘proc_def’
+mpif-config.h:41:29: Error: Name ‘mpi_offset_kind’ at (1) is an ambiguous reference to ‘mpi_offset_kind’ from module ‘proc_def’
+mpif-config.h:42:28: Error: Name ‘mpi_count_kind’ at (1) is an ambiguous reference to ‘mpi_count_kind’ from module ‘proc_def’
+mpif-config.h:43:33: Error: Name ‘mpi_integer_kind’ at (1) is an ambiguous reference to ‘mpi_integer_kind’ from module ‘proc_def’
+mpif-config.h:44:33: Error: Name ‘mpi_address_kind’ at (1) is an ambiguous reference to ‘mpi_address_kind’ from module ‘proc_def’
+mpif-config.h:45:32: Error: Name ‘mpi_offset_kind’ at (1) is an ambiguous reference to ‘mpi_offset_kind’ from module ‘proc_def’
+mpif-config.h:46:31: Error: Name ‘mpi_count_kind’ at (1) is an ambiguous reference to ‘mpi_count_kind’ from module ‘proc_def’
+mpif-config.h:50:29: Error: Name ‘mpi_status_size’ at (1) is an ambiguous reference to ‘mpi_status_size’ from module ‘proc_def’
+mpif-config.h:51:32: Error: Name ‘mpi_status_size’ at (1) is an ambiguous reference to ‘mpi_status_size’ from module ‘proc_def’
+mpif-config.h:55:36: Error: Name ‘mpi_max_processor_name’ at (1) is an ambiguous reference to ‘mpi_max_processor_name’ from module ‘proc_def’
+mpif-config.h:56:34: Error: Name ‘mpi_max_error_string’ at (1) is an ambiguous reference to ‘mpi_max_error_string’ from module ‘proc_def’
+mpif-config.h:57:33: Error: Name ‘mpi_max_object_name’ at (1) is an ambiguous reference to ‘mpi_max_object_name’ from module ‘proc_def’
+mpif-config.h:58:44: Error: Name ‘mpi_max_library_version_string’ at (1) is an ambiguous reference to ‘mpi_max_library_version_string’ from module ‘proc_def’
+mpif-config.h:59:30: Error: Name ‘mpi_max_info_key’ at (1) is an ambiguous reference to ‘mpi_max_info_key’ from module ‘proc_def’
+mpif-config.h:60:30: Error: Name ‘mpi_max_info_val’ at (1) is an ambiguous reference to ‘mpi_max_info_val’ from module ‘proc_def’
+mpif-config.h:61:31: Error: Name ‘mpi_max_port_name’ at (1) is an ambiguous reference to ‘mpi_max_port_name’ from module ‘proc_def’
+mpif-config.h:62:36: Error: Name ‘mpi_max_datarep_string’ at (1) is an ambiguous reference to ‘mpi_max_datarep_string’ from module ‘proc_def’
+mpif-config.h:63:39: Error: Name ‘mpi_max_processor_name’ at (1) is an ambiguous reference to ‘mpi_max_processor_name’ from module ‘proc_def’
+mpif-config.h:64:37: Error: Name ‘mpi_max_error_string’ at (1) is an ambiguous reference to ‘mpi_max_error_string’ from module ‘proc_def’
+mpif-config.h:65:36: Error: Name ‘mpi_max_object_name’ at (1) is an ambiguous reference to ‘mpi_max_object_name’ from module ‘proc_def’
+mpif-config.h:66:47: Error: Name ‘mpi_max_library_version_string’ at (1) is an ambiguous reference to ‘mpi_max_library_version_string’ from module ‘proc_def’
+mpif-config.h:67:33: Error: Name ‘mpi_max_info_key’ at (1) is an ambiguous reference to ‘mpi_max_info_key’ from module ‘proc_def’
+mpif-config.h:68:33: Error: Name ‘mpi_max_info_val’ at (1) is an ambiguous reference to ‘mpi_max_info_val’ from module ‘proc_def’
+mpif-config.h:69:34: Error: Name ‘mpi_max_port_name’ at (1) is an ambiguous reference to ‘mpi_max_port_name’ from module ‘proc_def’
+mpif-config.h:70:39: Error: Name ‘mpi_max_datarep_string’ at (1) is an ambiguous reference to ‘mpi_max_datarep_string’ from module ‘proc_def’
+mpif-config.h:75:37: Error: Name ‘mpi_subarrays_supported’ at (1) is an ambiguous reference to ‘mpi_subarrays_supported’ from module ‘proc_def’
+mpif-config.h:76:44: Error: Name ‘mpi_async_protects_nonblocking’ at (1) is an ambiguous reference to ‘mpi_async_protects_nonblocking’ from module ‘proc_def’
+mpif-config.h:77:40: Error: Name ‘mpi_subarrays_supported’ at (1) is an ambiguous reference to ‘mpi_subarrays_supported’ from module ‘proc_def’
+mpif-config.h:79:47: Error: Name ‘mpi_async_protects_nonblocking’ at (1) is an ambiguous reference to ‘mpi_async_protects_nonblocking’ from module ‘proc_def’
+mpif-constants.h:25:30: Error: Name ‘mpi_any_source’ at (1) is an ambiguous reference to ‘mpi_any_source’ from module ‘proc_def’
+mpif-constants.h:26:27: Error: Name ‘mpi_any_tag’ at (1) is an ambiguous reference to ‘mpi_any_tag’ from module ‘proc_def’
+mpif-constants.h:27:26: Error: Name ‘mpi_appnum’ at (1) is an ambiguous reference to ‘mpi_appnum’ from module ‘proc_def’
+mpif-constants.h:28:34: Error: Name ‘mpi_bsend_overhead’ at (1) is an ambiguous reference to ‘mpi_bsend_overhead’ from module ‘proc_def’
+mpif-constants.h:29:24: Error: Name ‘mpi_cart’ at (1) is an ambiguous reference to ‘mpi_cart’ from module ‘proc_def’
+mpif-constants.h:30:39: Error: Name ‘mpi_combiner_contiguous’ at (1) is an ambiguous reference to ‘mpi_combiner_contiguous’ from module ‘proc_def’
+mpif-constants.h:31:35: Error: Name ‘mpi_combiner_darray’ at (1) is an ambiguous reference to ‘mpi_combiner_darray’ from module ‘proc_def’
+mpif-constants.h:32:32: Error: Name ‘mpi_combiner_dup’ at (1) is an ambiguous reference to ‘mpi_combiner_dup’ from module ‘proc_def’
+mpif-constants.h:33:40: Error: Name ‘mpi_combiner_f90_complex’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_complex’ from module ‘proc_def’
+mpif-constants.h:34:40: Error: Name ‘mpi_combiner_f90_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_integer’ from module ‘proc_def’
+mpif-constants.h:35:37: Error: Name ‘mpi_combiner_f90_real’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_real’ from module ‘proc_def’
+mpif-constants.h:36:37: Error: Name ‘mpi_combiner_hindexed’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed’ from module ‘proc_def’
+mpif-constants.h:37:43: Error: Name ‘mpi_combiner_hindexed_block’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed_block’ from module ‘proc_def’
+mpif-constants.h:38:45: Error: Name ‘mpi_combiner_hindexed_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed_integer’ from module ‘proc_def’
+mpif-constants.h:39:36: Error: Name ‘mpi_combiner_hvector’ at (1) is an ambiguous reference to ‘mpi_combiner_hvector’ from module ‘proc_def’
+mpif-constants.h:40:44: Error: Name ‘mpi_combiner_hvector_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_hvector_integer’ from module ‘proc_def’
+mpif-constants.h:41:36: Error: Name ‘mpi_combiner_indexed’ at (1) is an ambiguous reference to ‘mpi_combiner_indexed’ from module ‘proc_def’
+mpif-constants.h:42:42: Error: Name ‘mpi_combiner_indexed_block’ at (1) is an ambiguous reference to ‘mpi_combiner_indexed_block’ from module ‘proc_def’
+mpif-constants.h:43:34: Error: Name ‘mpi_combiner_named’ at (1) is an ambiguous reference to ‘mpi_combiner_named’ from module ‘proc_def’
+mpif-constants.h:44:36: Error: Name ‘mpi_combiner_resized’ at (1) is an ambiguous reference to ‘mpi_combiner_resized’ from module ‘proc_def’
+mpif-constants.h:45:35: Error: Name ‘mpi_combiner_struct’ at (1) is an ambiguous reference to ‘mpi_combiner_struct’ from module ‘proc_def’
+mpif-constants.h:46:43: Error: Name ‘mpi_combiner_struct_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_struct_integer’ from module ‘proc_def’
+mpif-constants.h:47:37: Error: Name ‘mpi_combiner_subarray’ at (1) is an ambiguous reference to ‘mpi_combiner_subarray’ from module ‘proc_def’
+mpif-constants.h:48:35: Error: Name ‘mpi_combiner_vector’ at (1) is an ambiguous reference to ‘mpi_combiner_vector’ from module ‘proc_def’
+mpif-constants.h:49:36: Error: Name ‘mpi_comm_type_shared’ at (1) is an ambiguous reference to ‘mpi_comm_type_shared’ from module ‘proc_def’
+mpif-constants.h:50:29: Error: Name ‘mpi_congruent’ at (1) is an ambiguous reference to ‘mpi_congruent’ from module ‘proc_def’
+mpif-constants.h:51:36: Error: Name ‘mpi_distribute_block’ at (1) is an ambiguous reference to ‘mpi_distribute_block’ from module ‘proc_def’
+mpif-constants.h:52:37: Error: Name ‘mpi_distribute_cyclic’ at (1) is an ambiguous reference to ‘mpi_distribute_cyclic’ from module ‘proc_def’
+mpif-constants.h:53:40: Error: Name ‘mpi_distribute_dflt_darg’ at (1) is an ambiguous reference to ‘mpi_distribute_dflt_darg’ from module ‘proc_def’
+mpif-constants.h:54:35: Error: Name ‘mpi_distribute_none’ at (1) is an ambiguous reference to ‘mpi_distribute_none’ from module ‘proc_def’
+mpif-constants.h:55:30: Error: Name ‘mpi_dist_graph’ at (1) is an ambiguous reference to ‘mpi_dist_graph’ from module ‘proc_def’
+mpif-constants.h:56:25: Error: Name ‘mpi_error’ at (1) is an ambiguous reference to ‘mpi_error’ from module ‘proc_def’
+mpif-constants.h:57:30: Error: Name ‘mpi_err_access’ at (1) is an ambiguous reference to ‘mpi_err_access’ from module ‘proc_def’
+mpif-constants.h:58:29: Error: Name ‘mpi_err_amode’ at (1) is an ambiguous reference to ‘mpi_err_amode’ from module ‘proc_def’
+mpif-constants.h:59:27: Error: Name ‘mpi_err_arg’ at (1) is an ambiguous reference to ‘mpi_err_arg’ from module ‘proc_def’
+mpif-constants.h:60:30: Error: Name ‘mpi_err_assert’ at (1) is an ambiguous reference to ‘mpi_err_assert’ from module ‘proc_def’
+mpif-constants.h:61:32: Error: Name ‘mpi_err_bad_file’ at (1) is an ambiguous reference to ‘mpi_err_bad_file’ from module ‘proc_def’
+mpif-constants.h:62:28: Error: Name ‘mpi_err_base’ at (1) is an ambiguous reference to ‘mpi_err_base’ from module ‘proc_def’
+mpif-constants.h:63:30: Error: Name ‘mpi_err_buffer’ at (1) is an ambiguous reference to ‘mpi_err_buffer’ from module ‘proc_def’
+mpif-constants.h:64:28: Error: Name ‘mpi_err_comm’ at (1) is an ambiguous reference to ‘mpi_err_comm’ from module ‘proc_def’
+mpif-constants.h:65:34: Error: Name ‘mpi_err_conversion’ at (1) is an ambiguous reference to ‘mpi_err_conversion’ from module ‘proc_def’
+mpif-constants.h:66:29: Error: Name ‘mpi_err_count’ at (1) is an ambiguous reference to ‘mpi_err_count’ from module ‘proc_def’
+mpif-constants.h:67:28: Error: Name ‘mpi_err_dims’ at (1) is an ambiguous reference to ‘mpi_err_dims’ from module ‘proc_def’
+mpif-constants.h:68:28: Error: Name ‘mpi_err_disp’ at (1) is an ambiguous reference to ‘mpi_err_disp’ from module ‘proc_def’
+mpif-constants.h:69:35: Error: Name ‘mpi_err_dup_datarep’ at (1) is an ambiguous reference to ‘mpi_err_dup_datarep’ from module ‘proc_def’
+mpif-constants.h:70:28: Error: Name ‘mpi_err_file’ at (1) is an ambiguous reference to ‘mpi_err_file’ from module ‘proc_def’
+mpif-constants.h:71:35: Error: Name ‘mpi_err_file_exists’ at (1) is an ambiguous reference to ‘mpi_err_file_exists’ from module ‘proc_def’
+mpif-constants.h:72:35: Error: Name ‘mpi_err_file_in_use’ at (1) is an ambiguous reference to ‘mpi_err_file_in_use’ from module ‘proc_def’
+mpif-constants.h:73:29: Error: Name ‘mpi_err_group’ at (1) is an ambiguous reference to ‘mpi_err_group’ from module ‘proc_def’
+mpif-constants.h:74:28: Error: Name ‘mpi_err_info’ at (1) is an ambiguous reference to ‘mpi_err_info’ from module ‘proc_def’
+mpif-constants.h:75:32: Error: Name ‘mpi_err_info_key’ at (1) is an ambiguous reference to ‘mpi_err_info_key’ from module ‘proc_def’
+mpif-constants.h:76:34: Error: Name ‘mpi_err_info_nokey’ at (1) is an ambiguous reference to ‘mpi_err_info_nokey’ from module ‘proc_def’
+mpif-constants.h:77:34: Error: Name ‘mpi_err_info_value’ at (1) is an ambiguous reference to ‘mpi_err_info_value’ from module ‘proc_def’
+mpif-constants.h:78:30: Error: Name ‘mpi_err_intern’ at (1) is an ambiguous reference to ‘mpi_err_intern’ from module ‘proc_def’
+mpif-constants.h:79:33: Error: Name ‘mpi_err_in_status’ at (1) is an ambiguous reference to ‘mpi_err_in_status’ from module ‘proc_def’
+mpif-constants.h:80:26: Error: Name ‘mpi_err_io’ at (1) is an ambiguous reference to ‘mpi_err_io’ from module ‘proc_def’
+mpif-constants.h:81:30: Error: Name ‘mpi_err_keyval’ at (1) is an ambiguous reference to ‘mpi_err_keyval’ from module ‘proc_def’
+mpif-constants.h:82:32: Error: Name ‘mpi_err_lastcode’ at (1) is an ambiguous reference to ‘mpi_err_lastcode’ from module ‘proc_def’
+mpif-constants.h:83:32: Error: Name ‘mpi_err_locktype’ at (1) is an ambiguous reference to ‘mpi_err_locktype’ from module ‘proc_def’
+mpif-constants.h:84:28: Error: Name ‘mpi_err_name’ at (1) is an ambiguous reference to ‘mpi_err_name’ from module ‘proc_def’
+mpif-constants.h:85:32: Error: Name ‘mpi_err_not_same’ at (1) is an ambiguous reference to ‘mpi_err_not_same’ from module ‘proc_def’
+mpif-constants.h:86:30: Error: Name ‘mpi_err_no_mem’ at (1) is an ambiguous reference to ‘mpi_err_no_mem’ from module ‘proc_def’
+mpif-constants.h:87:32: Error: Name ‘mpi_err_no_space’ at (1) is an ambiguous reference to ‘mpi_err_no_space’ from module ‘proc_def’
+mpif-constants.h:88:36: Error: Name ‘mpi_err_no_such_file’ at (1) is an ambiguous reference to ‘mpi_err_no_such_file’ from module ‘proc_def’
+mpif-constants.h:89:26: Error: Name ‘mpi_err_op’ at (1) is an ambiguous reference to ‘mpi_err_op’ from module ‘proc_def’
+mpif-constants.h:90:29: Error: Name ‘mpi_err_other’ at (1) is an ambiguous reference to ‘mpi_err_other’ from module ‘proc_def’
+mpif-constants.h:91:31: Error: Name ‘mpi_err_pending’ at (1) is an ambiguous reference to ‘mpi_err_pending’ from module ‘proc_def’
+mpif-constants.h:92:28: Error: Name ‘mpi_err_port’ at (1) is an ambiguous reference to ‘mpi_err_port’ from module ‘proc_def’
+mpif-constants.h:93:29: Error: Name ‘mpi_err_quota’ at (1) is an ambiguous reference to ‘mpi_err_quota’ from module ‘proc_def’
+mpif-constants.h:94:28: Error: Name ‘mpi_err_rank’ at (1) is an ambiguous reference to ‘mpi_err_rank’ from module ‘proc_def’
+mpif-constants.h:95:33: Error: Name ‘mpi_err_read_only’ at (1) is an ambiguous reference to ‘mpi_err_read_only’ from module ‘proc_def’
+mpif-constants.h:96:31: Error: Name ‘mpi_err_request’ at (1) is an ambiguous reference to ‘mpi_err_request’ from module ‘proc_def’
+mpif-constants.h:97:34: Error: Name ‘mpi_err_rma_attach’ at (1) is an ambiguous reference to ‘mpi_err_rma_attach’ from module ‘proc_def’
+mpif-constants.h:98:36: Error: Name ‘mpi_err_rma_conflict’ at (1) is an ambiguous reference to ‘mpi_err_rma_conflict’ from module ‘proc_def’
+mpif-constants.h:99:34: Error: Name ‘mpi_err_rma_flavor’ at (1) is an ambiguous reference to ‘mpi_err_rma_flavor’ from module ‘proc_def’
+mpif-constants.h:100:33: Error: Name ‘mpi_err_rma_range’ at (1) is an ambiguous reference to ‘mpi_err_rma_range’ from module ‘proc_def’
+mpif-constants.h:101:34: Error: Name ‘mpi_err_rma_shared’ at (1) is an ambiguous reference to ‘mpi_err_rma_shared’ from module ‘proc_def’
+mpif-constants.h:102:32: Error: Name ‘mpi_err_rma_sync’ at (1) is an ambiguous reference to ‘mpi_err_rma_sync’ from module ‘proc_def’
+mpif-constants.h:103:28: Error: Name ‘mpi_err_root’ at (1) is an ambiguous reference to ‘mpi_err_root’ from module ‘proc_def’
+mpif-constants.h:104:31: Error: Name ‘mpi_err_service’ at (1) is an ambiguous reference to ‘mpi_err_service’ from module ‘proc_def’
+mpif-constants.h:105:28: Error: Name ‘mpi_err_size’ at (1) is an ambiguous reference to ‘mpi_err_size’ from module ‘proc_def’
+mpif-constants.h:106:29: Error: Name ‘mpi_err_spawn’ at (1) is an ambiguous reference to ‘mpi_err_spawn’ from module ‘proc_def’
+mpif-constants.h:107:35: Error: Name ‘mpi_err_sysresource’ at (1) is an ambiguous reference to ‘mpi_err_sysresource’ from module ‘proc_def’
+mpif-constants.h:108:27: Error: Name ‘mpi_err_tag’ at (1) is an ambiguous reference to ‘mpi_err_tag’ from module ‘proc_def’
+mpif-constants.h:109:32: Error: Name ‘mpi_err_topology’ at (1) is an ambiguous reference to ‘mpi_err_topology’ from module ‘proc_def’
+mpif-constants.h:110:32: Error: Name ‘mpi_err_truncate’ at (1) is an ambiguous reference to ‘mpi_err_truncate’ from module ‘proc_def’
+mpif-constants.h:111:28: Error: Name ‘mpi_err_type’ at (1) is an ambiguous reference to ‘mpi_err_type’ from module ‘proc_def’
+mpif-constants.h:112:31: Error: Name ‘mpi_err_unknown’ at (1) is an ambiguous reference to ‘mpi_err_unknown’ from module ‘proc_def’
+mpif-constants.h:113:43: Error: Name ‘mpi_err_unsupported_datarep’ at (1) is an ambiguous reference to ‘mpi_err_unsupported_datarep’ from module ‘proc_def’
+mpif-constants.h:114:45: Error: Name ‘mpi_err_unsupported_operation’ at (1) is an ambiguous reference to ‘mpi_err_unsupported_operation’ from module ‘proc_def’
+mpif-constants.h:115:27: Error: Name ‘mpi_err_win’ at (1) is an ambiguous reference to ‘mpi_err_win’ from module ‘proc_def’
+mpif-constants.h:116:25: Error: Name ‘mpi_graph’ at (1) is an ambiguous reference to ‘mpi_graph’ from module ‘proc_def’
+mpif-constants.h:117:24: Error: Name ‘mpi_host’ at (1) is an ambiguous reference to ‘mpi_host’ from module ‘proc_def’
+mpif-constants.h:118:25: Error: Name ‘mpi_ident’ at (1) is an ambiguous reference to ‘mpi_ident’ from module ‘proc_def’
+mpif-constants.h:119:22: Error: Name ‘mpi_io’ at (1) is an ambiguous reference to ‘mpi_io’ from module ‘proc_def’
+mpif-constants.h:120:34: Error: Name ‘mpi_keyval_invalid’ at (1) is an ambiguous reference to ‘mpi_keyval_invalid’ from module ‘proc_def’
+mpif-constants.h:121:32: Error: Name ‘mpi_lastusedcode’ at (1) is an ambiguous reference to ‘mpi_lastusedcode’ from module ‘proc_def’
+mpif-constants.h:122:34: Error: Name ‘mpi_lock_exclusive’ at (1) is an ambiguous reference to ‘mpi_lock_exclusive’ from module ‘proc_def’
+mpif-constants.h:123:31: Error: Name ‘mpi_lock_shared’ at (1) is an ambiguous reference to ‘mpi_lock_shared’ from module ‘proc_def’
+mpif-constants.h:124:32: Error: Name ‘mpi_mode_nocheck’ at (1) is an ambiguous reference to ‘mpi_mode_nocheck’ from module ‘proc_def’
+mpif-constants.h:125:34: Error: Name ‘mpi_mode_noprecede’ at (1) is an ambiguous reference to ‘mpi_mode_noprecede’ from module ‘proc_def’
+mpif-constants.h:126:30: Error: Name ‘mpi_mode_noput’ at (1) is an ambiguous reference to ‘mpi_mode_noput’ from module ‘proc_def’
+mpif-constants.h:127:32: Error: Name ‘mpi_mode_nostore’ at (1) is an ambiguous reference to ‘mpi_mode_nostore’ from module ‘proc_def’
+mpif-constants.h:128:34: Error: Name ‘mpi_mode_nosucceed’ at (1) is an ambiguous reference to ‘mpi_mode_nosucceed’ from module ‘proc_def’
+mpif-constants.h:129:27: Error: Name ‘mpi_order_c’ at (1) is an ambiguous reference to ‘mpi_order_c’ from module ‘proc_def’
+mpif-constants.h:130:33: Error: Name ‘mpi_order_fortran’ at (1) is an ambiguous reference to ‘mpi_order_fortran’ from module ‘proc_def’
+mpif-constants.h:131:29: Error: Name ‘mpi_proc_null’ at (1) is an ambiguous reference to ‘mpi_proc_null’ from module ‘proc_def’
+mpif-constants.h:132:24: Error: Name ‘mpi_root’ at (1) is an ambiguous reference to ‘mpi_root’ from module ‘proc_def’
+mpif-constants.h:133:27: Error: Name ‘mpi_similar’ at (1) is an ambiguous reference to ‘mpi_similar’ from module ‘proc_def’
+mpif-constants.h:134:26: Error: Name ‘mpi_source’ at (1) is an ambiguous reference to ‘mpi_source’ from module ‘proc_def’
+mpif-constants.h:135:30: Error: Name ‘mpi_subversion’ at (1) is an ambiguous reference to ‘mpi_subversion’ from module ‘proc_def’
+mpif-constants.h:136:27: Error: Name ‘mpi_success’ at (1) is an ambiguous reference to ‘mpi_success’ from module ‘proc_def’
+mpif-constants.h:137:23: Error: Name ‘mpi_tag’ at (1) is an ambiguous reference to ‘mpi_tag’ from module ‘proc_def’
+mpif-constants.h:138:26: Error: Name ‘mpi_tag_ub’ at (1) is an ambiguous reference to ‘mpi_tag_ub’ from module ‘proc_def’
+mpif-constants.h:139:35: Error: Name ‘mpi_thread_funneled’ at (1) is an ambiguous reference to ‘mpi_thread_funneled’ from module ‘proc_def’
+mpif-constants.h:140:35: Error: Name ‘mpi_thread_multiple’ at (1) is an ambiguous reference to ‘mpi_thread_multiple’ from module ‘proc_def’
+mpif-constants.h:141:37: Error: Name ‘mpi_thread_serialized’ at (1) is an ambiguous reference to ‘mpi_thread_serialized’ from module ‘proc_def’
+mpif-constants.h:142:33: Error: Name ‘mpi_thread_single’ at (1) is an ambiguous reference to ‘mpi_thread_single’ from module ‘proc_def’
+mpif-constants.h:143:37: Error: Name ‘mpi_typeclass_complex’ at (1) is an ambiguous reference to ‘mpi_typeclass_complex’ from module ‘proc_def’
+mpif-constants.h:144:37: Error: Name ‘mpi_typeclass_integer’ at (1) is an ambiguous reference to ‘mpi_typeclass_integer’ from module ‘proc_def’
+mpif-constants.h:145:34: Error: Name ‘mpi_typeclass_real’ at (1) is an ambiguous reference to ‘mpi_typeclass_real’ from module ‘proc_def’
+mpif-constants.h:146:37: Error: Name ‘mpi_t_err_cannot_init’ at (1) is an ambiguous reference to ‘mpi_t_err_cannot_init’ from module ‘proc_def’
+mpif-constants.h:147:40: Error: Name ‘mpi_t_err_cvar_set_never’ at (1) is an ambiguous reference to ‘mpi_t_err_cvar_set_never’ from module ‘proc_def’
+mpif-constants.h:148:42: Error: Name ‘mpi_t_err_cvar_set_not_now’ at (1) is an ambiguous reference to ‘mpi_t_err_cvar_set_not_now’ from module ‘proc_def’
+mpif-constants.h:149:40: Error: Name ‘mpi_t_err_invalid_handle’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_handle’ from module ‘proc_def’
+mpif-constants.h:150:39: Error: Name ‘mpi_t_err_invalid_index’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_index’ from module ‘proc_def’
+mpif-constants.h:151:38: Error: Name ‘mpi_t_err_invalid_item’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_item’ from module ‘proc_def’
+mpif-constants.h:152:41: Error: Name ‘mpi_t_err_invalid_session’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_session’ from module ‘proc_def’
+mpif-constants.h:153:32: Error: Name ‘mpi_t_err_memory’ at (1) is an ambiguous reference to ‘mpi_t_err_memory’ from module ‘proc_def’
+mpif-constants.h:154:41: Error: Name ‘mpi_t_err_not_initialized’ at (1) is an ambiguous reference to ‘mpi_t_err_not_initialized’ from module ‘proc_def’
+mpif-constants.h:155:40: Error: Name ‘mpi_t_err_out_of_handles’ at (1) is an ambiguous reference to ‘mpi_t_err_out_of_handles’ from module ‘proc_def’
+mpif-constants.h:156:41: Error: Name ‘mpi_t_err_out_of_sessions’ at (1) is an ambiguous reference to ‘mpi_t_err_out_of_sessions’ from module ‘proc_def’
+mpif-constants.h:157:40: Error: Name ‘mpi_t_err_pvar_no_atomic’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_atomic’ from module ‘proc_def’
+mpif-constants.h:158:43: Error: Name ‘mpi_t_err_pvar_no_startstop’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_startstop’ from module ‘proc_def’
+mpif-constants.h:159:39: Error: Name ‘mpi_t_err_pvar_no_write’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_write’ from module ‘proc_def’
+mpif-constants.h:160:29: Error: Name ‘mpi_undefined’ at (1) is an ambiguous reference to ‘mpi_undefined’ from module ‘proc_def’
+mpif-constants.h:161:27: Error: Name ‘mpi_unequal’ at (1) is an ambiguous reference to ‘mpi_unequal’ from module ‘proc_def’
+mpif-constants.h:162:33: Error: Name ‘mpi_universe_size’ at (1) is an ambiguous reference to ‘mpi_universe_size’ from module ‘proc_def’
+mpif-constants.h:163:27: Error: Name ‘mpi_version’ at (1) is an ambiguous reference to ‘mpi_version’ from module ‘proc_def’
+mpif-constants.h:164:28: Error: Name ‘mpi_win_base’ at (1) is an ambiguous reference to ‘mpi_win_base’ from module ‘proc_def’
+mpif-constants.h:165:33: Error: Name ‘mpi_win_disp_unit’ at (1) is an ambiguous reference to ‘mpi_win_disp_unit’ from module ‘proc_def’
+mpif-constants.h:166:28: Error: Name ‘mpi_win_size’ at (1) is an ambiguous reference to ‘mpi_win_size’ from module ‘proc_def’
+mpif-constants.h:167:35: Error: Name ‘mpi_wtime_is_global’ at (1) is an ambiguous reference to ‘mpi_wtime_is_global’ from module ‘proc_def’
+mpif-constants.h:169:33: Error: Name ‘mpi_any_source’ at (1) is an ambiguous reference to ‘mpi_any_source’ from module ‘proc_def’
+mpif-constants.h:170:30: Error: Name ‘mpi_any_tag’ at (1) is an ambiguous reference to ‘mpi_any_tag’ from module ‘proc_def’
+mpif-constants.h:171:29: Error: Name ‘mpi_appnum’ at (1) is an ambiguous reference to ‘mpi_appnum’ from module ‘proc_def’
+mpif-constants.h:172:37: Error: Name ‘mpi_bsend_overhead’ at (1) is an ambiguous reference to ‘mpi_bsend_overhead’ from module ‘proc_def’
+mpif-constants.h:173:27: Error: Name ‘mpi_cart’ at (1) is an ambiguous reference to ‘mpi_cart’ from module ‘proc_def’
+mpif-constants.h:174:42: Error: Name ‘mpi_combiner_contiguous’ at (1) is an ambiguous reference to ‘mpi_combiner_contiguous’ from module ‘proc_def’
+mpif-constants.h:175:38: Error: Name ‘mpi_combiner_darray’ at (1) is an ambiguous reference to ‘mpi_combiner_darray’ from module ‘proc_def’
+mpif-constants.h:176:35: Error: Name ‘mpi_combiner_dup’ at (1) is an ambiguous reference to ‘mpi_combiner_dup’ from module ‘proc_def’
+mpif-constants.h:177:43: Error: Name ‘mpi_combiner_f90_complex’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_complex’ from module ‘proc_def’
+mpif-constants.h:178:43: Error: Name ‘mpi_combiner_f90_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_integer’ from module ‘proc_def’
+mpif-constants.h:179:40: Error: Name ‘mpi_combiner_f90_real’ at (1) is an ambiguous reference to ‘mpi_combiner_f90_real’ from module ‘proc_def’
+mpif-constants.h:180:40: Error: Name ‘mpi_combiner_hindexed’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed’ from module ‘proc_def’
+mpif-constants.h:181:46: Error: Name ‘mpi_combiner_hindexed_block’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed_block’ from module ‘proc_def’
+mpif-constants.h:182:48: Error: Name ‘mpi_combiner_hindexed_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_hindexed_integer’ from module ‘proc_def’
+mpif-constants.h:183:39: Error: Name ‘mpi_combiner_hvector’ at (1) is an ambiguous reference to ‘mpi_combiner_hvector’ from module ‘proc_def’
+mpif-constants.h:184:47: Error: Name ‘mpi_combiner_hvector_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_hvector_integer’ from module ‘proc_def’
+mpif-constants.h:185:39: Error: Name ‘mpi_combiner_indexed’ at (1) is an ambiguous reference to ‘mpi_combiner_indexed’ from module ‘proc_def’
+mpif-constants.h:186:45: Error: Name ‘mpi_combiner_indexed_block’ at (1) is an ambiguous reference to ‘mpi_combiner_indexed_block’ from module ‘proc_def’
+mpif-constants.h:187:37: Error: Name ‘mpi_combiner_named’ at (1) is an ambiguous reference to ‘mpi_combiner_named’ from module ‘proc_def’
+mpif-constants.h:188:39: Error: Name ‘mpi_combiner_resized’ at (1) is an ambiguous reference to ‘mpi_combiner_resized’ from module ‘proc_def’
+mpif-constants.h:189:38: Error: Name ‘mpi_combiner_struct’ at (1) is an ambiguous reference to ‘mpi_combiner_struct’ from module ‘proc_def’
+mpif-constants.h:190:46: Error: Name ‘mpi_combiner_struct_integer’ at (1) is an ambiguous reference to ‘mpi_combiner_struct_integer’ from module ‘proc_def’
+mpif-constants.h:191:40: Error: Name ‘mpi_combiner_subarray’ at (1) is an ambiguous reference to ‘mpi_combiner_subarray’ from module ‘proc_def’
+mpif-constants.h:192:38: Error: Name ‘mpi_combiner_vector’ at (1) is an ambiguous reference to ‘mpi_combiner_vector’ from module ‘proc_def’
+mpif-constants.h:193:39: Error: Name ‘mpi_comm_type_shared’ at (1) is an ambiguous reference to ‘mpi_comm_type_shared’ from module ‘proc_def’
+mpif-constants.h:194:32: Error: Name ‘mpi_congruent’ at (1) is an ambiguous reference to ‘mpi_congruent’ from module ‘proc_def’
+mpif-constants.h:195:39: Error: Name ‘mpi_distribute_block’ at (1) is an ambiguous reference to ‘mpi_distribute_block’ from module ‘proc_def’
+mpif-constants.h:196:40: Error: Name ‘mpi_distribute_cyclic’ at (1) is an ambiguous reference to ‘mpi_distribute_cyclic’ from module ‘proc_def’
+mpif-constants.h:197:43: Error: Name ‘mpi_distribute_dflt_darg’ at (1) is an ambiguous reference to ‘mpi_distribute_dflt_darg’ from module ‘proc_def’
+mpif-constants.h:198:38: Error: Name ‘mpi_distribute_none’ at (1) is an ambiguous reference to ‘mpi_distribute_none’ from module ‘proc_def’
+mpif-constants.h:199:33: Error: Name ‘mpi_dist_graph’ at (1) is an ambiguous reference to ‘mpi_dist_graph’ from module ‘proc_def’
+mpif-constants.h:200:28: Error: Name ‘mpi_error’ at (1) is an ambiguous reference to ‘mpi_error’ from module ‘proc_def’
+mpif-constants.h:201:33: Error: Name ‘mpi_err_access’ at (1) is an ambiguous reference to ‘mpi_err_access’ from module ‘proc_def’
+mpif-constants.h:202:32: Error: Name ‘mpi_err_amode’ at (1) is an ambiguous reference to ‘mpi_err_amode’ from module ‘proc_def’
+mpif-constants.h:203:30: Error: Name ‘mpi_err_arg’ at (1) is an ambiguous reference to ‘mpi_err_arg’ from module ‘proc_def’
+mpif-constants.h:204:33: Error: Name ‘mpi_err_assert’ at (1) is an ambiguous reference to ‘mpi_err_assert’ from module ‘proc_def’
+mpif-constants.h:205:35: Error: Name ‘mpi_err_bad_file’ at (1) is an ambiguous reference to ‘mpi_err_bad_file’ from module ‘proc_def’
+mpif-constants.h:206:31: Error: Name ‘mpi_err_base’ at (1) is an ambiguous reference to ‘mpi_err_base’ from module ‘proc_def’
+mpif-constants.h:207:33: Error: Name ‘mpi_err_buffer’ at (1) is an ambiguous reference to ‘mpi_err_buffer’ from module ‘proc_def’
+mpif-constants.h:208:31: Error: Name ‘mpi_err_comm’ at (1) is an ambiguous reference to ‘mpi_err_comm’ from module ‘proc_def’
+mpif-constants.h:209:37: Error: Name ‘mpi_err_conversion’ at (1) is an ambiguous reference to ‘mpi_err_conversion’ from module ‘proc_def’
+mpif-constants.h:210:32: Error: Name ‘mpi_err_count’ at (1) is an ambiguous reference to ‘mpi_err_count’ from module ‘proc_def’
+mpif-constants.h:211:31: Error: Name ‘mpi_err_dims’ at (1) is an ambiguous reference to ‘mpi_err_dims’ from module ‘proc_def’
+mpif-constants.h:212:31: Error: Name ‘mpi_err_disp’ at (1) is an ambiguous reference to ‘mpi_err_disp’ from module ‘proc_def’
+mpif-constants.h:213:38: Error: Name ‘mpi_err_dup_datarep’ at (1) is an ambiguous reference to ‘mpi_err_dup_datarep’ from module ‘proc_def’
+mpif-constants.h:214:31: Error: Name ‘mpi_err_file’ at (1) is an ambiguous reference to ‘mpi_err_file’ from module ‘proc_def’
+mpif-constants.h:215:38: Error: Name ‘mpi_err_file_exists’ at (1) is an ambiguous reference to ‘mpi_err_file_exists’ from module ‘proc_def’
+mpif-constants.h:216:38: Error: Name ‘mpi_err_file_in_use’ at (1) is an ambiguous reference to ‘mpi_err_file_in_use’ from module ‘proc_def’
+mpif-constants.h:217:32: Error: Name ‘mpi_err_group’ at (1) is an ambiguous reference to ‘mpi_err_group’ from module ‘proc_def’
+mpif-constants.h:218:31: Error: Name ‘mpi_err_info’ at (1) is an ambiguous reference to ‘mpi_err_info’ from module ‘proc_def’
+mpif-constants.h:219:35: Error: Name ‘mpi_err_info_key’ at (1) is an ambiguous reference to ‘mpi_err_info_key’ from module ‘proc_def’
+mpif-constants.h:220:37: Error: Name ‘mpi_err_info_nokey’ at (1) is an ambiguous reference to ‘mpi_err_info_nokey’ from module ‘proc_def’
+mpif-constants.h:221:37: Error: Name ‘mpi_err_info_value’ at (1) is an ambiguous reference to ‘mpi_err_info_value’ from module ‘proc_def’
+mpif-constants.h:222:33: Error: Name ‘mpi_err_intern’ at (1) is an ambiguous reference to ‘mpi_err_intern’ from module ‘proc_def’
+mpif-constants.h:223:36: Error: Name ‘mpi_err_in_status’ at (1) is an ambiguous reference to ‘mpi_err_in_status’ from module ‘proc_def’
+mpif-constants.h:224:29: Error: Name ‘mpi_err_io’ at (1) is an ambiguous reference to ‘mpi_err_io’ from module ‘proc_def’
+mpif-constants.h:225:33: Error: Name ‘mpi_err_keyval’ at (1) is an ambiguous reference to ‘mpi_err_keyval’ from module ‘proc_def’
+mpif-constants.h:226:35: Error: Name ‘mpi_err_lastcode’ at (1) is an ambiguous reference to ‘mpi_err_lastcode’ from module ‘proc_def’
+mpif-constants.h:227:35: Error: Name ‘mpi_err_locktype’ at (1) is an ambiguous reference to ‘mpi_err_locktype’ from module ‘proc_def’
+mpif-constants.h:228:31: Error: Name ‘mpi_err_name’ at (1) is an ambiguous reference to ‘mpi_err_name’ from module ‘proc_def’
+mpif-constants.h:229:35: Error: Name ‘mpi_err_not_same’ at (1) is an ambiguous reference to ‘mpi_err_not_same’ from module ‘proc_def’
+mpif-constants.h:230:33: Error: Name ‘mpi_err_no_mem’ at (1) is an ambiguous reference to ‘mpi_err_no_mem’ from module ‘proc_def’
+mpif-constants.h:231:35: Error: Name ‘mpi_err_no_space’ at (1) is an ambiguous reference to ‘mpi_err_no_space’ from module ‘proc_def’
+mpif-constants.h:232:39: Error: Name ‘mpi_err_no_such_file’ at (1) is an ambiguous reference to ‘mpi_err_no_such_file’ from module ‘proc_def’
+mpif-constants.h:233:29: Error: Name ‘mpi_err_op’ at (1) is an ambiguous reference to ‘mpi_err_op’ from module ‘proc_def’
+mpif-constants.h:234:32: Error: Name ‘mpi_err_other’ at (1) is an ambiguous reference to ‘mpi_err_other’ from module ‘proc_def’
+mpif-constants.h:235:34: Error: Name ‘mpi_err_pending’ at (1) is an ambiguous reference to ‘mpi_err_pending’ from module ‘proc_def’
+mpif-constants.h:236:31: Error: Name ‘mpi_err_port’ at (1) is an ambiguous reference to ‘mpi_err_port’ from module ‘proc_def’
+mpif-constants.h:237:32: Error: Name ‘mpi_err_quota’ at (1) is an ambiguous reference to ‘mpi_err_quota’ from module ‘proc_def’
+mpif-constants.h:238:31: Error: Name ‘mpi_err_rank’ at (1) is an ambiguous reference to ‘mpi_err_rank’ from module ‘proc_def’
+mpif-constants.h:239:36: Error: Name ‘mpi_err_read_only’ at (1) is an ambiguous reference to ‘mpi_err_read_only’ from module ‘proc_def’
+mpif-constants.h:240:34: Error: Name ‘mpi_err_request’ at (1) is an ambiguous reference to ‘mpi_err_request’ from module ‘proc_def’
+mpif-constants.h:241:37: Error: Name ‘mpi_err_rma_attach’ at (1) is an ambiguous reference to ‘mpi_err_rma_attach’ from module ‘proc_def’
+mpif-constants.h:242:39: Error: Name ‘mpi_err_rma_conflict’ at (1) is an ambiguous reference to ‘mpi_err_rma_conflict’ from module ‘proc_def’
+mpif-constants.h:243:37: Error: Name ‘mpi_err_rma_flavor’ at (1) is an ambiguous reference to ‘mpi_err_rma_flavor’ from module ‘proc_def’
+mpif-constants.h:244:36: Error: Name ‘mpi_err_rma_range’ at (1) is an ambiguous reference to ‘mpi_err_rma_range’ from module ‘proc_def’
+mpif-constants.h:245:37: Error: Name ‘mpi_err_rma_shared’ at (1) is an ambiguous reference to ‘mpi_err_rma_shared’ from module ‘proc_def’
+mpif-constants.h:246:35: Error: Name ‘mpi_err_rma_sync’ at (1) is an ambiguous reference to ‘mpi_err_rma_sync’ from module ‘proc_def’
+mpif-constants.h:247:31: Error: Name ‘mpi_err_root’ at (1) is an ambiguous reference to ‘mpi_err_root’ from module ‘proc_def’
+mpif-constants.h:248:34: Error: Name ‘mpi_err_service’ at (1) is an ambiguous reference to ‘mpi_err_service’ from module ‘proc_def’
+mpif-constants.h:249:31: Error: Name ‘mpi_err_size’ at (1) is an ambiguous reference to ‘mpi_err_size’ from module ‘proc_def’
+mpif-constants.h:250:32: Error: Name ‘mpi_err_spawn’ at (1) is an ambiguous reference to ‘mpi_err_spawn’ from module ‘proc_def’
+mpif-constants.h:251:38: Error: Name ‘mpi_err_sysresource’ at (1) is an ambiguous reference to ‘mpi_err_sysresource’ from module ‘proc_def’
+mpif-constants.h:252:30: Error: Name ‘mpi_err_tag’ at (1) is an ambiguous reference to ‘mpi_err_tag’ from module ‘proc_def’
+mpif-constants.h:253:35: Error: Name ‘mpi_err_topology’ at (1) is an ambiguous reference to ‘mpi_err_topology’ from module ‘proc_def’
+mpif-constants.h:254:35: Error: Name ‘mpi_err_truncate’ at (1) is an ambiguous reference to ‘mpi_err_truncate’ from module ‘proc_def’
+mpif-constants.h:255:31: Error: Name ‘mpi_err_type’ at (1) is an ambiguous reference to ‘mpi_err_type’ from module ‘proc_def’
+mpif-constants.h:256:34: Error: Name ‘mpi_err_unknown’ at (1) is an ambiguous reference to ‘mpi_err_unknown’ from module ‘proc_def’
+mpif-constants.h:257:46: Error: Name ‘mpi_err_unsupported_datarep’ at (1) is an ambiguous reference to ‘mpi_err_unsupported_datarep’ from module ‘proc_def’
+mpif-constants.h:258:48: Error: Name ‘mpi_err_unsupported_operation’ at (1) is an ambiguous reference to ‘mpi_err_unsupported_operation’ from module ‘proc_def’
+mpif-constants.h:259:30: Error: Name ‘mpi_err_win’ at (1) is an ambiguous reference to ‘mpi_err_win’ from module ‘proc_def’
+mpif-constants.h:260:28: Error: Name ‘mpi_graph’ at (1) is an ambiguous reference to ‘mpi_graph’ from module ‘proc_def’
+mpif-constants.h:261:27: Error: Name ‘mpi_host’ at (1) is an ambiguous reference to ‘mpi_host’ from module ‘proc_def’
+mpif-constants.h:262:28: Error: Name ‘mpi_ident’ at (1) is an ambiguous reference to ‘mpi_ident’ from module ‘proc_def’
+mpif-constants.h:263:25: Error: Name ‘mpi_io’ at (1) is an ambiguous reference to ‘mpi_io’ from module ‘proc_def’
+mpif-constants.h:264:37: Error: Name ‘mpi_keyval_invalid’ at (1) is an ambiguous reference to ‘mpi_keyval_invalid’ from module ‘proc_def’
+mpif-constants.h:265:35: Error: Name ‘mpi_lastusedcode’ at (1) is an ambiguous reference to ‘mpi_lastusedcode’ from module ‘proc_def’
+mpif-constants.h:266:37: Error: Name ‘mpi_lock_exclusive’ at (1) is an ambiguous reference to ‘mpi_lock_exclusive’ from module ‘proc_def’
+mpif-constants.h:267:34: Error: Name ‘mpi_lock_shared’ at (1) is an ambiguous reference to ‘mpi_lock_shared’ from module ‘proc_def’
+mpif-constants.h:268:35: Error: Name ‘mpi_mode_nocheck’ at (1) is an ambiguous reference to ‘mpi_mode_nocheck’ from module ‘proc_def’
+mpif-constants.h:269:37: Error: Name ‘mpi_mode_noprecede’ at (1) is an ambiguous reference to ‘mpi_mode_noprecede’ from module ‘proc_def’
+mpif-constants.h:270:33: Error: Name ‘mpi_mode_noput’ at (1) is an ambiguous reference to ‘mpi_mode_noput’ from module ‘proc_def’
+mpif-constants.h:271:35: Error: Name ‘mpi_mode_nostore’ at (1) is an ambiguous reference to ‘mpi_mode_nostore’ from module ‘proc_def’
+mpif-constants.h:272:37: Error: Name ‘mpi_mode_nosucceed’ at (1) is an ambiguous reference to ‘mpi_mode_nosucceed’ from module ‘proc_def’
+mpif-constants.h:273:30: Error: Name ‘mpi_order_c’ at (1) is an ambiguous reference to ‘mpi_order_c’ from module ‘proc_def’
+mpif-constants.h:274:36: Error: Name ‘mpi_order_fortran’ at (1) is an ambiguous reference to ‘mpi_order_fortran’ from module ‘proc_def’
+mpif-constants.h:275:32: Error: Name ‘mpi_proc_null’ at (1) is an ambiguous reference to ‘mpi_proc_null’ from module ‘proc_def’
+mpif-constants.h:276:27: Error: Name ‘mpi_root’ at (1) is an ambiguous reference to ‘mpi_root’ from module ‘proc_def’
+mpif-constants.h:277:30: Error: Name ‘mpi_similar’ at (1) is an ambiguous reference to ‘mpi_similar’ from module ‘proc_def’
+mpif-constants.h:278:29: Error: Name ‘mpi_source’ at (1) is an ambiguous reference to ‘mpi_source’ from module ‘proc_def’
+mpif-constants.h:279:33: Error: Name ‘mpi_subversion’ at (1) is an ambiguous reference to ‘mpi_subversion’ from module ‘proc_def’
+mpif-constants.h:280:30: Error: Name ‘mpi_success’ at (1) is an ambiguous reference to ‘mpi_success’ from module ‘proc_def’
+mpif-constants.h:281:26: Error: Name ‘mpi_tag’ at (1) is an ambiguous reference to ‘mpi_tag’ from module ‘proc_def’
+mpif-constants.h:282:29: Error: Name ‘mpi_tag_ub’ at (1) is an ambiguous reference to ‘mpi_tag_ub’ from module ‘proc_def’
+mpif-constants.h:283:38: Error: Name ‘mpi_thread_funneled’ at (1) is an ambiguous reference to ‘mpi_thread_funneled’ from module ‘proc_def’
+mpif-constants.h:284:38: Error: Name ‘mpi_thread_multiple’ at (1) is an ambiguous reference to ‘mpi_thread_multiple’ from module ‘proc_def’
+mpif-constants.h:285:40: Error: Name ‘mpi_thread_serialized’ at (1) is an ambiguous reference to ‘mpi_thread_serialized’ from module ‘proc_def’
+mpif-constants.h:286:36: Error: Name ‘mpi_thread_single’ at (1) is an ambiguous reference to ‘mpi_thread_single’ from module ‘proc_def’
+mpif-constants.h:287:40: Error: Name ‘mpi_typeclass_complex’ at (1) is an ambiguous reference to ‘mpi_typeclass_complex’ from module ‘proc_def’
+mpif-constants.h:288:40: Error: Name ‘mpi_typeclass_integer’ at (1) is an ambiguous reference to ‘mpi_typeclass_integer’ from module ‘proc_def’
+mpif-constants.h:289:37: Error: Name ‘mpi_typeclass_real’ at (1) is an ambiguous reference to ‘mpi_typeclass_real’ from module ‘proc_def’
+mpif-constants.h:290:40: Error: Name ‘mpi_t_err_cannot_init’ at (1) is an ambiguous reference to ‘mpi_t_err_cannot_init’ from module ‘proc_def’
+mpif-constants.h:291:43: Error: Name ‘mpi_t_err_cvar_set_never’ at (1) is an ambiguous reference to ‘mpi_t_err_cvar_set_never’ from module ‘proc_def’
+mpif-constants.h:292:45: Error: Name ‘mpi_t_err_cvar_set_not_now’ at (1) is an ambiguous reference to ‘mpi_t_err_cvar_set_not_now’ from module ‘proc_def’
+mpif-constants.h:293:43: Error: Name ‘mpi_t_err_invalid_handle’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_handle’ from module ‘proc_def’
+mpif-constants.h:294:42: Error: Name ‘mpi_t_err_invalid_index’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_index’ from module ‘proc_def’
+mpif-constants.h:295:41: Error: Name ‘mpi_t_err_invalid_item’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_item’ from module ‘proc_def’
+mpif-constants.h:296:44: Error: Name ‘mpi_t_err_invalid_session’ at (1) is an ambiguous reference to ‘mpi_t_err_invalid_session’ from module ‘proc_def’
+mpif-constants.h:297:35: Error: Name ‘mpi_t_err_memory’ at (1) is an ambiguous reference to ‘mpi_t_err_memory’ from module ‘proc_def’
+mpif-constants.h:298:44: Error: Name ‘mpi_t_err_not_initialized’ at (1) is an ambiguous reference to ‘mpi_t_err_not_initialized’ from module ‘proc_def’
+mpif-constants.h:299:43: Error: Name ‘mpi_t_err_out_of_handles’ at (1) is an ambiguous reference to ‘mpi_t_err_out_of_handles’ from module ‘proc_def’
+mpif-constants.h:300:44: Error: Name ‘mpi_t_err_out_of_sessions’ at (1) is an ambiguous reference to ‘mpi_t_err_out_of_sessions’ from module ‘proc_def’
+mpif-constants.h:301:43: Error: Name ‘mpi_t_err_pvar_no_atomic’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_atomic’ from module ‘proc_def’
+mpif-constants.h:302:46: Error: Name ‘mpi_t_err_pvar_no_startstop’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_startstop’ from module ‘proc_def’
+mpif-constants.h:303:42: Error: Name ‘mpi_t_err_pvar_no_write’ at (1) is an ambiguous reference to ‘mpi_t_err_pvar_no_write’ from module ‘proc_def’
+mpif-constants.h:304:32: Error: Name ‘mpi_undefined’ at (1) is an ambiguous reference to ‘mpi_undefined’ from module ‘proc_def’
+mpif-constants.h:305:30: Error: Name ‘mpi_unequal’ at (1) is an ambiguous reference to ‘mpi_unequal’ from module ‘proc_def’
+mpif-constants.h:306:36: Error: Name ‘mpi_universe_size’ at (1) is an ambiguous reference to ‘mpi_universe_size’ from module ‘proc_def’
+mpif-constants.h:307:30: Error: Name ‘mpi_version’ at (1) is an ambiguous reference to ‘mpi_version’ from module ‘proc_def’
+mpif-constants.h:308:31: Error: Name ‘mpi_win_base’ at (1) is an ambiguous reference to ‘mpi_win_base’ from module ‘proc_def’
+mpif-constants.h:309:36: Error: Name ‘mpi_win_disp_unit’ at (1) is an ambiguous reference to ‘mpi_win_disp_unit’ from module ‘proc_def’
+mpif-constants.h:310:31: Error: Name ‘mpi_win_size’ at (1) is an ambiguous reference to ‘mpi_win_size’ from module ‘proc_def’
+mpif-constants.h:311:38: Error: Name ‘mpi_wtime_is_global’ at (1) is an ambiguous reference to ‘mpi_wtime_is_global’ from module ‘proc_def’
+mpif-handles.h:25:28: Error: Name ‘mpi_2complex’ at (1) is an ambiguous reference to ‘mpi_2complex’ from module ‘proc_def’
+mpif-handles.h:26:35: Error: Name ‘mpi_2double_complex’ at (1) is an ambiguous reference to ‘mpi_2double_complex’ from module ‘proc_def’
+mpif-handles.h:27:37: Error: Name ‘mpi_2double_precision’ at (1) is an ambiguous reference to ‘mpi_2double_precision’ from module ‘proc_def’
+mpif-handles.h:28:24: Error: Name ‘mpi_2int’ at (1) is an ambiguous reference to ‘mpi_2int’ from module ‘proc_def’
+mpif-handles.h:29:28: Error: Name ‘mpi_2integer’ at (1) is an ambiguous reference to ‘mpi_2integer’ from module ‘proc_def’
+mpif-handles.h:30:25: Error: Name ‘mpi_2real’ at (1) is an ambiguous reference to ‘mpi_2real’ from module ‘proc_def’
+mpif-handles.h:31:24: Error: Name ‘mpi_aint’ at (1) is an ambiguous reference to ‘mpi_aint’ from module ‘proc_def’
+mpif-handles.h:32:24: Error: Name ‘mpi_band’ at (1) is an ambiguous reference to ‘mpi_band’ from module ‘proc_def’
+mpif-handles.h:33:23: Error: Name ‘mpi_bor’ at (1) is an ambiguous reference to ‘mpi_bor’ from module ‘proc_def’
+mpif-handles.h:34:24: Error: Name ‘mpi_bxor’ at (1) is an ambiguous reference to ‘mpi_bxor’ from module ‘proc_def’
+mpif-handles.h:35:24: Error: Name ‘mpi_byte’ at (1) is an ambiguous reference to ‘mpi_byte’ from module ‘proc_def’
+mpif-handles.h:36:24: Error: Name ‘mpi_char’ at (1) is an ambiguous reference to ‘mpi_char’ from module ‘proc_def’
+mpif-handles.h:37:29: Error: Name ‘mpi_character’ at (1) is an ambiguous reference to ‘mpi_character’ from module ‘proc_def’
+mpif-handles.h:38:29: Error: Name ‘mpi_comm_null’ at (1) is an ambiguous reference to ‘mpi_comm_null’ from module ‘proc_def’
+mpif-handles.h:39:29: Error: Name ‘mpi_comm_self’ at (1) is an ambiguous reference to ‘mpi_comm_self’ from module ‘proc_def’
+mpif-handles.h:40:30: Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+mpif-handles.h:41:27: Error: Name ‘mpi_complex’ at (1) is an ambiguous reference to ‘mpi_complex’ from module ‘proc_def’
+mpif-handles.h:42:29: Error: Name ‘mpi_complex16’ at (1) is an ambiguous reference to ‘mpi_complex16’ from module ‘proc_def’
+mpif-handles.h:43:29: Error: Name ‘mpi_complex32’ at (1) is an ambiguous reference to ‘mpi_complex32’ from module ‘proc_def’
+mpif-handles.h:44:28: Error: Name ‘mpi_complex8’ at (1) is an ambiguous reference to ‘mpi_complex8’ from module ‘proc_def’
+mpif-handles.h:45:25: Error: Name ‘mpi_count’ at (1) is an ambiguous reference to ‘mpi_count’ from module ‘proc_def’
+mpif-handles.h:46:28: Error: Name ‘mpi_cxx_bool’ at (1) is an ambiguous reference to ‘mpi_cxx_bool’ from module ‘proc_def’
+mpif-handles.h:47:29: Error: Name ‘mpi_cxx_cplex’ at (1) is an ambiguous reference to ‘mpi_cxx_cplex’ from module ‘proc_def’
+mpif-handles.h:48:32: Error: Name ‘mpi_cxx_dblcplex’ at (1) is an ambiguous reference to ‘mpi_cxx_dblcplex’ from module ‘proc_def’
+mpif-handles.h:49:33: Error: Name ‘mpi_cxx_ldblcplex’ at (1) is an ambiguous reference to ‘mpi_cxx_ldblcplex’ from module ‘proc_def’
+mpif-handles.h:50:29: Error: Name ‘mpi_c_complex’ at (1) is an ambiguous reference to ‘mpi_c_complex’ from module ‘proc_def’
+mpif-handles.h:51:36: Error: Name ‘mpi_c_double_complex’ at (1) is an ambiguous reference to ‘mpi_c_double_complex’ from module ‘proc_def’
+mpif-handles.h:52:35: Error: Name ‘mpi_c_float_complex’ at (1) is an ambiguous reference to ‘mpi_c_float_complex’ from module ‘proc_def’
+mpif-handles.h:53:41: Error: Name ‘mpi_c_long_double_complex’ at (1) is an ambiguous reference to ‘mpi_c_long_double_complex’ from module ‘proc_def’
+mpif-handles.h:54:33: Error: Name ‘mpi_datatype_null’ at (1) is an ambiguous reference to ‘mpi_datatype_null’ from module ‘proc_def’
+mpif-handles.h:55:26: Error: Name ‘mpi_double’ at (1) is an ambiguous reference to ‘mpi_double’ from module ‘proc_def’
+mpif-handles.h:56:34: Error: Name ‘mpi_double_complex’ at (1) is an ambiguous reference to ‘mpi_double_complex’ from module ‘proc_def’
+mpif-handles.h:57:30: Error: Name ‘mpi_double_int’ at (1) is an ambiguous reference to ‘mpi_double_int’ from module ‘proc_def’
+mpif-handles.h:58:36: Error: Name ‘mpi_double_precision’ at (1) is an ambiguous reference to ‘mpi_double_precision’ from module ‘proc_def’
+mpif-handles.h:59:35: Error: Name ‘mpi_errhandler_null’ at (1) is an ambiguous reference to ‘mpi_errhandler_null’ from module ‘proc_def’
+mpif-handles.h:60:36: Error: Name ‘mpi_errors_are_fatal’ at (1) is an ambiguous reference to ‘mpi_errors_are_fatal’ from module ‘proc_def’
+mpif-handles.h:61:33: Error: Name ‘mpi_errors_return’ at (1) is an ambiguous reference to ‘mpi_errors_return’ from module ‘proc_def’
+mpif-handles.h:62:25: Error: Name ‘mpi_float’ at (1) is an ambiguous reference to ‘mpi_float’ from module ‘proc_def’
+mpif-handles.h:63:29: Error: Name ‘mpi_float_int’ at (1) is an ambiguous reference to ‘mpi_float_int’ from module ‘proc_def’
+mpif-handles.h:64:31: Error: Name ‘mpi_group_empty’ at (1) is an ambiguous reference to ‘mpi_group_empty’ from module ‘proc_def’
+mpif-handles.h:65:30: Error: Name ‘mpi_group_null’ at (1) is an ambiguous reference to ‘mpi_group_null’ from module ‘proc_def’
+mpif-handles.h:66:28: Error: Name ‘mpi_info_env’ at (1) is an ambiguous reference to ‘mpi_info_env’ from module ‘proc_def’
+mpif-handles.h:67:29: Error: Name ‘mpi_info_null’ at (1) is an ambiguous reference to ‘mpi_info_null’ from module ‘proc_def’
+mpif-handles.h:68:23: Error: Name ‘mpi_int’ at (1) is an ambiguous reference to ‘mpi_int’ from module ‘proc_def’
+mpif-handles.h:69:27: Error: Name ‘mpi_int16_t’ at (1) is an ambiguous reference to ‘mpi_int16_t’ from module ‘proc_def’
+mpif-handles.h:70:27: Error: Name ‘mpi_int32_t’ at (1) is an ambiguous reference to ‘mpi_int32_t’ from module ‘proc_def’
+mpif-handles.h:71:27: Error: Name ‘mpi_int64_t’ at (1) is an ambiguous reference to ‘mpi_int64_t’ from module ‘proc_def’
+mpif-handles.h:72:26: Error: Name ‘mpi_int8_t’ at (1) is an ambiguous reference to ‘mpi_int8_t’ from module ‘proc_def’
+mpif-handles.h:73:27: Error: Name ‘mpi_integer’ at (1) is an ambiguous reference to ‘mpi_integer’ from module ‘proc_def’
+mpif-handles.h:74:28: Error: Name ‘mpi_integer1’ at (1) is an ambiguous reference to ‘mpi_integer1’ from module ‘proc_def’
+mpif-handles.h:75:29: Error: Name ‘mpi_integer16’ at (1) is an ambiguous reference to ‘mpi_integer16’ from module ‘proc_def’
+mpif-handles.h:76:28: Error: Name ‘mpi_integer2’ at (1) is an ambiguous reference to ‘mpi_integer2’ from module ‘proc_def’
+mpif-handles.h:77:28: Error: Name ‘mpi_integer4’ at (1) is an ambiguous reference to ‘mpi_integer4’ from module ‘proc_def’
+mpif-handles.h:78:28: Error: Name ‘mpi_integer8’ at (1) is an ambiguous reference to ‘mpi_integer8’ from module ‘proc_def’
+mpif-handles.h:79:24: Error: Name ‘mpi_land’ at (1) is an ambiguous reference to ‘mpi_land’ from module ‘proc_def’
+mpif-handles.h:80:22: Error: Name ‘mpi_lb’ at (1) is an ambiguous reference to ‘mpi_lb’ from module ‘proc_def’
+mpif-handles.h:81:27: Error: Name ‘mpi_logical’ at (1) is an ambiguous reference to ‘mpi_logical’ from module ‘proc_def’
+mpif-handles.h:82:28: Error: Name ‘mpi_logical1’ at (1) is an ambiguous reference to ‘mpi_logical1’ from module ‘proc_def’
+mpif-handles.h:83:28: Error: Name ‘mpi_logical2’ at (1) is an ambiguous reference to ‘mpi_logical2’ from module ‘proc_def’
+mpif-handles.h:84:28: Error: Name ‘mpi_logical4’ at (1) is an ambiguous reference to ‘mpi_logical4’ from module ‘proc_def’
+mpif-handles.h:85:28: Error: Name ‘mpi_logical8’ at (1) is an ambiguous reference to ‘mpi_logical8’ from module ‘proc_def’
+mpif-handles.h:86:24: Error: Name ‘mpi_long’ at (1) is an ambiguous reference to ‘mpi_long’ from module ‘proc_def’
+mpif-handles.h:87:31: Error: Name ‘mpi_longdbl_int’ at (1) is an ambiguous reference to ‘mpi_longdbl_int’ from module ‘proc_def’
+mpif-handles.h:88:31: Error: Name ‘mpi_long_double’ at (1) is an ambiguous reference to ‘mpi_long_double’ from module ‘proc_def’
+mpif-handles.h:89:28: Error: Name ‘mpi_long_int’ at (1) is an ambiguous reference to ‘mpi_long_int’ from module ‘proc_def’
+mpif-handles.h:90:33: Error: Name ‘mpi_long_long_int’ at (1) is an ambiguous reference to ‘mpi_long_long_int’ from module ‘proc_def’
+mpif-handles.h:91:23: Error: Name ‘mpi_lor’ at (1) is an ambiguous reference to ‘mpi_lor’ from module ‘proc_def’
+mpif-handles.h:92:24: Error: Name ‘mpi_lxor’ at (1) is an ambiguous reference to ‘mpi_lxor’ from module ‘proc_def’
+mpif-handles.h:93:23: Error: Name ‘mpi_max’ at (1) is an ambiguous reference to ‘mpi_max’ from module ‘proc_def’
+mpif-handles.h:94:26: Error: Name ‘mpi_maxloc’ at (1) is an ambiguous reference to ‘mpi_maxloc’ from module ‘proc_def’
+mpif-handles.h:95:35: Error: Name ‘mpi_message_no_proc’ at (1) is an ambiguous reference to ‘mpi_message_no_proc’ from module ‘proc_def’
+mpif-handles.h:96:32: Error: Name ‘mpi_message_null’ at (1) is an ambiguous reference to ‘mpi_message_null’ from module ‘proc_def’
+mpif-handles.h:97:23: Error: Name ‘mpi_min’ at (1) is an ambiguous reference to ‘mpi_min’ from module ‘proc_def’
+mpif-handles.h:98:26: Error: Name ‘mpi_minloc’ at (1) is an ambiguous reference to ‘mpi_minloc’ from module ‘proc_def’
+mpif-handles.h:99:26: Error: Name ‘mpi_offset’ at (1) is an ambiguous reference to ‘mpi_offset’ from module ‘proc_def’
+mpif-handles.h:100:27: Error: Name ‘mpi_op_null’ at (1) is an ambiguous reference to ‘mpi_op_null’ from module ‘proc_def’
+mpif-handles.h:101:26: Error: Name ‘mpi_packed’ at (1) is an ambiguous reference to ‘mpi_packed’ from module ‘proc_def’
+mpif-handles.h:102:24: Error: Name ‘mpi_prod’ at (1) is an ambiguous reference to ‘mpi_prod’ from module ‘proc_def’
+mpif-handles.h:103:24: Error: Name ‘mpi_real’ at (1) is an ambiguous reference to ‘mpi_real’ from module ‘proc_def’
+mpif-handles.h:104:26: Error: Name ‘mpi_real16’ at (1) is an ambiguous reference to ‘mpi_real16’ from module ‘proc_def’
+mpif-handles.h:105:25: Error: Name ‘mpi_real2’ at (1) is an ambiguous reference to ‘mpi_real2’ from module ‘proc_def’
+mpif-handles.h:106:25: Error: Name ‘mpi_real4’ at (1) is an ambiguous reference to ‘mpi_real4’ from module ‘proc_def’
+mpif-handles.h:107:25: Error: Name ‘mpi_real8’ at (1) is an ambiguous reference to ‘mpi_real8’ from module ‘proc_def’
+mpif-handles.h:108:27: Error: Name ‘mpi_replace’ at (1) is an ambiguous reference to ‘mpi_replace’ from module ‘proc_def’
+mpif-handles.h:109:32: Error: Name ‘mpi_request_null’ at (1) is an ambiguous reference to ‘mpi_request_null’ from module ‘proc_def’
+mpif-handles.h:110:25: Error: Name ‘mpi_short’ at (1) is an ambiguous reference to ‘mpi_short’ from module ‘proc_def’
+mpif-handles.h:111:29: Error: Name ‘mpi_short_int’ at (1) is an ambiguous reference to ‘mpi_short_int’ from module ‘proc_def’
+mpif-handles.h:112:31: Error: Name ‘mpi_signed_char’ at (1) is an ambiguous reference to ‘mpi_signed_char’ from module ‘proc_def’
+mpif-handles.h:113:23: Error: Name ‘mpi_sum’ at (1) is an ambiguous reference to ‘mpi_sum’ from module ‘proc_def’
+mpif-handles.h:114:22: Error: Name ‘mpi_ub’ at (1) is an ambiguous reference to ‘mpi_ub’ from module ‘proc_def’
+mpif-handles.h:115:28: Error: Name ‘mpi_uint16_t’ at (1) is an ambiguous reference to ‘mpi_uint16_t’ from module ‘proc_def’
+mpif-handles.h:116:28: Error: Name ‘mpi_uint32_t’ at (1) is an ambiguous reference to ‘mpi_uint32_t’ from module ‘proc_def’
+mpif-handles.h:117:28: Error: Name ‘mpi_uint64_t’ at (1) is an ambiguous reference to ‘mpi_uint64_t’ from module ‘proc_def’
+mpif-handles.h:118:27: Error: Name ‘mpi_uint8_t’ at (1) is an ambiguous reference to ‘mpi_uint8_t’ from module ‘proc_def’
+mpif-handles.h:119:28: Error: Name ‘mpi_unsigned’ at (1) is an ambiguous reference to ‘mpi_unsigned’ from module ‘proc_def’
+mpif-handles.h:120:33: Error: Name ‘mpi_unsigned_char’ at (1) is an ambiguous reference to ‘mpi_unsigned_char’ from module ‘proc_def’
+mpif-handles.h:121:33: Error: Name ‘mpi_unsigned_long’ at (1) is an ambiguous reference to ‘mpi_unsigned_long’ from module ‘proc_def’
+mpif-handles.h:122:38: Error: Name ‘mpi_unsigned_long_long’ at (1) is an ambiguous reference to ‘mpi_unsigned_long_long’ from module ‘proc_def’
+mpif-handles.h:123:34: Error: Name ‘mpi_unsigned_short’ at (1) is an ambiguous reference to ‘mpi_unsigned_short’ from module ‘proc_def’
+mpif-handles.h:124:25: Error: Name ‘mpi_wchar’ at (1) is an ambiguous reference to ‘mpi_wchar’ from module ‘proc_def’
+mpif-handles.h:125:28: Error: Name ‘mpi_win_null’ at (1) is an ambiguous reference to ‘mpi_win_null’ from module ‘proc_def’
+mpif-handles.h:127:31: Error: Name ‘mpi_2complex’ at (1) is an ambiguous reference to ‘mpi_2complex’ from module ‘proc_def’
+mpif-handles.h:128:38: Error: Name ‘mpi_2double_complex’ at (1) is an ambiguous reference to ‘mpi_2double_complex’ from module ‘proc_def’
+mpif-handles.h:129:40: Error: Name ‘mpi_2double_precision’ at (1) is an ambiguous reference to ‘mpi_2double_precision’ from module ‘proc_def’
+mpif-handles.h:130:27: Error: Name ‘mpi_2int’ at (1) is an ambiguous reference to ‘mpi_2int’ from module ‘proc_def’
+mpif-handles.h:131:31: Error: Name ‘mpi_2integer’ at (1) is an ambiguous reference to ‘mpi_2integer’ from module ‘proc_def’
+mpif-handles.h:132:28: Error: Name ‘mpi_2real’ at (1) is an ambiguous reference to ‘mpi_2real’ from module ‘proc_def’
+mpif-handles.h:133:27: Error: Name ‘mpi_aint’ at (1) is an ambiguous reference to ‘mpi_aint’ from module ‘proc_def’
+mpif-handles.h:134:27: Error: Name ‘mpi_band’ at (1) is an ambiguous reference to ‘mpi_band’ from module ‘proc_def’
+mpif-handles.h:135:26: Error: Name ‘mpi_bor’ at (1) is an ambiguous reference to ‘mpi_bor’ from module ‘proc_def’
+mpif-handles.h:136:27: Error: Name ‘mpi_bxor’ at (1) is an ambiguous reference to ‘mpi_bxor’ from module ‘proc_def’
+mpif-handles.h:137:27: Error: Name ‘mpi_byte’ at (1) is an ambiguous reference to ‘mpi_byte’ from module ‘proc_def’
+mpif-handles.h:138:27: Error: Name ‘mpi_char’ at (1) is an ambiguous reference to ‘mpi_char’ from module ‘proc_def’
+mpif-handles.h:139:32: Error: Name ‘mpi_character’ at (1) is an ambiguous reference to ‘mpi_character’ from module ‘proc_def’
+mpif-handles.h:140:32: Error: Name ‘mpi_comm_null’ at (1) is an ambiguous reference to ‘mpi_comm_null’ from module ‘proc_def’
+mpif-handles.h:141:32: Error: Name ‘mpi_comm_self’ at (1) is an ambiguous reference to ‘mpi_comm_self’ from module ‘proc_def’
+mpif-handles.h:142:33: Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+mpif-handles.h:143:30: Error: Name ‘mpi_complex’ at (1) is an ambiguous reference to ‘mpi_complex’ from module ‘proc_def’
+mpif-handles.h:144:32: Error: Name ‘mpi_complex16’ at (1) is an ambiguous reference to ‘mpi_complex16’ from module ‘proc_def’
+mpif-handles.h:145:32: Error: Name ‘mpi_complex32’ at (1) is an ambiguous reference to ‘mpi_complex32’ from module ‘proc_def’
+mpif-handles.h:146:31: Error: Name ‘mpi_complex8’ at (1) is an ambiguous reference to ‘mpi_complex8’ from module ‘proc_def’
+mpif-handles.h:147:28: Error: Name ‘mpi_count’ at (1) is an ambiguous reference to ‘mpi_count’ from module ‘proc_def’
+mpif-handles.h:148:31: Error: Name ‘mpi_cxx_bool’ at (1) is an ambiguous reference to ‘mpi_cxx_bool’ from module ‘proc_def’
+mpif-handles.h:149:32: Error: Name ‘mpi_cxx_cplex’ at (1) is an ambiguous reference to ‘mpi_cxx_cplex’ from module ‘proc_def’
+mpif-handles.h:150:35: Error: Name ‘mpi_cxx_dblcplex’ at (1) is an ambiguous reference to ‘mpi_cxx_dblcplex’ from module ‘proc_def’
+mpif-handles.h:151:36: Error: Name ‘mpi_cxx_ldblcplex’ at (1) is an ambiguous reference to ‘mpi_cxx_ldblcplex’ from module ‘proc_def’
+mpif-handles.h:152:32: Error: Name ‘mpi_c_complex’ at (1) is an ambiguous reference to ‘mpi_c_complex’ from module ‘proc_def’
+mpif-handles.h:153:39: Error: Name ‘mpi_c_double_complex’ at (1) is an ambiguous reference to ‘mpi_c_double_complex’ from module ‘proc_def’
+mpif-handles.h:154:38: Error: Name ‘mpi_c_float_complex’ at (1) is an ambiguous reference to ‘mpi_c_float_complex’ from module ‘proc_def’
+mpif-handles.h:155:44: Error: Name ‘mpi_c_long_double_complex’ at (1) is an ambiguous reference to ‘mpi_c_long_double_complex’ from module ‘proc_def’
+mpif-handles.h:156:36: Error: Name ‘mpi_datatype_null’ at (1) is an ambiguous reference to ‘mpi_datatype_null’ from module ‘proc_def’
+mpif-handles.h:157:29: Error: Name ‘mpi_double’ at (1) is an ambiguous reference to ‘mpi_double’ from module ‘proc_def’
+mpif-handles.h:158:37: Error: Name ‘mpi_double_complex’ at (1) is an ambiguous reference to ‘mpi_double_complex’ from module ‘proc_def’
+mpif-handles.h:159:33: Error: Name ‘mpi_double_int’ at (1) is an ambiguous reference to ‘mpi_double_int’ from module ‘proc_def’
+mpif-handles.h:160:39: Error: Name ‘mpi_double_precision’ at (1) is an ambiguous reference to ‘mpi_double_precision’ from module ‘proc_def’
+mpif-handles.h:161:38: Error: Name ‘mpi_errhandler_null’ at (1) is an ambiguous reference to ‘mpi_errhandler_null’ from module ‘proc_def’
+mpif-handles.h:162:39: Error: Name ‘mpi_errors_are_fatal’ at (1) is an ambiguous reference to ‘mpi_errors_are_fatal’ from module ‘proc_def’
+mpif-handles.h:163:36: Error: Name ‘mpi_errors_return’ at (1) is an ambiguous reference to ‘mpi_errors_return’ from module ‘proc_def’
+mpif-handles.h:164:28: Error: Name ‘mpi_float’ at (1) is an ambiguous reference to ‘mpi_float’ from module ‘proc_def’
+mpif-handles.h:165:32: Error: Name ‘mpi_float_int’ at (1) is an ambiguous reference to ‘mpi_float_int’ from module ‘proc_def’
+mpif-handles.h:166:34: Error: Name ‘mpi_group_empty’ at (1) is an ambiguous reference to ‘mpi_group_empty’ from module ‘proc_def’
+mpif-handles.h:167:33: Error: Name ‘mpi_group_null’ at (1) is an ambiguous reference to ‘mpi_group_null’ from module ‘proc_def’
+mpif-handles.h:168:31: Error: Name ‘mpi_info_env’ at (1) is an ambiguous reference to ‘mpi_info_env’ from module ‘proc_def’
+mpif-handles.h:169:32: Error: Name ‘mpi_info_null’ at (1) is an ambiguous reference to ‘mpi_info_null’ from module ‘proc_def’
+mpif-handles.h:170:26: Error: Name ‘mpi_int’ at (1) is an ambiguous reference to ‘mpi_int’ from module ‘proc_def’
+mpif-handles.h:171:30: Error: Name ‘mpi_int16_t’ at (1) is an ambiguous reference to ‘mpi_int16_t’ from module ‘proc_def’
+mpif-handles.h:172:30: Error: Name ‘mpi_int32_t’ at (1) is an ambiguous reference to ‘mpi_int32_t’ from module ‘proc_def’
+mpif-handles.h:173:30: Error: Name ‘mpi_int64_t’ at (1) is an ambiguous reference to ‘mpi_int64_t’ from module ‘proc_def’
+mpif-handles.h:174:29: Error: Name ‘mpi_int8_t’ at (1) is an ambiguous reference to ‘mpi_int8_t’ from module ‘proc_def’
+mpif-handles.h:175:30: Error: Name ‘mpi_integer’ at (1) is an ambiguous reference to ‘mpi_integer’ from module ‘proc_def’
+mpif-handles.h:176:31: Error: Name ‘mpi_integer1’ at (1) is an ambiguous reference to ‘mpi_integer1’ from module ‘proc_def’
+mpif-handles.h:177:32: Error: Name ‘mpi_integer16’ at (1) is an ambiguous reference to ‘mpi_integer16’ from module ‘proc_def’
+mpif-handles.h:178:31: Error: Name ‘mpi_integer2’ at (1) is an ambiguous reference to ‘mpi_integer2’ from module ‘proc_def’
+mpif-handles.h:179:31: Error: Name ‘mpi_integer4’ at (1) is an ambiguous reference to ‘mpi_integer4’ from module ‘proc_def’
+mpif-handles.h:180:31: Error: Name ‘mpi_integer8’ at (1) is an ambiguous reference to ‘mpi_integer8’ from module ‘proc_def’
+mpif-handles.h:181:27: Error: Name ‘mpi_land’ at (1) is an ambiguous reference to ‘mpi_land’ from module ‘proc_def’
+mpif-handles.h:182:25: Error: Name ‘mpi_lb’ at (1) is an ambiguous reference to ‘mpi_lb’ from module ‘proc_def’
+mpif-handles.h:183:30: Error: Name ‘mpi_logical’ at (1) is an ambiguous reference to ‘mpi_logical’ from module ‘proc_def’
+mpif-handles.h:184:31: Error: Name ‘mpi_logical1’ at (1) is an ambiguous reference to ‘mpi_logical1’ from module ‘proc_def’
+mpif-handles.h:185:31: Error: Name ‘mpi_logical2’ at (1) is an ambiguous reference to ‘mpi_logical2’ from module ‘proc_def’
+mpif-handles.h:186:31: Error: Name ‘mpi_logical4’ at (1) is an ambiguous reference to ‘mpi_logical4’ from module ‘proc_def’
+mpif-handles.h:187:31: Error: Name ‘mpi_logical8’ at (1) is an ambiguous reference to ‘mpi_logical8’ from module ‘proc_def’
+mpif-handles.h:188:27: Error: Name ‘mpi_long’ at (1) is an ambiguous reference to ‘mpi_long’ from module ‘proc_def’
+mpif-handles.h:189:34: Error: Name ‘mpi_longdbl_int’ at (1) is an ambiguous reference to ‘mpi_longdbl_int’ from module ‘proc_def’
+mpif-handles.h:190:34: Error: Name ‘mpi_long_double’ at (1) is an ambiguous reference to ‘mpi_long_double’ from module ‘proc_def’
+mpif-handles.h:191:31: Error: Name ‘mpi_long_int’ at (1) is an ambiguous reference to ‘mpi_long_int’ from module ‘proc_def’
+mpif-handles.h:192:36: Error: Name ‘mpi_long_long_int’ at (1) is an ambiguous reference to ‘mpi_long_long_int’ from module ‘proc_def’
+mpif-handles.h:193:26: Error: Name ‘mpi_lor’ at (1) is an ambiguous reference to ‘mpi_lor’ from module ‘proc_def’
+mpif-handles.h:194:27: Error: Name ‘mpi_lxor’ at (1) is an ambiguous reference to ‘mpi_lxor’ from module ‘proc_def’
+mpif-handles.h:195:26: Error: Name ‘mpi_max’ at (1) is an ambiguous reference to ‘mpi_max’ from module ‘proc_def’
+mpif-handles.h:196:29: Error: Name ‘mpi_maxloc’ at (1) is an ambiguous reference to ‘mpi_maxloc’ from module ‘proc_def’
+mpif-handles.h:197:38: Error: Name ‘mpi_message_no_proc’ at (1) is an ambiguous reference to ‘mpi_message_no_proc’ from module ‘proc_def’
+mpif-handles.h:198:35: Error: Name ‘mpi_message_null’ at (1) is an ambiguous reference to ‘mpi_message_null’ from module ‘proc_def’
+mpif-handles.h:199:26: Error: Name ‘mpi_min’ at (1) is an ambiguous reference to ‘mpi_min’ from module ‘proc_def’
+mpif-handles.h:200:29: Error: Name ‘mpi_minloc’ at (1) is an ambiguous reference to ‘mpi_minloc’ from module ‘proc_def’
+mpif-handles.h:201:29: Error: Name ‘mpi_offset’ at (1) is an ambiguous reference to ‘mpi_offset’ from module ‘proc_def’
+mpif-handles.h:202:30: Error: Name ‘mpi_op_null’ at (1) is an ambiguous reference to ‘mpi_op_null’ from module ‘proc_def’
+mpif-handles.h:203:29: Error: Name ‘mpi_packed’ at (1) is an ambiguous reference to ‘mpi_packed’ from module ‘proc_def’
+mpif-handles.h:204:27: Error: Name ‘mpi_prod’ at (1) is an ambiguous reference to ‘mpi_prod’ from module ‘proc_def’
+mpif-handles.h:205:27: Error: Name ‘mpi_real’ at (1) is an ambiguous reference to ‘mpi_real’ from module ‘proc_def’
+mpif-handles.h:206:29: Error: Name ‘mpi_real16’ at (1) is an ambiguous reference to ‘mpi_real16’ from module ‘proc_def’
+mpif-handles.h:207:28: Error: Name ‘mpi_real2’ at (1) is an ambiguous reference to ‘mpi_real2’ from module ‘proc_def’
+mpif-handles.h:208:28: Error: Name ‘mpi_real4’ at (1) is an ambiguous reference to ‘mpi_real4’ from module ‘proc_def’
+mpif-handles.h:209:28: Error: Name ‘mpi_real8’ at (1) is an ambiguous reference to ‘mpi_real8’ from module ‘proc_def’
+mpif-handles.h:210:30: Error: Name ‘mpi_replace’ at (1) is an ambiguous reference to ‘mpi_replace’ from module ‘proc_def’
+mpif-handles.h:211:35: Error: Name ‘mpi_request_null’ at (1) is an ambiguous reference to ‘mpi_request_null’ from module ‘proc_def’
+mpif-handles.h:212:28: Error: Name ‘mpi_short’ at (1) is an ambiguous reference to ‘mpi_short’ from module ‘proc_def’
+mpif-handles.h:213:32: Error: Name ‘mpi_short_int’ at (1) is an ambiguous reference to ‘mpi_short_int’ from module ‘proc_def’
+mpif-handles.h:214:34: Error: Name ‘mpi_signed_char’ at (1) is an ambiguous reference to ‘mpi_signed_char’ from module ‘proc_def’
+mpif-handles.h:215:26: Error: Name ‘mpi_sum’ at (1) is an ambiguous reference to ‘mpi_sum’ from module ‘proc_def’
+mpif-handles.h:216:25: Error: Name ‘mpi_ub’ at (1) is an ambiguous reference to ‘mpi_ub’ from module ‘proc_def’
+mpif-handles.h:217:31: Error: Name ‘mpi_uint16_t’ at (1) is an ambiguous reference to ‘mpi_uint16_t’ from module ‘proc_def’
+mpif-handles.h:218:31: Error: Name ‘mpi_uint32_t’ at (1) is an ambiguous reference to ‘mpi_uint32_t’ from module ‘proc_def’
+mpif-handles.h:219:31: Error: Name ‘mpi_uint64_t’ at (1) is an ambiguous reference to ‘mpi_uint64_t’ from module ‘proc_def’
+mpif-handles.h:220:30: Error: Name ‘mpi_uint8_t’ at (1) is an ambiguous reference to ‘mpi_uint8_t’ from module ‘proc_def’
+mpif-handles.h:221:31: Error: Name ‘mpi_unsigned’ at (1) is an ambiguous reference to ‘mpi_unsigned’ from module ‘proc_def’
+mpif-handles.h:222:36: Error: Name ‘mpi_unsigned_char’ at (1) is an ambiguous reference to ‘mpi_unsigned_char’ from module ‘proc_def’
+mpif-handles.h:223:36: Error: Name ‘mpi_unsigned_long’ at (1) is an ambiguous reference to ‘mpi_unsigned_long’ from module ‘proc_def’
+mpif-handles.h:224:41: Error: Name ‘mpi_unsigned_long_long’ at (1) is an ambiguous reference to ‘mpi_unsigned_long_long’ from module ‘proc_def’
+mpif-handles.h:225:37: Error: Name ‘mpi_unsigned_short’ at (1) is an ambiguous reference to ‘mpi_unsigned_short’ from module ‘proc_def’
+mpif-handles.h:226:28: Error: Name ‘mpi_wchar’ at (1) is an ambiguous reference to ‘mpi_wchar’ from module ‘proc_def’
+mpif-handles.h:227:31: Error: Name ‘mpi_win_null’ at (1) is an ambiguous reference to ‘mpi_win_null’ from module ‘proc_def’
+mpif-io-constants.h:25:40: Error: Name ‘mpi_displacement_current’ at (1) is an ambiguous reference to ‘mpi_displacement_current’ from module ‘proc_def’
+mpif-io-constants.h:26:31: Error: Name ‘mpi_mode_append’ at (1) is an ambiguous reference to ‘mpi_mode_append’ from module ‘proc_def’
+mpif-io-constants.h:27:31: Error: Name ‘mpi_mode_create’ at (1) is an ambiguous reference to ‘mpi_mode_create’ from module ‘proc_def’
+mpif-io-constants.h:28:40: Error: Name ‘mpi_mode_delete_on_close’ at (1) is an ambiguous reference to ‘mpi_mode_delete_on_close’ from module ‘proc_def’
+mpif-io-constants.h:29:29: Error: Name ‘mpi_mode_excl’ at (1) is an ambiguous reference to ‘mpi_mode_excl’ from module ‘proc_def’
+mpif-io-constants.h:30:31: Error: Name ‘mpi_mode_rdonly’ at (1) is an ambiguous reference to ‘mpi_mode_rdonly’ from module ‘proc_def’
+mpif-io-constants.h:31:29: Error: Name ‘mpi_mode_rdwr’ at (1) is an ambiguous reference to ‘mpi_mode_rdwr’ from module ‘proc_def’
+mpif-io-constants.h:32:35: Error: Name ‘mpi_mode_sequential’ at (1) is an ambiguous reference to ‘mpi_mode_sequential’ from module ‘proc_def’
+mpif-io-constants.h:33:36: Error: Name ‘mpi_mode_unique_open’ at (1) is an ambiguous reference to ‘mpi_mode_unique_open’ from module ‘proc_def’
+mpif-io-constants.h:34:31: Error: Name ‘mpi_mode_wronly’ at (1) is an ambiguous reference to ‘mpi_mode_wronly’ from module ‘proc_def’
+mpif-io-constants.h:35:28: Error: Name ‘mpi_seek_cur’ at (1) is an ambiguous reference to ‘mpi_seek_cur’ from module ‘proc_def’
+mpif-io-constants.h:36:28: Error: Name ‘mpi_seek_end’ at (1) is an ambiguous reference to ‘mpi_seek_end’ from module ‘proc_def’
+mpif-io-constants.h:37:28: Error: Name ‘mpi_seek_set’ at (1) is an ambiguous reference to ‘mpi_seek_set’ from module ‘proc_def’
+mpif-io-constants.h:39:43: Error: Name ‘mpi_displacement_current’ at (1) is an ambiguous reference to ‘mpi_displacement_current’ from module ‘proc_def’
+mpif-io-constants.h:40:34: Error: Name ‘mpi_mode_append’ at (1) is an ambiguous reference to ‘mpi_mode_append’ from module ‘proc_def’
+mpif-io-constants.h:41:34: Error: Name ‘mpi_mode_create’ at (1) is an ambiguous reference to ‘mpi_mode_create’ from module ‘proc_def’
+mpif-io-constants.h:42:43: Error: Name ‘mpi_mode_delete_on_close’ at (1) is an ambiguous reference to ‘mpi_mode_delete_on_close’ from module ‘proc_def’
+mpif-io-constants.h:43:32: Error: Name ‘mpi_mode_excl’ at (1) is an ambiguous reference to ‘mpi_mode_excl’ from module ‘proc_def’
+mpif-io-constants.h:44:34: Error: Name ‘mpi_mode_rdonly’ at (1) is an ambiguous reference to ‘mpi_mode_rdonly’ from module ‘proc_def’
+mpif-io-constants.h:45:32: Error: Name ‘mpi_mode_rdwr’ at (1) is an ambiguous reference to ‘mpi_mode_rdwr’ from module ‘proc_def’
+mpif-io-constants.h:46:38: Error: Name ‘mpi_mode_sequential’ at (1) is an ambiguous reference to ‘mpi_mode_sequential’ from module ‘proc_def’
+mpif-io-constants.h:47:39: Error: Name ‘mpi_mode_unique_open’ at (1) is an ambiguous reference to ‘mpi_mode_unique_open’ from module ‘proc_def’
+mpif-io-constants.h:48:34: Error: Name ‘mpi_mode_wronly’ at (1) is an ambiguous reference to ‘mpi_mode_wronly’ from module ‘proc_def’
+mpif-io-constants.h:49:31: Error: Name ‘mpi_seek_cur’ at (1) is an ambiguous reference to ‘mpi_seek_cur’ from module ‘proc_def’
+mpif-io-constants.h:50:31: Error: Name ‘mpi_seek_end’ at (1) is an ambiguous reference to ‘mpi_seek_end’ from module ‘proc_def’
+mpif-io-constants.h:51:31: Error: Name ‘mpi_seek_set’ at (1) is an ambiguous reference to ‘mpi_seek_set’ from module ‘proc_def’
+mpif-io-handles.h:25:29: Error: Name ‘mpi_file_null’ at (1) is an ambiguous reference to ‘mpi_file_null’ from module ‘proc_def’
+mpif-io-handles.h:27:32: Error: Name ‘mpi_file_null’ at (1) is an ambiguous reference to ‘mpi_file_null’ from module ‘proc_def’
+mpif-externals.h:25:31: Error: Name ‘mpi_null_copy_fn’ at (1) is an ambiguous reference to ‘mpi_null_copy_fn’ from module ‘proc_def’
+mpif-externals.h:26:36: Error: Name ‘mpi_comm_null_copy_fn’ at (1) is an ambiguous reference to ‘mpi_comm_null_copy_fn’ from module ‘proc_def’
+mpif-externals.h:27:36: Error: Name ‘mpi_type_null_copy_fn’ at (1) is an ambiguous reference to ‘mpi_type_null_copy_fn’ from module ‘proc_def’
+mpif-externals.h:28:25: Error: Name ‘mpi_dup_fn’ at (1) is an ambiguous reference to ‘mpi_dup_fn’ from module ‘proc_def’
+mpif-externals.h:29:35: Error: Name ‘mpi_win_null_copy_fn’ at (1) is an ambiguous reference to ‘mpi_win_null_copy_fn’ from module ‘proc_def’
+mpif-externals.h:30:37: Error: Name ‘mpi_win_null_delete_fn’ at (1) is an ambiguous reference to ‘mpi_win_null_delete_fn’ from module ‘proc_def’
+mpif-externals.h:31:29: Error: Name ‘mpi_win_dup_fn’ at (1) is an ambiguous reference to ‘mpi_win_dup_fn’ from module ‘proc_def’
+mpif-externals.h:37:37: Error: Name ‘mpi_conversion_fn_null’ at (1) is an ambiguous reference to ‘mpi_conversion_fn_null’ from module ‘proc_def’
+mpif-externals.h:42:24: Error: Name ‘mpi_wtime’ at (1) is an ambiguous reference to ‘mpi_wtime’ from module ‘proc_def’
+mpif-externals.h:43:32: Error: Name ‘mpi_wtime’ at (1) is an ambiguous reference to ‘mpi_wtime’ from module ‘proc_def’
+mpif-sentinels.h:36:24: Error: Name ‘mpi_bottom’ at (1) is an ambiguous reference to ‘mpi_bottom’ from module ‘proc_def’
+mpif-sentinels.h:38:26: Error: Name ‘mpi_in_place’ at (1) is an ambiguous reference to ‘mpi_in_place’ from module ‘proc_def’
+mpif-sentinels.h:42:32: Error: Name ‘mpi_argv_null’ at (1) is an ambiguous reference to ‘mpi_argv_null’ from module ‘proc_def’
+mpif-sentinels.h:44:33: Error: Name ‘mpi_argvs_null’ at (1) is an ambiguous reference to ‘mpi_argvs_null’ from module ‘proc_def’
+mpif-sentinels.h:51:36: Error: Name ‘mpi_errcodes_ignore’ at (1) is an ambiguous reference to ‘mpi_errcodes_ignore’ from module ‘proc_def’
+mpif-sentinels.h:53:47: Error: Name ‘mpi_status_size’ at (1) is an ambiguous reference to ‘mpi_status_size’ from module ‘proc_def’
+mpif-sentinels.h:55:49: Error: Name ‘mpi_status_size’ at (1) is an ambiguous reference to ‘mpi_status_size’ from module ‘proc_def’
+mpif-sentinels.h:56:28: Error: Name ‘mpi_unweighted’ at (1) is an ambiguous reference to ‘mpi_unweighted’ from module ‘proc_def’
+mpif-sentinels.h:57:31: Error: Name ‘mpi_weights_empty’ at (1) is an ambiguous reference to ‘mpi_weights_empty’ from module ‘proc_def’
+mpif-sentinels.h:59:42: Error: Name ‘mpi_bottom’ at (1) is an ambiguous reference to ‘mpi_bottom’ from module ‘proc_def’
+mpif-sentinels.h:60:46: Error: Name ‘mpi_in_place’ at (1) is an ambiguous reference to ‘mpi_in_place’ from module ‘proc_def’
+mpif-sentinels.h:61:48: Error: Name ‘mpi_argv_null’ at (1) is an ambiguous reference to ‘mpi_argv_null’ from module ‘proc_def’
+mpif-sentinels.h:62:50: Error: Name ‘mpi_argvs_null’ at (1) is an ambiguous reference to ‘mpi_argvs_null’ from module ‘proc_def’
+mpif-sentinels.h:63:60: Error: Name ‘mpi_errcodes_ignore’ at (1) is an ambiguous reference to ‘mpi_errcodes_ignore’ from module ‘proc_def’
+mpif-sentinels.h:64:56: Error: Name ‘mpi_status_ignore’ at (1) is an ambiguous reference to ‘mpi_status_ignore’ from module ‘proc_def’
+mpif-sentinels.h:65:60: Error: Name ‘mpi_statuses_ignore’ at (1) is an ambiguous reference to ‘mpi_statuses_ignore’ from module ‘proc_def’
+mpif-sentinels.h:66:50: Error: Name ‘mpi_unweighted’ at (1) is an ambiguous reference to ‘mpi_unweighted’ from module ‘proc_def’
+mpif-sentinels.h:67:56: Error: Name ‘mpi_weights_empty’ at (1) is an ambiguous reference to ‘mpi_weights_empty’ from module ‘proc_def’
+mpif-sizeof.h:17:45: Error: Name ‘mpi_sizeof_complex128_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_scalar’ from module ‘proc_def’
+mpif-sizeof.h:18:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:19:25: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:20:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:21:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:22:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:24:41: Error: Name ‘mpi_sizeof_complex128_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r1’ from module ‘proc_def’
+mpif-sizeof.h:25:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:26:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:27:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:28:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:29:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:31:41: Error: Name ‘mpi_sizeof_complex128_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r2’ from module ‘proc_def’
+mpif-sizeof.h:32:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:33:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:34:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:35:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:36:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:38:41: Error: Name ‘mpi_sizeof_complex128_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r3’ from module ‘proc_def’
+mpif-sizeof.h:39:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:40:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:41:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:42:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:43:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:45:41: Error: Name ‘mpi_sizeof_complex128_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r4’ from module ‘proc_def’
+mpif-sizeof.h:46:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:47:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:48:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:49:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:50:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:52:41: Error: Name ‘mpi_sizeof_complex128_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r5’ from module ‘proc_def’
+mpif-sizeof.h:53:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:54:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:55:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:56:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:57:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:59:41: Error: Name ‘mpi_sizeof_complex128_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r6’ from module ‘proc_def’
+mpif-sizeof.h:60:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:61:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:62:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:63:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:64:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:66:41: Error: Name ‘mpi_sizeof_complex128_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex128_r7’ from module ‘proc_def’
+mpif-sizeof.h:67:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:68:51: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:69:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:70:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:71:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:73:44: Error: Name ‘mpi_sizeof_complex32_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:74:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:75:24: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:76:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:77:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:78:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:80:40: Error: Name ‘mpi_sizeof_complex32_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r1’ from module ‘proc_def’
+mpif-sizeof.h:81:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:82:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:83:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:84:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:85:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:87:40: Error: Name ‘mpi_sizeof_complex32_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r2’ from module ‘proc_def’
+mpif-sizeof.h:88:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:89:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:90:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:91:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:92:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:94:40: Error: Name ‘mpi_sizeof_complex32_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r3’ from module ‘proc_def’
+mpif-sizeof.h:95:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:96:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:97:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:98:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:99:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:101:40: Error: Name ‘mpi_sizeof_complex32_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r4’ from module ‘proc_def’
+mpif-sizeof.h:102:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:103:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:104:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:105:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:106:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:108:40: Error: Name ‘mpi_sizeof_complex32_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r5’ from module ‘proc_def’
+mpif-sizeof.h:109:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:110:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:111:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:112:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:113:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:115:40: Error: Name ‘mpi_sizeof_complex32_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r6’ from module ‘proc_def’
+mpif-sizeof.h:116:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:117:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:118:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:119:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:120:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:122:40: Error: Name ‘mpi_sizeof_complex32_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex32_r7’ from module ‘proc_def’
+mpif-sizeof.h:123:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:124:50: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:125:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:126:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:127:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:129:44: Error: Name ‘mpi_sizeof_complex64_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:130:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:131:24: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:132:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:133:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:134:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:136:40: Error: Name ‘mpi_sizeof_complex64_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r1’ from module ‘proc_def’
+mpif-sizeof.h:137:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:138:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:139:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:140:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:141:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:143:40: Error: Name ‘mpi_sizeof_complex64_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r2’ from module ‘proc_def’
+mpif-sizeof.h:144:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:145:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:146:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:147:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:148:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:150:40: Error: Name ‘mpi_sizeof_complex64_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r3’ from module ‘proc_def’
+mpif-sizeof.h:151:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:152:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:153:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:154:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:155:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:157:40: Error: Name ‘mpi_sizeof_complex64_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r4’ from module ‘proc_def’
+mpif-sizeof.h:158:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:159:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:160:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:161:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:162:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:164:40: Error: Name ‘mpi_sizeof_complex64_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r5’ from module ‘proc_def’
+mpif-sizeof.h:165:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:166:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:167:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:168:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:169:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:171:40: Error: Name ‘mpi_sizeof_complex64_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r6’ from module ‘proc_def’
+mpif-sizeof.h:172:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:173:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:174:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:175:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:176:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:178:40: Error: Name ‘mpi_sizeof_complex64_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_complex64_r7’ from module ‘proc_def’
+mpif-sizeof.h:179:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:180:50: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:181:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:182:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:183:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:185:40: Error: Name ‘mpi_sizeof_int16_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_scalar’ from module ‘proc_def’
+mpif-sizeof.h:186:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:187:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:188:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:189:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:190:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:192:36: Error: Name ‘mpi_sizeof_int16_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r1’ from module ‘proc_def’
+mpif-sizeof.h:193:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:194:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:195:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:196:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:197:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:199:36: Error: Name ‘mpi_sizeof_int16_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r2’ from module ‘proc_def’
+mpif-sizeof.h:200:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:201:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:202:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:203:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:204:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:206:36: Error: Name ‘mpi_sizeof_int16_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r3’ from module ‘proc_def’
+mpif-sizeof.h:207:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:208:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:209:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:210:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:211:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:213:36: Error: Name ‘mpi_sizeof_int16_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r4’ from module ‘proc_def’
+mpif-sizeof.h:214:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:215:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:216:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:217:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:218:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:220:36: Error: Name ‘mpi_sizeof_int16_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r5’ from module ‘proc_def’
+mpif-sizeof.h:221:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:222:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:223:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:224:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:225:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:227:36: Error: Name ‘mpi_sizeof_int16_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r6’ from module ‘proc_def’
+mpif-sizeof.h:228:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:229:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:230:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:231:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:232:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:234:36: Error: Name ‘mpi_sizeof_int16_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_int16_r7’ from module ‘proc_def’
+mpif-sizeof.h:235:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:236:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:237:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:238:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:239:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:241:40: Error: Name ‘mpi_sizeof_int32_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:242:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:243:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:244:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:245:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:246:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:248:36: Error: Name ‘mpi_sizeof_int32_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r1’ from module ‘proc_def’
+mpif-sizeof.h:249:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:250:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:251:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:252:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:253:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:255:36: Error: Name ‘mpi_sizeof_int32_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r2’ from module ‘proc_def’
+mpif-sizeof.h:256:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:257:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:258:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:259:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:260:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:262:36: Error: Name ‘mpi_sizeof_int32_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r3’ from module ‘proc_def’
+mpif-sizeof.h:263:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:264:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:265:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:266:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:267:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:269:36: Error: Name ‘mpi_sizeof_int32_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r4’ from module ‘proc_def’
+mpif-sizeof.h:270:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:271:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:272:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:273:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:274:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:276:36: Error: Name ‘mpi_sizeof_int32_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r5’ from module ‘proc_def’
+mpif-sizeof.h:277:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:278:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:279:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:280:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:281:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:283:36: Error: Name ‘mpi_sizeof_int32_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r6’ from module ‘proc_def’
+mpif-sizeof.h:284:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:285:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:286:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:287:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:288:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:290:36: Error: Name ‘mpi_sizeof_int32_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_int32_r7’ from module ‘proc_def’
+mpif-sizeof.h:291:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:292:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:293:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:294:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:295:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:297:40: Error: Name ‘mpi_sizeof_int64_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:298:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:299:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:300:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:301:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:302:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:304:36: Error: Name ‘mpi_sizeof_int64_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r1’ from module ‘proc_def’
+mpif-sizeof.h:305:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:306:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:307:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:308:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:309:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:311:36: Error: Name ‘mpi_sizeof_int64_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r2’ from module ‘proc_def’
+mpif-sizeof.h:312:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:313:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:314:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:315:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:316:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:318:36: Error: Name ‘mpi_sizeof_int64_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r3’ from module ‘proc_def’
+mpif-sizeof.h:319:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:320:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:321:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:322:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:323:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:325:36: Error: Name ‘mpi_sizeof_int64_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r4’ from module ‘proc_def’
+mpif-sizeof.h:326:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:327:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:328:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:329:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:330:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:332:36: Error: Name ‘mpi_sizeof_int64_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r5’ from module ‘proc_def’
+mpif-sizeof.h:333:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:334:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:335:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:336:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:337:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:339:36: Error: Name ‘mpi_sizeof_int64_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r6’ from module ‘proc_def’
+mpif-sizeof.h:340:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:341:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:342:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:343:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:344:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:346:36: Error: Name ‘mpi_sizeof_int64_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_int64_r7’ from module ‘proc_def’
+mpif-sizeof.h:347:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:348:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:349:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:350:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:351:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:353:39: Error: Name ‘mpi_sizeof_int8_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_scalar’ from module ‘proc_def’
+mpif-sizeof.h:354:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:355:22: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:356:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:357:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:358:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:360:35: Error: Name ‘mpi_sizeof_int8_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r1’ from module ‘proc_def’
+mpif-sizeof.h:361:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:362:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:363:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:364:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:365:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:367:35: Error: Name ‘mpi_sizeof_int8_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r2’ from module ‘proc_def’
+mpif-sizeof.h:368:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:369:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:370:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:371:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:372:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:374:35: Error: Name ‘mpi_sizeof_int8_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r3’ from module ‘proc_def’
+mpif-sizeof.h:375:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:376:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:377:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:378:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:379:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:381:35: Error: Name ‘mpi_sizeof_int8_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r4’ from module ‘proc_def’
+mpif-sizeof.h:382:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:383:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:384:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:385:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:386:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:388:35: Error: Name ‘mpi_sizeof_int8_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r5’ from module ‘proc_def’
+mpif-sizeof.h:389:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:390:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:391:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:392:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:393:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:395:35: Error: Name ‘mpi_sizeof_int8_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r6’ from module ‘proc_def’
+mpif-sizeof.h:396:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:397:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:398:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:399:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:400:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:402:35: Error: Name ‘mpi_sizeof_int8_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_int8_r7’ from module ‘proc_def’
+mpif-sizeof.h:403:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:404:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:405:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:406:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:407:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:409:42: Error: Name ‘mpi_sizeof_real128_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_scalar’ from module ‘proc_def’
+mpif-sizeof.h:410:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:411:22: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:412:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:413:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:414:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:416:38: Error: Name ‘mpi_sizeof_real128_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r1’ from module ‘proc_def’
+mpif-sizeof.h:417:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:418:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:419:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:420:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:421:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:423:38: Error: Name ‘mpi_sizeof_real128_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r2’ from module ‘proc_def’
+mpif-sizeof.h:424:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:425:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:426:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:427:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:428:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:430:38: Error: Name ‘mpi_sizeof_real128_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r3’ from module ‘proc_def’
+mpif-sizeof.h:431:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:432:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:433:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:434:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:435:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:437:38: Error: Name ‘mpi_sizeof_real128_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r4’ from module ‘proc_def’
+mpif-sizeof.h:438:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:439:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:440:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:441:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:442:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:444:38: Error: Name ‘mpi_sizeof_real128_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r5’ from module ‘proc_def’
+mpif-sizeof.h:445:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:446:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:447:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:448:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:449:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:451:38: Error: Name ‘mpi_sizeof_real128_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r6’ from module ‘proc_def’
+mpif-sizeof.h:452:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:453:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:454:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:455:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:456:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:458:38: Error: Name ‘mpi_sizeof_real128_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_real128_r7’ from module ‘proc_def’
+mpif-sizeof.h:459:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:460:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:461:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:462:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:463:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:465:41: Error: Name ‘mpi_sizeof_real32_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:466:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:467:21: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:468:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:469:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:470:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:472:37: Error: Name ‘mpi_sizeof_real32_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r1’ from module ‘proc_def’
+mpif-sizeof.h:473:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:474:35: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:475:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:476:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:477:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:479:37: Error: Name ‘mpi_sizeof_real32_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r2’ from module ‘proc_def’
+mpif-sizeof.h:480:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:481:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:482:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:483:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:484:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:486:37: Error: Name ‘mpi_sizeof_real32_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r3’ from module ‘proc_def’
+mpif-sizeof.h:487:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:488:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:489:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:490:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:491:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:493:37: Error: Name ‘mpi_sizeof_real32_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r4’ from module ‘proc_def’
+mpif-sizeof.h:494:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:495:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:496:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:497:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:498:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:500:37: Error: Name ‘mpi_sizeof_real32_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r5’ from module ‘proc_def’
+mpif-sizeof.h:501:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:502:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:503:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:504:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:505:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:507:37: Error: Name ‘mpi_sizeof_real32_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r6’ from module ‘proc_def’
+mpif-sizeof.h:508:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:509:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:510:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:511:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:512:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:514:37: Error: Name ‘mpi_sizeof_real32_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_real32_r7’ from module ‘proc_def’
+mpif-sizeof.h:515:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:516:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:517:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:518:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:519:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:521:41: Error: Name ‘mpi_sizeof_real64_scalar’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:522:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:523:21: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:524:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:525:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:526:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:528:37: Error: Name ‘mpi_sizeof_real64_r1’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r1’ from module ‘proc_def’
+mpif-sizeof.h:529:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:530:35: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:531:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:532:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:533:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:535:37: Error: Name ‘mpi_sizeof_real64_r2’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r2’ from module ‘proc_def’
+mpif-sizeof.h:536:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:537:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:538:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:539:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:540:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:542:37: Error: Name ‘mpi_sizeof_real64_r3’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r3’ from module ‘proc_def’
+mpif-sizeof.h:543:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:544:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:545:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:546:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:547:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:549:37: Error: Name ‘mpi_sizeof_real64_r4’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r4’ from module ‘proc_def’
+mpif-sizeof.h:550:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:551:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:552:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:553:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:554:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:556:37: Error: Name ‘mpi_sizeof_real64_r5’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r5’ from module ‘proc_def’
+mpif-sizeof.h:557:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:558:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:559:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:560:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:561:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:563:37: Error: Name ‘mpi_sizeof_real64_r6’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r6’ from module ‘proc_def’
+mpif-sizeof.h:564:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:565:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:566:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:567:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:568:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:570:37: Error: Name ‘mpi_sizeof_real64_r7’ at (1) is an ambiguous reference to ‘mpi_sizeof_real64_r7’ from module ‘proc_def’
+mpif-sizeof.h:571:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:572:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:573:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:574:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:575:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:581:46: Error: Name ‘pmpi_sizeof_complex128_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_scalar’ from module ‘proc_def’
+mpif-sizeof.h:582:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:583:25: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:584:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:585:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:586:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:588:42: Error: Name ‘pmpi_sizeof_complex128_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r1’ from module ‘proc_def’
+mpif-sizeof.h:589:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:590:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:591:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:592:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:593:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:595:42: Error: Name ‘pmpi_sizeof_complex128_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r2’ from module ‘proc_def’
+mpif-sizeof.h:596:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:597:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:598:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:599:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:600:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:602:42: Error: Name ‘pmpi_sizeof_complex128_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r3’ from module ‘proc_def’
+mpif-sizeof.h:603:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:604:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:605:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:606:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:607:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:609:42: Error: Name ‘pmpi_sizeof_complex128_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r4’ from module ‘proc_def’
+mpif-sizeof.h:610:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:611:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:612:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:613:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:614:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:616:42: Error: Name ‘pmpi_sizeof_complex128_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r5’ from module ‘proc_def’
+mpif-sizeof.h:617:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:618:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:619:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:620:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:621:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:623:42: Error: Name ‘pmpi_sizeof_complex128_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r6’ from module ‘proc_def’
+mpif-sizeof.h:624:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:625:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:626:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:627:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:628:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:630:42: Error: Name ‘pmpi_sizeof_complex128_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex128_r7’ from module ‘proc_def’
+mpif-sizeof.h:631:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:632:51: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:633:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:634:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:635:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:637:45: Error: Name ‘pmpi_sizeof_complex32_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:638:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:639:24: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:640:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:641:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:642:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:644:41: Error: Name ‘pmpi_sizeof_complex32_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r1’ from module ‘proc_def’
+mpif-sizeof.h:645:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:646:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:647:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:648:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:649:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:651:41: Error: Name ‘pmpi_sizeof_complex32_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r2’ from module ‘proc_def’
+mpif-sizeof.h:652:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:653:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:654:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:655:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:656:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:658:41: Error: Name ‘pmpi_sizeof_complex32_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r3’ from module ‘proc_def’
+mpif-sizeof.h:659:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:660:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:661:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:662:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:663:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:665:41: Error: Name ‘pmpi_sizeof_complex32_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r4’ from module ‘proc_def’
+mpif-sizeof.h:666:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:667:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:668:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:669:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:670:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:672:41: Error: Name ‘pmpi_sizeof_complex32_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r5’ from module ‘proc_def’
+mpif-sizeof.h:673:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:674:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:675:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:676:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:677:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:679:41: Error: Name ‘pmpi_sizeof_complex32_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r6’ from module ‘proc_def’
+mpif-sizeof.h:680:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:681:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:682:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:683:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:684:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:686:41: Error: Name ‘pmpi_sizeof_complex32_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex32_r7’ from module ‘proc_def’
+mpif-sizeof.h:687:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:688:50: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:689:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:690:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:691:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:693:45: Error: Name ‘pmpi_sizeof_complex64_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:694:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:695:24: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:696:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:697:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:698:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:700:41: Error: Name ‘pmpi_sizeof_complex64_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r1’ from module ‘proc_def’
+mpif-sizeof.h:701:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:702:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:703:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:704:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:705:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:707:41: Error: Name ‘pmpi_sizeof_complex64_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r2’ from module ‘proc_def’
+mpif-sizeof.h:708:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:709:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:710:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:711:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:712:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:714:41: Error: Name ‘pmpi_sizeof_complex64_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r3’ from module ‘proc_def’
+mpif-sizeof.h:715:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:716:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:717:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:718:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:719:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:721:41: Error: Name ‘pmpi_sizeof_complex64_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r4’ from module ‘proc_def’
+mpif-sizeof.h:722:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:723:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:724:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:725:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:726:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:728:41: Error: Name ‘pmpi_sizeof_complex64_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r5’ from module ‘proc_def’
+mpif-sizeof.h:729:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:730:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:731:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:732:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:733:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:735:41: Error: Name ‘pmpi_sizeof_complex64_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r6’ from module ‘proc_def’
+mpif-sizeof.h:736:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:737:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:738:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:739:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:740:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:742:41: Error: Name ‘pmpi_sizeof_complex64_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_complex64_r7’ from module ‘proc_def’
+mpif-sizeof.h:743:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:744:50: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:745:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:746:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:747:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:749:41: Error: Name ‘pmpi_sizeof_int16_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_scalar’ from module ‘proc_def’
+mpif-sizeof.h:750:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:751:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:752:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:753:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:754:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:756:37: Error: Name ‘pmpi_sizeof_int16_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r1’ from module ‘proc_def’
+mpif-sizeof.h:757:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:758:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:759:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:760:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:761:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:763:37: Error: Name ‘pmpi_sizeof_int16_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r2’ from module ‘proc_def’
+mpif-sizeof.h:764:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:765:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:766:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:767:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:768:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:770:37: Error: Name ‘pmpi_sizeof_int16_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r3’ from module ‘proc_def’
+mpif-sizeof.h:771:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:772:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:773:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:774:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:775:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:777:37: Error: Name ‘pmpi_sizeof_int16_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r4’ from module ‘proc_def’
+mpif-sizeof.h:778:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:779:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:780:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:781:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:782:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:784:37: Error: Name ‘pmpi_sizeof_int16_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r5’ from module ‘proc_def’
+mpif-sizeof.h:785:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:786:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:787:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:788:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:789:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:791:37: Error: Name ‘pmpi_sizeof_int16_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r6’ from module ‘proc_def’
+mpif-sizeof.h:792:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:793:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:794:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:795:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:796:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:798:37: Error: Name ‘pmpi_sizeof_int16_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int16_r7’ from module ‘proc_def’
+mpif-sizeof.h:799:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:800:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:801:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:802:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:803:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:805:41: Error: Name ‘pmpi_sizeof_int32_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:806:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:807:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:808:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:809:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:810:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:812:37: Error: Name ‘pmpi_sizeof_int32_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r1’ from module ‘proc_def’
+mpif-sizeof.h:813:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:814:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:815:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:816:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:817:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:819:37: Error: Name ‘pmpi_sizeof_int32_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r2’ from module ‘proc_def’
+mpif-sizeof.h:820:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:821:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:822:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:823:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:824:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:826:37: Error: Name ‘pmpi_sizeof_int32_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r3’ from module ‘proc_def’
+mpif-sizeof.h:827:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:828:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:829:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:830:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:831:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:833:37: Error: Name ‘pmpi_sizeof_int32_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r4’ from module ‘proc_def’
+mpif-sizeof.h:834:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:835:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:836:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:837:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:838:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:840:37: Error: Name ‘pmpi_sizeof_int32_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r5’ from module ‘proc_def’
+mpif-sizeof.h:841:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:842:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:843:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:844:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:845:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:847:37: Error: Name ‘pmpi_sizeof_int32_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r6’ from module ‘proc_def’
+mpif-sizeof.h:848:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:849:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:850:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:851:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:852:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:854:37: Error: Name ‘pmpi_sizeof_int32_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int32_r7’ from module ‘proc_def’
+mpif-sizeof.h:855:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:856:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:857:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:858:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:859:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:861:41: Error: Name ‘pmpi_sizeof_int64_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:862:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:863:23: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:864:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:865:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:866:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:868:37: Error: Name ‘pmpi_sizeof_int64_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r1’ from module ‘proc_def’
+mpif-sizeof.h:869:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:870:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:871:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:872:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:873:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:875:37: Error: Name ‘pmpi_sizeof_int64_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r2’ from module ‘proc_def’
+mpif-sizeof.h:876:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:877:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:878:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:879:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:880:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:882:37: Error: Name ‘pmpi_sizeof_int64_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r3’ from module ‘proc_def’
+mpif-sizeof.h:883:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:884:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:885:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:886:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:887:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:889:37: Error: Name ‘pmpi_sizeof_int64_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r4’ from module ‘proc_def’
+mpif-sizeof.h:890:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:891:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:892:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:893:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:894:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:896:37: Error: Name ‘pmpi_sizeof_int64_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r5’ from module ‘proc_def’
+mpif-sizeof.h:897:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:898:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:899:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:900:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:901:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:903:37: Error: Name ‘pmpi_sizeof_int64_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r6’ from module ‘proc_def’
+mpif-sizeof.h:904:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:905:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:906:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:907:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:908:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:910:37: Error: Name ‘pmpi_sizeof_int64_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int64_r7’ from module ‘proc_def’
+mpif-sizeof.h:911:54: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:912:49: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:913:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:914:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:915:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:917:40: Error: Name ‘pmpi_sizeof_int8_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_scalar’ from module ‘proc_def’
+mpif-sizeof.h:918:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:919:22: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:920:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:921:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:922:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:924:36: Error: Name ‘pmpi_sizeof_int8_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r1’ from module ‘proc_def’
+mpif-sizeof.h:925:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:926:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:927:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:928:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:929:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:931:36: Error: Name ‘pmpi_sizeof_int8_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r2’ from module ‘proc_def’
+mpif-sizeof.h:932:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:933:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:934:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:935:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:936:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:938:36: Error: Name ‘pmpi_sizeof_int8_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r3’ from module ‘proc_def’
+mpif-sizeof.h:939:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:940:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:941:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:942:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:943:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:945:36: Error: Name ‘pmpi_sizeof_int8_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r4’ from module ‘proc_def’
+mpif-sizeof.h:946:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:947:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:948:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:949:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:950:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:952:36: Error: Name ‘pmpi_sizeof_int8_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r5’ from module ‘proc_def’
+mpif-sizeof.h:953:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:954:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:955:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:956:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:957:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:959:36: Error: Name ‘pmpi_sizeof_int8_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r6’ from module ‘proc_def’
+mpif-sizeof.h:960:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:961:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:962:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:963:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:964:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:966:36: Error: Name ‘pmpi_sizeof_int8_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_int8_r7’ from module ‘proc_def’
+mpif-sizeof.h:967:53: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:968:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:969:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:970:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:971:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:973:43: Error: Name ‘pmpi_sizeof_real128_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_scalar’ from module ‘proc_def’
+mpif-sizeof.h:974:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:975:22: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:976:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:977:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:978:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:980:39: Error: Name ‘pmpi_sizeof_real128_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r1’ from module ‘proc_def’
+mpif-sizeof.h:981:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:982:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:983:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:984:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:985:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:987:39: Error: Name ‘pmpi_sizeof_real128_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r2’ from module ‘proc_def’
+mpif-sizeof.h:988:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:989:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:990:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:991:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:992:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:994:39: Error: Name ‘pmpi_sizeof_real128_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r3’ from module ‘proc_def’
+mpif-sizeof.h:995:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:996:40: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:997:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:998:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:999:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1001:39: Error: Name ‘pmpi_sizeof_real128_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r4’ from module ‘proc_def’
+mpif-sizeof.h:1002:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1003:42: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1004:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1005:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1006:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1008:39: Error: Name ‘pmpi_sizeof_real128_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r5’ from module ‘proc_def’
+mpif-sizeof.h:1009:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1010:44: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1011:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1012:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1013:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1015:39: Error: Name ‘pmpi_sizeof_real128_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r6’ from module ‘proc_def’
+mpif-sizeof.h:1016:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1017:46: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1018:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1019:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1020:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1022:39: Error: Name ‘pmpi_sizeof_real128_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real128_r7’ from module ‘proc_def’
+mpif-sizeof.h:1023:56: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1024:48: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1025:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1026:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1027:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1029:42: Error: Name ‘pmpi_sizeof_real32_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_scalar’ from module ‘proc_def’
+mpif-sizeof.h:1030:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1031:21: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1032:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1033:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1034:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1036:38: Error: Name ‘pmpi_sizeof_real32_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r1’ from module ‘proc_def’
+mpif-sizeof.h:1037:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1038:35: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1039:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1040:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1041:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1043:38: Error: Name ‘pmpi_sizeof_real32_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r2’ from module ‘proc_def’
+mpif-sizeof.h:1044:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1045:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1046:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1047:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1048:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1050:38: Error: Name ‘pmpi_sizeof_real32_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r3’ from module ‘proc_def’
+mpif-sizeof.h:1051:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1052:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1053:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1054:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1055:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1057:38: Error: Name ‘pmpi_sizeof_real32_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r4’ from module ‘proc_def’
+mpif-sizeof.h:1058:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1059:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1060:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1061:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1062:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1064:38: Error: Name ‘pmpi_sizeof_real32_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r5’ from module ‘proc_def’
+mpif-sizeof.h:1065:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1066:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1067:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1068:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1069:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1071:38: Error: Name ‘pmpi_sizeof_real32_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r6’ from module ‘proc_def’
+mpif-sizeof.h:1072:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1073:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1074:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1075:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1076:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1078:38: Error: Name ‘pmpi_sizeof_real32_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real32_r7’ from module ‘proc_def’
+mpif-sizeof.h:1079:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1080:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1081:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1082:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1083:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1085:42: Error: Name ‘pmpi_sizeof_real64_scalar’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_scalar’ from module ‘proc_def’
+mpif-sizeof.h:1086:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1087:21: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1088:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1089:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1090:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1092:38: Error: Name ‘pmpi_sizeof_real64_r1’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r1’ from module ‘proc_def’
+mpif-sizeof.h:1093:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1094:35: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1095:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1096:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1097:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1099:38: Error: Name ‘pmpi_sizeof_real64_r2’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r2’ from module ‘proc_def’
+mpif-sizeof.h:1100:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1101:37: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1102:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1103:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1104:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1106:38: Error: Name ‘pmpi_sizeof_real64_r3’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r3’ from module ‘proc_def’
+mpif-sizeof.h:1107:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1108:39: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1109:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1110:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1111:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1113:38: Error: Name ‘pmpi_sizeof_real64_r4’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r4’ from module ‘proc_def’
+mpif-sizeof.h:1114:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1115:41: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1116:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1117:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1118:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1120:38: Error: Name ‘pmpi_sizeof_real64_r5’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r5’ from module ‘proc_def’
+mpif-sizeof.h:1121:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1122:43: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1123:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1124:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1125:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1127:38: Error: Name ‘pmpi_sizeof_real64_r6’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r6’ from module ‘proc_def’
+mpif-sizeof.h:1128:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1129:45: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1130:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1131:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1132:9: Error: Expecting END INTERFACE statement at (1)
+mpif-sizeof.h:1134:38: Error: Name ‘pmpi_sizeof_real64_r7’ at (1) is an ambiguous reference to ‘pmpi_sizeof_real64_r7’ from module ‘proc_def’
+mpif-sizeof.h:1135:55: Error: Unexpected USE statement in INTERFACE block at (1)
+mpif-sizeof.h:1136:47: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1137:36: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1138:38: Error: Unexpected data declaration statement in INTERFACE block at (1)
+mpif-sizeof.h:1139:9: Error: Expecting END INTERFACE statement at (1)
+manage.F90:34:37:
+
+     call MPI_Comm_rank(MPI_COMM_WORLD, num_rank, ierr)
+                                     1
+Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+manage.F90:35:37:
+
+     call MPI_Comm_size(MPI_COMM_WORLD, num_size, ierr)
+                                     1
+Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+manage.F90:50:40:
+
+     my_proc%mpi_glocomm = MPI_COMM_WORLD
+                                        1
+Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+manage.F90:79:54:
+
+     call mct_world_init(my_proc%ncomps, MPI_COMM_WORLD, my_proc%comp_comm, my_proc%comp_id)
+                                                      1
+Error: Name ‘mpi_comm_world’ at (1) is an ambiguous reference to ‘mpi_comm_world’ from module ‘proc_def’
+manage.F90:5:4:
+
+ use comms
+    1
+Warning: Although not referenced, ‘generic interface 'mpi_sizeof'’ has ambiguous interfaces at (1)
+manage.F90:5:4:
+
+ use comms
+    1
+Warning: Although not referenced, ‘generic interface 'pmpi_sizeof'’ has ambiguous interfaces at (1)
+make: *** [manage.o] Error 1

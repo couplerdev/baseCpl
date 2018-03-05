@@ -5,12 +5,11 @@ module deploy_mod
     implicit none
 include 'mpif.h'
     integer :: defaulToAll = 1
-    integer :: readfile = 'deploy.xml'
     integer :: comp(4, 3)
     data comp / & !--- comp_first, comp_last, stride
-            0, 2, 2 &
-            1, 2, 2 &
-            2, 2, 2 &
+            0, 2, 2, &
+            1, 2, 2, &
+            2, 2, 2, &
             3, 2, 2/ 
     public  :: deploy
     public  :: deploy_setRange
@@ -29,7 +28,7 @@ subroutine deploy(glo_comm, deploy_comm, comp_id, pattern, ierr)
     integer    :: mpi_grp
     integer    :: new_grp
     integer    :: n
-    integer, pointer :: peRange(:)
+    integer    :: peRange(3,1)
     integer    :: rank  
     integer    :: comp_first
     integer    :: comp_last
@@ -49,7 +48,7 @@ subroutine deploy(glo_comm, deploy_comm, comp_id, pattern, ierr)
             !--- set up n and peRange
             call mpi_group_range_incl(mpi_grp, n, peRange, new_grp)
         end if
-        call mpi_bcast(new_grp, 1, integer, comp_id, glo_comm, ier)
+        call mpi_bcast(new_grp, 1, MPI_INTEGER, comp_id, glo_comm, ier)
         call mpi_comm_create(glo_comm, new_grp, deploy_comm)
     end if
 
@@ -59,15 +58,15 @@ subroutine deploy_setRange(comp_id, comp_first, comp_last, stride, ierr)
 
     implicit none
     integer,           intent(in)   :: comp_id
-    integer,           intent(in)   :: comp_first
-    integer,           intent(in)   :: comp_last
-    integer,           intent(in)   :: stride
-    integer, optional, intent(in)   :: ierr
+    integer,           intent(inout)   :: comp_first
+    integer,           intent(inout)   :: comp_last
+    integer,           intent(inout)   :: stride
+    integer, optional, intent(inout)   :: ierr
 
     comp_first = comp(comp_id-1, 1)
     comp_last  = comp(comp_id-1, 2)
     stride     = comp(comp_id-1, 3)
-    ierr = 0
+    if(present(ierr))ierr = 0
 
 end subroutine deploy_setRange
 
