@@ -7,10 +7,10 @@ use mct_mod
 use proc_def
     implicit none
     include 'mpif.h'    
-    public :: gsmap_init
+    public :: gsmap_init_ext
     public :: gsmap_extend
     public :: gsmap_create
-    public :: avect_init
+    public :: avect_init_ext
     public :: avect_extend
     public :: avect_create
 

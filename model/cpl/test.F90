@@ -20,11 +20,11 @@
 !
       program main
       use proc_def
-      use comms
+      use extend
       use mct_mod
       implicit none
 
-      include 'mpif.h'
+      !include 'mpif.h'
 
       integer,parameter :: ngx = 4   ! points in x-direction
       integer,parameter :: ngy = 4   ! points in y-direction
@@ -95,7 +95,7 @@
           length1(1)= ngx * (ngy/ a_procs)
           start1(1) = pid_in_a * length1(1) + 1
 
-          call MCT_GSMap_init(gsMap_aa_i, start1, length1,0, model_comm ,1)
+          call gsMap_init(gsMap_aa_i, start1, length1,0, model_comm ,1)
           write(6,*)'gsmap1',pid_in_world,  pid_in_a, "start:", &
             start1, "length:", length1
       endif
@@ -111,8 +111,8 @@
 
       ! MODEL_A2X INIT
       ! init gsmap_ax by gsmap_aa
-      call gsmap_init_ext(pid_in_world, gsMap_aa_i, gsMap_ax,&
-                        model_comm, model2x_comm, &
+      call gsmap_init_ext(my_proc, gsMap_aa_i, a_comm_i, &
+                        gsMap_ax, a_comm_o,&
                         a_comm_o)
       
       j = gsMap_lsize(gsMap_ax, model2x_comm)
@@ -123,9 +123,9 @@
       enddo
       ! init a2x_aa whose lsize=0 if not in model_a, and a2x_ax whose
       ! grid is new
-      call avect_init_ext(1, a2x_aa, a2x_ax, &
-                        model_comm, model2x_comm, &
-                        gsMap_ax, iamin_model_a)
+      call avect_init_ext(my_proc, a2x_aa, a_comm_i,&
+                        a2x_ax, a_comm_o,&
+                        gsMap_ax, a_comm_o)
       call MPI_Barrier(model2x_comm, ier)
       ! MODEL_A2X INIT OVER 
       
@@ -161,7 +161,7 @@
       call model2(model2x_comm, a2x_ax, pid_in_world)
       call MPI_Barrier(model2x_comm, ier, pid_in_world)
         
-      call MCT_Rearrange(a2x_ax,a2x_aa,Rearr_xa)
+      call rearrange(a2x_ax,a2x_aa,Rearr_xa)
       call MPI_Barrier(model2x_comm, ier, pid_in_world)      
       
       if(iamin_model_a) then
@@ -220,7 +220,7 @@
         if(pid_in_world .gt. 1) &
         testarray(i) = float(0)
       enddo
-      call MCT_AtrVt_importRA(mod1av,"field2",testarray)
+      call avect_importRA(mod1av,"field2",testarray)
 
 
       end subroutine model1

@@ -9,6 +9,7 @@ use m_attrvect ,only: avect_copy => copy
 use m_attrvect ,only: avect_lsize => lsize
 use m_attrvect ,only: avect_indexIA => indexIA
 use m_attrvect ,only: avect_indexRA => indexRA
+use m_attrvect ,only: avect_importRA => importRAttr
 use m_attrvect ,only: avect_importIattr => importIattr
 use m_attrvect ,only: avect_exportIattr => exportIattr
 use m_attrvect ,only: avect_importRattr => importRattr
