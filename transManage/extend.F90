@@ -27,7 +27,7 @@ subroutine gsmap_init(my_proc, gsmap_s, ID_s, gsmap_d, &
     type(gsMap), intent(inout) :: gsmap_d
     integer,     intent(inout) :: ID_d
     integer,     intent(in)    :: ID_join
-    type(gsMap),    intent(in)    :: gsmap_join
+    type(gsMap) gsmap_join
     integer :: mpi_comm_s, mpi_comm_d, mpi_comm_join, mct_compid_d, mct_compid_join
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
@@ -55,14 +55,12 @@ subroutine avect_init(my_proc, AV_s, ID_s, AV_d, ID_d, gsmap, ID_join)
     type(AttrVect), intent(inout) :: AV_d
     integer,        intent(in)    :: ID_d
     integer,        intent(in)    :: ID_join
-    !todo need to discussion...
-    ! --- Extend old avs and initialize new avs for use in the future
-    !lsize = 0
-    !if (seq_comm_iamin(ID_new)) then
-    !lsize = mct_gsMap_lsize(gsMap_new,mpicom_new)
-    !endif
-    !call avectv_o_extend(AV1_old, ID_old, ID_join)
-    !call avect_o_create(AV1_old, ID_old, AV1_new, ID_join, lsize)
+    integer lsize
+    lsize = mct_gsMap_lsize(gsMap_d, my_proc%comp_comm(ID_d))
+    call avect_extend_2(my_proc, AV_s, ID_s, ID_d)
+    call avect_create(my_proc, AV_s, AV_d,&
+                        AV_s, ID_s, &
+                        lsize)
 end subroutine avect_init
 
 ! my implemention, need para mct_compid_o
@@ -194,43 +192,35 @@ subroutine gsmap_extend(gsmap_s, mpicom_s, gsmap_d, mpicom_d)
 end subroutine gsmap_extend
 
 !todo my implement need to discussion
-subroutine avect_o_extend(my_proc, AV_s, AV_d, &
-              ID_s, ID_d, &
-              lsize)
-
+subroutine avect_extend_2(my_proc, AV_s&
+              ID_s, ID_d)
     implicit none
     type(proc)    , intent(in)    :: my_proc
-    type(AttrVect), intent(in) :: AV_i
-    type(AttrVect), intent(inout) :: AV_o
+    type(AttrVect), intent(inout) :: AV_s
     integer, intent(in) ::  ID_s, ID_d
-    integer, intent(in) :: lsize
-
     integer  ::  mpi_comm_s, mpi_comm_d
-    logical  :: iamin_i
-    integer pid_in_d,ier
     character(len=100) :: iList,rList
 
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
-    call mpi_comm_rank(mpi_comm_s, pid_in_d, ier)
     iList = " "
     rList = " "
     if(my_proc%iamin_model(ID_s)) then
         iList = MCT_AtrVt_exportIList(AV_s)
         rList = MCT_AtrVt_exportRList(AV_s)
     endif
-
     call mpi_bcast(iList, len(iList), MPI_CHARACTER, 0, mpi_comm_d, ier)
     call mpi_bcast(rList, len(rList), MPI_CHARACTER, 0, mpi_comm_d, ier)
-
-    if(len_trim(iList) > 0 .and. len_trim(rList) > 0) then
-      call MCT_AtrVt_init(AV_d,rList=rList,iList=iList, lsize=lsize)
-    else if(len_trim(iList) > 0 .and. len_trim(rList) == 0) then
-      call MCT_AtrVt_init(AV_d,iList=iList,lsize=lsize)
-    else if(len_trim(iList) == 0 .and. len_trim(rList) > 0) then
-      call MCT_AtrVt_init(AV_d,rList=rList,lsize=lsize)
+    if(.not. my_proc%iamin_model(ID_s)) then
+        if(len_trim(iList) > 0 .and. len_trim(rList) > 0) then
+          call MCT_AtrVt_init(AV_s,rList=rList,iList=iList, lsize=0)
+        else if(len_trim(iList) > 0 .and. len_trim(rList) == 0) then
+          call MCT_AtrVt_init(AV_s,iList=iList,lsize=0)
+        else if(len_trim(iList) == 0 .and. len_trim(rList) > 0) then
+          call MCT_AtrVt_init(AV_s,rList=rList,lsize=0)
+        endif
     endif
-end subroutine avect_o_extend
+end subroutine avect_extend_2
 
 subroutine avect_extend(my_proc, av_s, id_s, id, ierr)
     implicit none
@@ -444,10 +434,6 @@ subroutine gsmap_create(gsmapi, mpicomi, gsmapo, mpicomo, compido)
 
     endif
 end subroutine gsmap_create
-    
-       
-
-end subroutine gsmap_create
 
 subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID_d, lsize)
     implicit none
@@ -464,7 +450,6 @@ subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID_d, lsize)
     
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
-    call mpi_comm_rank(mpi_comm_d, pid_in_d, ier)
     iList = " "
     rList = " "
     if(proc%iamin_model(ID_s)) then
