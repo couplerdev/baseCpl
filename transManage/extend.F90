@@ -156,39 +156,6 @@ subroutine gsmap_extend(gsmap_s, mpicom_s, gsmap_d, mpicom_d)
     call mct_gsmap_bcast(gsmap_d, rank_dg, mpicom_d)
 
     call mpi_barrier(mpicom_d, ierr)    
-      subroutine avect_o_extend(AV_i, AV_o, &
-                      mpi_comm_i,mpi_comm_o, &
-                      gsMap_i, iamin_i, lsize, ier)
-    
-        implicit none
-        type(AttrVect), intent(in) :: AV_i
-        type(AttrVect), intent(inout) :: AV_o
-        integer, intent(in) ::  mpi_comm_i, mpi_comm_o
-        type(GlobalSegMap),    intent(in)    :: gsMap_i
-        logical, intent(in) :: iamin_i
-        integer, intent(in) :: lsize , ier
-        integer pid_in_o
-        character(len=100) :: iList,rList
-        call mpi_comm_rank(mpi_comm_o, pid_in_o, ier)
-        iList = " "
-        rList = " "
-        if(iamin_i) then
-            iList = MCT_AtrVt_exportIList(AV_i)
-            rList = MCT_AtrVt_exportRList(AV_i)
-        endif
-
-        call mpi_bcast(iList, len(iList), MPI_CHARACTER, 0, mpi_comm_o, ier)
-        call mpi_bcast(rList, len(rList), MPI_CHARACTER, 0, mpi_comm_o, ier)
-
-        if(len_trim(iList) > 0 .and. len_trim(rList) > 0) then
-          call MCT_AtrVt_init(AV_o,rList=rList,iList=iList, lsize=lsize)
-        else if(len_trim(iList) > 0 .and. len_trim(rList) == 0) then
-          call MCT_AtrVt_init(AV_o,iList=iList,lsize=lsize)
-        else if(len_trim(iList) == 0 .and. len_trim(rList) > 0) then
-          call MCT_AtrVt_init(AV_o,rList=rList,lsize=lsize)
-        endif
-      end subroutine avect_o_extend
-    
 end subroutine gsmap_extend
 
 !todo my implement need to discussion
@@ -276,8 +243,6 @@ subroutine avect_extend(my_proc, av_s, id_s, id, ierr)
             call avect_init(av_s, rList=rList, lsize=lsizen)
         end if
     end if
-
-
 end subroutine avect_extend
 
 subroutine gsmap_create(gsmapi, mpicomi, gsmapo, mpicomo, compido)
