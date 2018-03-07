@@ -4,11 +4,13 @@ SRC = test.F90
 EXE = test
 LIB = -I/usr/local/lib -I/usr/local/include -I../../MCTWrapper \
 	  -I../../transManage -I ../../data_def
-FFLAG = -I/usr/local/include -I../MCTWrapper -I../data_def
+#FFLAG = -I/usr/local/include -I../MCTWrapper -I../data_def
+FFLAG = -l/usr/local/lib -l/usr/local/include -l../../MCTWrapper \
+	  -l../../transManage -l../../data_def
 
 
 $(EXE) : $(OBJ)
-	$(FC)  -lmct -lmpeu -o $(EXE) $(OBJ) $(LIB)
+	$(FC)  -lmct -lmpeu $(OBJ) -o $(EXE)  $(LIB)
 
 $(OBJ) : $(SRC)
 	$(FC)  -c $(SRC) $(LIB)
