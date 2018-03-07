@@ -40,9 +40,11 @@ use m_GlobalSegMap ,only: gsMap_copy  => copy
 use m_GlobalSegMapComms ,only: gsmap_bcast => bcast
 
 
+use m_Rearranger ,only: Rearranger
 use m_Rearranger ,only: gRearr => Rearranger
 use m_Rearranger ,only: rearr_init => init
 use m_Rearranger ,only: rearr_clean => clean
+use m_Rearranger ,only: rearrange => Rearrange
 
 use m_Router ,only: router => Router
 use m_Router ,only: router_init => init
