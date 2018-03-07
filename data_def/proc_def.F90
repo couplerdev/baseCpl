@@ -79,7 +79,7 @@ use comms_def
         integer, dimension(:), pointer :: comp_comm
         integer, dimension(:), pointer :: comp_id
         ! judge if in model_a/b/c
-        integer, dimension(:), pointer :: iamin_model
+        logical, dimension(:), pointer :: iamin_model
 
         !-------------------------------------------------------
         ! define comm control variables and run control 
