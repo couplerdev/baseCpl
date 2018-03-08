@@ -47,14 +47,14 @@
       integer :: model_comm, model2x_comm
       integer pid_in_a, a_procs, avlsize_in_a
       integer ier, world_procs, pid_in_world
-      integer j,nsegm,status, a_comm_i, a_comm_o
+      integer j,nsegm,status, a_comm_i, a_comm_o,ID_s,ID_d,ID_join
 !-----------------------------------------------------------------------
 
       call MPI_init(ier)
 
       call mpi_comm_rank(MPI_COMM_WORLD, pid_in_world, ier)
       call mpi_comm_size(MPI_COMM_WORLD, world_procs, ier)
-
+      !allocate(my_proc%comp_comm(4),my_proc%comp_id(4),my_proc%iamin_model)
       ! pre init control signal
       if (pid_in_world .lt. world_procs/2) then
         color = 0
@@ -79,14 +79,32 @@
       myids(2)=2
       a_comm_i = 1
       a_comm_o = 2
-        
+
+          
         
       call mct_world_init(2,MPI_COMM_WORLD, model2x_comm,myids=myids)
 
 !  set up a grid and decomposition
 ! first gsmap is the grid decomposed by rows
 ! theres 1 segment per processor
-
+      !init proc
+      ! ID_s = 1 = model_a_id
+      ! ID_d = ID_join = 2 = model2x_id
+      allocate(my_proc%comp_comm(4))
+      allocate(my_proc%comp_id(4))
+      allocate(my_proc%iamin_model(4))
+      my_proc%comp_comm(1) = model_comm
+      call MPI_Barrier(model2x_comm, ier)
+      my_proc%comp_comm(2) = model2x_comm
+      my_proc%comp_id(1) = a_comm_i
+      my_proc%comp_id(2) = a_comm_o
+      my_proc%iamin_model(1) = iamin_model_a
+      my_proc%iamin_model(2) = iamin_a2x
+      ID_s = 1
+      ID_d = 2
+      ID_join = 2
+      write(6,*) "init proct over"
+      call MPI_Barrier(model2x_comm, ier)
       ! MODEL A INIT
       ! init gsMap of model_a
       if (iamin_model_a) then
@@ -111,9 +129,9 @@
 
       ! MODEL_A2X INIT
       ! init gsmap_ax by gsmap_aa
-      call gsmap_init_ext(my_proc, gsMap_aa_i, a_comm_i, &
-                        gsMap_ax, a_comm_o,&
-                        a_comm_o)
+      call gsmap_init_ext(my_proc, gsMap_aa_i, ID_s, &
+                        gsMap_ax, ID_d,&
+                        ID_join)
       
       j = gsMap_lsize(gsMap_ax, model2x_comm)
       do i=1, j
@@ -123,9 +141,9 @@
       enddo
       ! init a2x_aa whose lsize=0 if not in model_a, and a2x_ax whose
       ! grid is new
-      call avect_init_ext(my_proc, a2x_aa, a_comm_i,&
-                        a2x_ax, a_comm_o,&
-                        gsMap_ax, a_comm_o)
+      call avect_init_ext(my_proc, a2x_aa, ID_s,&
+                        a2x_ax, ID_d,&
+                        gsMap_ax, ID_join)
       call MPI_Barrier(model2x_comm, ier)
       ! MODEL_A2X INIT OVER 
       
