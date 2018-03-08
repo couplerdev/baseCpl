@@ -8,7 +8,7 @@ path1 = MCTWrapper
 path2 = timeManage
 path3 = procManage
 path4 = transManage
-
+MAIN = ./model/cpl
 
 
 .PHONY : all
@@ -21,3 +21,5 @@ all :
 	$(AR) rcs $(LIB_A) $(SRC)
 	#rm ./include/*.o
 	mv $(LIB_A) $(LIBDIR) 	
+	make -C $(MAIN)
+	mv $(MAIN)/main ./

@@ -18,7 +18,8 @@ SLIB = -lbcpl
 FFLAG = -L$(LIBDIR)
 
 $(EXE) : $(OBJ) $(OBJ_M) $(MODELS)
-	$(FC) $(MODELS) $(OBJ_M) $(OBJ)  -o $(EXE)  -lmct -lmpeu $(FFLAG) $(SLIB)
+	$(FC) $(MODELS) $(OBJ_M) $(OBJ)  -o $(EXE) \
+	$(FFLAG) $(SLIB) -lmct -lmpeu 
 
 $(OBJ) : $(SRC)
 	$(FC) -c $(SRC) $(LIB)

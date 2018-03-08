@@ -85,7 +85,7 @@ subroutine mapper_comp_map(mapper, src, dst, msgtag, ierr)
 
     if(mapper%map_type=="copy")then
         call avect_copy(src, dst)
-    else if(mapper%map_type=="rearrange")then
+    else if(mapper%map_type=="rear")then
         call rearrange(src, dst, mapper%rearr, msgtag)
     else
         call mapper_comp_interpolation()
