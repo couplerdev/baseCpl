@@ -1,17 +1,23 @@
 FC = mpif90
-#EXE = main
+AR = ar
+LIB_A = libprocm.a
 OBJ = manage.o mpi_comm.o deploy_mod.o
 SRC = manage.F90 mpi_comm.F90 deploy_mod.F90
-LIB = -lmct -lmpeu
-FLAG = -I../MCTWrapper -I/usr/local/include -I../data_def -I../transManage
+INCLDIR = ../include
+LIBDIR = ../lib
+LIB = -lmct -lmpeu -lmctm -lcomm -ldata_def 
+FLAG = -I../include -I/usr/local/include
 
-
+#$(LIB_A) : $(OBJ)
+#	$(AR) rcs $(LIB_A) $(SRC)
+#	mv *.mod $(INCLDIR)
+#	mv *.a $(LIBDIR)
  
 $(OBJ) : $(SRC)
 	$(FC) $(FLAG) -c $(SRC) $(LIB)
+	mv *.mod *.o $(INCLDIR)
 
 
 .PHONY:clean
-
 clean:
 	rm -rf *.o

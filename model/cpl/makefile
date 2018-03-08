@@ -1,21 +1,29 @@
 FC = mpif90
-OBJ = test.o
-OBJS = ../../MCTWrapper/mct_mod.o \
+OBJ_M = main.o
+OBJ = baseCpl.o 
+MODELS = ../model1/comp_a.o ../model2/comp_b.o ../model3/comp_c.o
+#OBJS = ../../MCTWrapper/mct_mod.o \
 	   ../../data_def/proc_def.o \
-	   ../../transManage/extend.o 
-SRC = test.F90 
-EXE = test
-LIB = -I/usr/local/lib -I/usr/local/include -I../../MCTWrapper \
-	  -I../../transManage -I../../data_def
-FFLAG = -I/usr/local/include -I/usr/local/lib
+           ../../data_def/comms_def.o \
+	   ../../transManage/comms.o \
+	   ../../transManage/extend.o \
+	   ../../timeManage/timeM.o \
+	   ../../procManage/manage.o
+SRC = baseCpl.F90
+EXE = main
+LIB = -I/usr/local/lib -I/usr/local/include -I../../include 
+LIBDIR = /home/adalos/tmp2/baseCpl/lib
+SLIB = -lbcpl
+FFLAG = -L$(LIBDIR)
 
-
-$(EXE) : $(OBJ)
-	$(FC)  $(OBJS) $(OBJ) -o $(EXE) $(LIB) -lmct -lmpeu
+$(EXE) : $(OBJ) $(OBJ_M) $(MODELS)
+	$(FC) $(OBJ_M) $(OBJ) $(MODELS) $(OBJS) -o $(EXE)  -lmct -lmpeu $(FFLAG) $(SLIB)
 
 $(OBJ) : $(SRC)
 	$(FC) -c $(SRC) $(LIB)
 
+$(OBJ_M) : main.F90 
+	$(FC) -c main.F90
  
 clean:
 	rm -rf *.mod *.o

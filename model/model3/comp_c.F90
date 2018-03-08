@@ -1,5 +1,5 @@
-module comp_a
-use MCTWrapper
+module comp_c
+use mct_mod
 use timeM
 use proc_def
     implicit none
@@ -10,9 +10,9 @@ use proc_def
     !---------------------------------------------------------
     character(len=20) :: fld_ar="x:y"
     character(len=20) :: fld_ai="u:v:w"
-    public :: a_init_mct
-    public :: a_run_mct
-    public :: a_final_mct
+    public :: c_init_mct
+    public :: c_run_mct
+    public :: c_final_mct
 
 contains
 
@@ -20,20 +20,20 @@ contains
 !  a_init_mct, init gsmap_aa, avect, avect init with zero, but not init
 !  dom at present
 !-------------------------------------------------------------------------
-subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
+subroutine c_init_mct(my_proc, ID, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
 
     implicit none
     type(proc), intent(inout)        :: my_proc
     integer, intent(in)              :: ID
     type(Clock), intent(in)          :: EClock
-    type(gsMap), intent(inout)       :: gsMap_aa
-    type(AttrVect), intent(inout)    :: a2x_aa
-    type(AttrVect), intent(inout)    :: x2a_aa
+    type(gsMap), intent(inout)       :: gsMap_cc
+    type(AttrVect), intent(inout)    :: c2x_cc
+    type(AttrVect), intent(inout)    :: x2c_cc
     integer,  intent(inout)          :: ierr
   
-    integer, dimension(:) :: start
-    integer, dimension(:) :: length
-    integer,              :: root = 0
+    integer, allocatable  :: start(:)
+    integer, allocatable  :: length(:)
+    integer               :: root = 0
     integer               :: comm_rank
     integer               :: comm_size
     integer               :: lsize
@@ -46,36 +46,36 @@ subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     allocate(start(1))
     allocate(length(1))
 
-    start(1) = rank*(lsize/comm_size)
-    length(1) = lsize - (rank)*(lsize/comm_size)
+    start(1) = comm_rank*(lsize/comm_size)
+    length(1) = lsize - (comm_rank)*(lsize/comm_size)
 
-    call gsMap_init(gsMap_aa, start, length, root, my_proc%comp_comm(ID), ID)
+    call gsMap_init(gsMap_cc, start, length, root, my_proc%comp_comm(ID), ID)
     
-    call avect_init(a2x, iList=fld_ia, rList=fld_ra, lsize=length(1))
-    call avect_init(x2a, iList=fld_ia, rList=fld_ra, lsize=length(1))
+    call avect_init(c2x_cc, iList=fld_ai, rList=fld_ar, lsize=length(1))
+    call avect_init(x2c_cc, iList=fld_ai, rList=fld_ar, lsize=length(1))
    
-    call avect_zero(a2x)
-    call avect_zero(x2a) 
+    call avect_zero(c2x_cc)
+    call avect_zero(x2c_cc) 
 
-end subroutine a_init_mct
+end subroutine c_init_mct
 
-subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr)
+subroutine c_run_mct(my_proc, ID, EClock, c2x, x2c, ierr)
 
     implicit none
     type(proc), intent(inout)      :: my_proc
     integer,    intent(in)         :: ID
     type(Clock), intent(in)        :: EClock
-    type(AttrVect), intent(inout)  :: a2x
-    type(AttrVect), intent(inout)  :: x2a
+    type(AttrVect), intent(inout)  :: c2x
+    type(AttrVect), intent(inout)  :: x2c
     integer, intent(inout)         :: ierr    
 
-    write(*,*) 'a_run'
+    write(*,*) 'c_run'
 
-end subroutine a_run_mct
+end subroutine c_run_mct
 
-subroutine a_final_mct()
+subroutine c_final_mct()
 
-end subroutine a_final_mct
+end subroutine c_final_mct
 
 
-end module comp_a
+end module comp_c

@@ -32,7 +32,7 @@ subroutine mapper_init_func()
 
 end subroutine mapper_init_func
 
-subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d, ID_join)
+subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d, ID_join, ierr)
 
     implicit none
     type(map_mod), intent(inout)   :: mapper
@@ -42,6 +42,7 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
     type(gsMap),   intent(in)      :: gsmap_d
     integer,       intent(in)      :: ID_d
     integer,       intent(in)      :: ID_join
+    integer,  optional,  intent(in):: ierr
 
     integer    :: mpicom_s, mpicom_d, mpicom_join
     type(gsMap) :: gsmap_s_join
@@ -75,18 +76,18 @@ end subroutine mapper_spmat_init
 subroutine mapper_comp_comm(mapper, gsMap_s, src, gsMap_d, dst, msgtag, ierr)
     
     implicit none
-    type(map_mod),  intent(in)     :: mapper
-    type(gsMap),    intent(in)     :: gsMap_s
-    type(AttrVect), intent(inout)  :: src
-    type(gsMap),    intent(in)     :: gsMap_d
-    type(AttrVect), intent(inout)  :: dst
-    integer,        intent(in)     :: msgtag
-    integer,        optional,      intent(inout) :: ierr
+    type(map_mod),  intent(in)              :: mapper
+    type(gsMap),    intent(in)              :: gsMap_s
+    type(AttrVect), intent(inout)           :: src
+    type(gsMap),    intent(in)              :: gsMap_d
+    type(AttrVect), intent(inout)           :: dst
+    integer,        optional,   intent(in)  :: msgtag
+    integer,        optional,   intent(inout) :: ierr
 
     if(mapper%map_type=="copy")then
         call avect_copy(src, dst)
     else if(mapper%map_type=="rearrange")then
-        call rearr_rearrange(src, dst, mapper%rearr)
+        call rearr_rearrange(src, dst, mapper%rearr, msgtag)
     else
         call mapper_comp_interpolation()
     end if
