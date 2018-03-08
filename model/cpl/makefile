@@ -25,6 +25,7 @@ $(OBJ) : $(SRC)
 
 $(OBJ_M) : main.F90 
 	$(FC) -c main.F90 $(LIB)
-  
+
+.PHONY : clean  
 clean:
 	rm -rf *.mod *.o

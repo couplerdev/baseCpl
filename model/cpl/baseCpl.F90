@@ -1,7 +1,7 @@
 module baseCpl
 use proc_def
 use comms_def
-use procm ,only: pm_init => init 
+use procm ,only: pm_init => init , clean
 use comms
 use timeM
 use mct_mod
@@ -150,19 +150,19 @@ subroutine cpl_run()
         !----------------------------------------------------------  
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
-                call mapper_comm_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
+                call mapper_comp_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
             end if
         end if        
 
         if(b_run)then
             if(my_proc%iamin_modelb2cpl)then
-                call mapper_comm_map(my_proc%mapper_Cx2b, x2b_bx, x2b_bb, 100+20+2, ierr)
+                call mapper_comp_map(my_proc%mapper_Cx2b, x2b_bx, x2b_bb, 100+20+2, ierr)
             end if
         end if
 
         if(c_run)then
             if(my_proc%iamin_modelc2cpl)then
-                call mapper_comm_map(my_proc%mapper_Cx2c, x2c_cx, x2c_cc, 100+30+2, ierr)
+                call mapper_comp_map(my_proc%mapper_Cx2c, x2c_cx, x2c_cc, 100+30+2, ierr)
             end if
         end if
 
@@ -196,13 +196,13 @@ subroutine cpl_run()
 
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
-                call mapper_comm_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, 100+10+3, ierr)
+                call mapper_comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, 100+10+3, ierr)
             end if
         end if
 
         if(b_run)then
             if(my_proc%iamin_modelb2cpl)then
-                call mapper_comm_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, 100+20+3, ierr)
+                call mapper_comp_map(my_proc%mapper_Cb2x, b2x_bb, b2x_bx, 100+20+3, ierr)
             end if
         end if
 

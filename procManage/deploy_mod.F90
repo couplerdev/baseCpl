@@ -12,6 +12,7 @@ include 'mpif.h'
             2, 2, 2, &
             3, 2, 2/ 
     public  :: deploy
+    public  :: deploy_readFile
     public  :: deploy_setRange
 
 contains 
@@ -41,7 +42,7 @@ subroutine deploy(glo_comm, deploy_comm, comp_id, pattern, ierr)
         call mpi_comm_rank(glo_comm, rank, ierr)
         if(rank == 0) then
             call mpi_comm_group(glo_comm, mpi_grp)
-            call deploy_readFile(comp ,comp_id, comp_first, comp_last, stride, ier)
+            call deploy_readFile(comp_id, comp_first, comp_last, stride, ier)
             peRange(1,1) = comp_first 
             peRange(2,1) = comp_last
             peRange(3,1) = stride
@@ -53,6 +54,20 @@ subroutine deploy(glo_comm, deploy_comm, comp_id, pattern, ierr)
     end if
 
 end subroutine deploy
+
+subroutine deploy_readFile(comp_id, comp_first, comp_last, stride, ierr)
+
+    integer, intent(in)     :: comp_id
+    integer, intent(inout)  :: comp_first
+    integer, intent(inout)  :: comp_last
+    integer, intent(inout)  :: stride
+    integer, optional, intent(inout)  :: ierr
+
+    comp(comp_id-1,1) = comp_first
+    comp(comp_id-1,2) = comp_last
+    comp(comp_id-1,3) = stride
+
+end subroutine deploy_readFile
 
 subroutine deploy_setRange(comp_id, comp_first, comp_last, stride, ierr)
 
