@@ -5,9 +5,12 @@ use procm ,only: pm_init => init
 use comms
 use timeM
 use mct_mod
-use mpi
-    implicit none
+use comp_a
+use comp_b
+use comp_c
+!use mpi
 
+    implicit none
     type(proc), target :: my_proc  ! my proc manage all info needed in this process
 
     type(gsMap) :: gsMap_aa
@@ -79,15 +82,15 @@ subroutine cpl_init()
     ! order they want
     !-----------------------------------------------------------------
     if(my_proc%iamin_modela)then
-        call a_init_mct(my_proc, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
+        call a_init_mct(my_proc, my_proc%modela_id, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     end if
 
     if(my_proc%iamin_modelb)then
-        call b_init_mct(my_proc, EClock, gsMap_bb, b2x_bb, x2b_bb, ierr)
+        call b_init_mct(my_proc, my_proc%modelb_id, EClock, gsMap_bb, b2x_bb, x2b_bb, ierr)
     end if
 
     if(my_proc%iamin_modelc)then
-        call c_init_mct(my_proc, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
+        call c_init_mct(my_proc, my_proc%modelc_id, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
     end if
 
     if(my_proc%iamin_modela2cpl)then
@@ -170,19 +173,19 @@ subroutine cpl_run()
         !------------------------------------------------------------
         if(a_run)then
             if(my_proc%iamin_modela)then
-                call a_run_mct(my_proc, EClock, a2x_aa, x2a_aa, ierr) 
+                call a_run_mct(my_proc, my_proc%modela_id, EClock, a2x_aa, x2a_aa, ierr) 
             end if
         end if
 
         if(b_run)then
             if(my_proc%iamin_modelb)then
-                call b_run_mct(my_proc, EClock, b2x_bb, x2b_bb, ierr)
+                call b_run_mct(my_proc, my_proc%modelb_id, EClock, b2x_bb, x2b_bb, ierr)
             end if
         end if
 
         if(c_run)then
             if(my_proc%iamin_modelc)then
-                call c_run_mct(my_proc, EClock, c2x_cc, x2c_cc, ierr)
+                call c_run_mct(my_proc, my_proc%modelc_id, EClock, c2x_cc, x2c_cc, ierr)
             end if
         end if
 

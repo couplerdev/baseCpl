@@ -11,19 +11,20 @@ MODELS = ../model1/comp_a.o ../model2/comp_b.o ../model3/comp_c.o
 	   ../../procManage/manage.o
 SRC = baseCpl.F90
 EXE = main
-LIB = -I/usr/local/lib -I/usr/local/include -I../../include 
+LIB = -I/usr/local/lib -I/usr/local/include -I../../include \
+	-I../model1 -I../model2 -I../model3 
 LIBDIR = /home/adalos/tmp2/baseCpl/lib
 SLIB = -lbcpl
 FFLAG = -L$(LIBDIR)
 
 $(EXE) : $(OBJ) $(OBJ_M) $(MODELS)
-	$(FC) $(OBJ_M) $(OBJ) $(MODELS) $(OBJS) -o $(EXE)  -lmct -lmpeu $(FFLAG) $(SLIB)
+	$(FC) $(MODELS) $(OBJ_M) $(OBJ)  -o $(EXE)  -lmct -lmpeu $(FFLAG) $(SLIB)
 
 $(OBJ) : $(SRC)
 	$(FC) -c $(SRC) $(LIB)
 
 $(OBJ_M) : main.F90 
-	$(FC) -c main.F90
- 
+	$(FC) -c main.F90 $(LIB)
+  
 clean:
 	rm -rf *.mod *.o
