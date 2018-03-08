@@ -89,13 +89,11 @@ subroutine gsmap_extend(gsmap_i, gsmap_o, &
 
         call gsMap_init(gsMap_o, mct_compid_o, ngseg_i, &
                             gsize_i, start, length, peloc)
-        write(6,*)'gsmap_o_extend', " start:", start, " length:", length, &
-        peloc
         deallocate(start, length, peloc)
     endif
     ! bcast gsMap of mpi_comm_i to all the pe in mpi_comm_o
     call gsmap_bcast(gsMap_o, 0, mpi_comm_o, status)
-    write(6,*)'status: ', status, " rank:", rank_in_comm_i
+    !write(6,*)'status: ', status, " rank:", rank_in_comm_i
     call MPI_Barrier(mpi_comm_o, ier)
 end subroutine gsmap_extend
 
@@ -110,8 +108,10 @@ subroutine avect_extend(my_proc, AV_s, &
     integer  ::  mpi_comm_s, mpi_comm_d, ier
     character(len=100) :: iList,rList
 
+
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
+
     iList = " "
     rList = " "
     if(my_proc%iamin_model(ID_s)) then

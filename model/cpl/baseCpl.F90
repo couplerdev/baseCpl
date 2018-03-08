@@ -63,6 +63,8 @@ subroutine cpl_init()
     !-----------------------------------------------------------------
     !  variables comp2x_yy point to relative my_proc%comp2x_yy
     !-----------------------------------------------------------------
+    write(*,*)'init begin'
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
     a2x_aa => my_proc%a2x_aa
     a2x_ax => my_proc%a2x_ax
     x2a_aa => my_proc%x2a_aa
@@ -93,9 +95,13 @@ subroutine cpl_init()
         call c_init_mct(my_proc, my_proc%modelc_id, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
     end if
 
+    write(*,*)'comp init finished'
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
     if(my_proc%iamin_modela2cpl)then
         call gsmap_init_ext(my_proc, gsmap_aa, my_proc%mpi_modela, gsmap_ax, &
                             my_proc%cplid, my_proc%mpi_modela2cpl)
+        write(*,*) 'gsmap_init_ext end'
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
         call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, a2x_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
         call mapper_rearrsplit_init(my_proc%mapper_Ca2x, my_proc, gsmap_aa, my_proc%modela_id, &
@@ -129,6 +135,9 @@ subroutine cpl_init()
                                      gsmap_cc, my_proc%modelc_id, my_proc%modelc2cpl_id, ierr)
         call mapper_comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, 100+30+1, ierr)
     end if 
+    
+    write(*,*)'init end'
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
 
 end subroutine cpl_init
 

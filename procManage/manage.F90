@@ -49,14 +49,18 @@ subroutine init(my_proc)
     ! set up every comp's comm
     !----------------------------------------------------------
     my_proc%mpi_glocomm = MPI_COMM_WORLD
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
-                my_proc%cplid, 0)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, &
-                my_proc%modela_id, 0)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb, &
-                my_proc%modelb_id, 0)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc, &
-                my_proc%modelc_id, 0)
+    my_proc%mpi_cpl = MPI_COMM_WORLD
+    my_proc%mpi_modela = MPI_COMM_WORLD
+    my_proc%mpi_modelb = MPI_COMM_WORLD
+    my_proc%mpi_modelc = MPI_COMM_WORLD
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
+    !            my_proc%cplid, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, &
+    !            my_proc%modela_id, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb, &
+    !            my_proc%modelb_id, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc, &
+    !            my_proc%modelc_id, 0)
 
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl, ierr)
     call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
@@ -84,6 +88,7 @@ subroutine init(my_proc)
     else
         my_proc%iam_root = .false.
     end if
+    !---may exist bugs for process to identify itself
     call iamin_comm_root(my_proc%mpi_modela, my_proc%iamin_modela, &
                          my_proc%iamroot_modela, ierr)
     call iamin_comm_root(my_proc%mpi_modelb, my_proc%iamin_modelb, &

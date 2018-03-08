@@ -19,7 +19,7 @@ all :
 	make -C	$(path3) 
 	make -C $(path4)
 	$(AR) rcs $(LIB_A) $(SRC)
-	#rm ./include/*.o
+	rm ./include/*.o
 	mv $(LIB_A) $(LIBDIR) 	
 	make -C $(MAIN)
 	mv $(MAIN)/main ./
