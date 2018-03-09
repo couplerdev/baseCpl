@@ -102,6 +102,16 @@ subroutine init(my_proc)
     call iamin_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamin_modelc2cpl, &
                          my_proc%iamroot_modelc2cpl, ierr)
 
+    allocate(my_proc%iamin_model(my_proc%ncomps))
+    my_proc%iamin_model(my_proc%gloid)         = .true.
+    my_proc%iamin_model(my_proc%cplid)         = .true.
+    my_proc%iamin_model(my_proc%modela_id)     = my_proc%iamin_modela
+    my_proc%iamin_model(my_proc%modelb_id)     = my_proc%iamin_modelb
+    my_proc%iamin_model(my_proc%modelc_id)     = my_proc%iamin_modelc
+    my_proc%iamin_model(my_proc%modela2cpl_id) = my_proc%iamin_modela2cpl  
+    my_proc%iamin_model(my_proc%modelb2cpl_id) = my_proc%iamin_modelb2cpl
+    my_proc%iamin_model(my_proc%modelc2cpl_id) = my_proc%iamin_modelc2cpl
+
     call mapper_init(my_proc%mapper_Ca2x, ierr)
     call mapper_init(my_proc%mapper_Cx2a, ierr)
     call mapper_init(my_proc%mapper_Cb2x, ierr)

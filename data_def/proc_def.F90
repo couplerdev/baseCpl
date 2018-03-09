@@ -84,7 +84,10 @@ use comms_def
         !-------------------------------------------------------
         ! define comm control variables and run control 
         !-------------------------------------------------------
+
         logical :: iam_root
+
+
         logical :: iamin_modela
         logical :: iamin_modelb
         logical :: iamin_modelc

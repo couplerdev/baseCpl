@@ -28,12 +28,15 @@ subroutine gsmap_init_ext(my_proc, gsmap_s, ID_s, gsmap_d, &
     integer,     intent(in)    :: ID_join
     type(gsMap) gsmap_join
     integer :: mpi_comm_s, mpi_comm_d, mpi_comm_join, mct_compid_d, mct_compid_join
+    
+    write(*,*)'my_proc:', my_proc%comp_comm," aa", ID_s,ID_d,ID_join
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
     mpi_comm_join = my_proc%comp_comm(ID_join)
     
     mct_compid_join = my_proc%comp_id(ID_join)
     mct_compid_d = my_proc%comp_id(ID_d)
+    write(*,*)'gsmap init begin'
 
     call gsmap_extend(gsmap_s, gsmap_join,&
                             mpi_comm_s, mpi_comm_join,&

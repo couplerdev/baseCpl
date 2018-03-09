@@ -13,7 +13,7 @@ SRC = baseCpl.F90
 EXE = main
 LIB = -I/usr/local/lib -I/usr/local/include -I../../include \
 	-I../model1 -I../model2 -I../model3 
-LIBDIR = /home/adalos/tmp2/baseCpl/lib
+LIBDIR = ../../lib
 SLIB = -lbcpl
 FFLAG = -L$(LIBDIR)
 

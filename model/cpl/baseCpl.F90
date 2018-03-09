@@ -78,6 +78,7 @@ subroutine cpl_init()
     x2c_cc => my_proc%x2c_cc
     x2c_cx => my_proc%x2c_cx
 
+
     !-----------------------------------------------------------------
     ! below defined a order of models, if proc seperated properly
     ! they have no order, but with generator, user can define any
@@ -98,8 +99,8 @@ subroutine cpl_init()
     write(*,*)'comp init finished'
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     if(my_proc%iamin_modela2cpl)then
-        call gsmap_init_ext(my_proc, gsmap_aa, my_proc%mpi_modela, gsmap_ax, &
-                            my_proc%cplid, my_proc%mpi_modela2cpl)
+        call gsmap_init_ext(my_proc, gsmap_aa, my_proc%modela_id, gsmap_ax, &
+                            my_proc%cplid, my_proc%modela2cpl_id)
         write(*,*) 'gsmap_init_ext end'
         call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
         call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, a2x_ax, &
@@ -113,8 +114,8 @@ subroutine cpl_init()
     end if
     
     if(my_proc%iamin_modelb2cpl)then
-        call gsmap_init_ext(my_proc, gsmap_bb, my_proc%mpi_modelb, gsmap_bx, &
-                            my_proc%cplid, my_proc%mpi_modelb2cpl)
+        call gsmap_init_ext(my_proc, gsmap_bb, my_proc%modelb_id, gsmap_bx, &
+                            my_proc%cplid, my_proc%modelb2cpl_id)
         call avect_init_ext(my_proc, b2x_bb, my_proc%modelb_id, b2x_bx, &
                           my_proc%cplid, gsmap_bx, my_proc%modelb2cpl_id)
         call mapper_rearrsplit_init(my_proc%mapper_Cb2x, my_proc, gsmap_bb, my_proc%modelb_id, &
@@ -125,8 +126,8 @@ subroutine cpl_init()
     end if
 
     if(my_proc%iamin_modelc2cpl)then
-        call gsmap_init_ext(my_proc, gsmap_cc, my_proc%mpi_modelc, gsmap_cx,  &
-                            my_proc%cplid, my_proc%mpi_modelc2cpl)
+        call gsmap_init_ext(my_proc, gsmap_cc, my_proc%modelc_id, gsmap_cx,  &
+                            my_proc%cplid, my_proc%modelc2cpl_id)
         call avect_init_ext(my_proc, c2x_cc, my_proc%modelc_id, c2x_cx, &
                             my_proc%cplid, gsmap_cx, my_proc%modelc2cpl_id)
         call mapper_rearrsplit_init(my_proc%mapper_Cc2x, my_proc, gsmap_cc, my_proc%modelc_id, &
