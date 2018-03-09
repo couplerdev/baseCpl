@@ -3,11 +3,11 @@ AR = ar
 LIB_A = libbcpl.a
 SRC  = ./include/*.o
 LIBDIR = ./lib
-path0 = data_def
-path1 = MCTWrapper
+path0 = MCTWrapper
+path1 = data_def
 path2 = timeManage
-path3 = procManage
-path4 = transManage
+path3 = transManage
+path4 = procManage
 MAIN = ./model/cpl
 
 

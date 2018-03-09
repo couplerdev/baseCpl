@@ -2,7 +2,7 @@ FC = mpif90
 AR = ar
 LIB_A = libprocm.a
 OBJ = manage.o mpi_comm.o deploy_mod.o
-SRC = manage.F90 mpi_comm.F90 deploy_mod.F90
+SRC = deploy_mod.F90 mpi_comm.F90  manage.F90
 INCLDIR = ../include
 LIBDIR = ../lib
 LIB = -lmct -lmpeu -lmctm -lcomm -ldata_def 
@@ -20,4 +20,4 @@ $(OBJ) : $(SRC)
 
 .PHONY:clean
 clean:
-	rm -rf *.o
+	rm -rf *.o *.mod
