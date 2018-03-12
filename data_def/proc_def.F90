@@ -94,6 +94,7 @@ use comms_def
         logical :: iamin_modela2cpl
         logical :: iamin_modelb2cpl
         logical :: iamin_modelc2cpl
+        logical :: iamroot_cpl
         logical :: iamroot_modela 
         logical :: iamroot_modelb
         logical :: iamroot_modelc
