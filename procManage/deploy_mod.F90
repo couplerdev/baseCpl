@@ -76,8 +76,10 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
 
     integer    :: mpi_grp
     integer    :: new_grp
+    integer    :: cpl_grp
+    integer    :: union_grp
     !integer    :: n
-    integer    :: peRange(2,3)
+    integer    :: peRange(1,3)
     integer    :: rank  
     integer    :: comp_first
     integer    :: comp_last
@@ -95,8 +97,8 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
         call mpi_comm_group(glo_comm, mpi_grp, ier)
         call mpi_comm_size(glo_comm, comm_size, ier)
         call deploy_readFile(comp_id, comp_first, comp_last, stride, ier)
-        peRange(1,1) = min(comp_first , comm_size-1)
-        peRange(1,2) = min(comp_last, comm_size-1)
+        peRange(1,1) = comp_first
+        peRange(1,2) = comp_last
         peRange(1,3) = stride
         !write(*,*)comp_id, peRange(1,1), peRange(1,2), peRange(1,3),'argument done',&
         !          comp_first, comp_last, stride, comp(1,comp_id-1), comp(2,comp_id-1), comp(3,comp_id-1)
@@ -109,13 +111,16 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
             iam_in(comp_id) = .true.
         end if
 
+        call MPI_Barrier(MPI_COMM_WORLD, ier)
+        write(*,*)'check'
         call deploy_readFile(cpl_id, comp_first, comp_last, stride, ier)
-        peRange(2,1) = min(comp_first, comm_size-1)
-        peRange(2,2) = min(comp_last, comm_size-1)
-        peRange(2,3) = stride
-        call mpi_group_range_incl(mpi_grp, 2, peRange, new_grp, ier)
-        call mpi_comm_create(glo_comm, new_grp, deploy_comm)
-        call mpi_group_rank(new_grp, me, ier)
+        peRange(1,1) = comp_first
+        peRange(1,2) = comp_last
+        peRange(1,3) = stride
+        call mpi_group_range_incl(mpi_grp, 1, peRange, cpl_grp, ier)
+        call mpi_group_union(new_grp, cpl_grp, union_grp, ier)
+        call mpi_comm_create(glo_comm, union_grp, deploy_join_comm, ier)
+        call mpi_group_rank(union_grp, me, ier)
         if(me .ne. MPI_UNDEFINED)then
             iam_in(id_join) = .true.
         end if
