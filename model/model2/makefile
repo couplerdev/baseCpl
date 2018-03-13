@@ -5,6 +5,7 @@ LIB = -I../../include
 
 $(OBJ) : $(SRC)
 	$(FC) -c $(SRC) $(LIB)
+	mv *.o *.mod ../cpl
 
 .PHONY : clean
 clean:

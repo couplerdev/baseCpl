@@ -5,9 +5,8 @@ use procm ,only: pm_init => init , clean
 use comms
 use timeM
 use mct_mod
-use comp_b
 use comp_a
-!use comp_b
+use comp_b
 use comp_c
 !use mpi
 

@@ -1,7 +1,7 @@
 FC = mpif90
 OBJ_M = main.o
 OBJ = baseCpl.o 
-MODELS = ../model1/comp_a.o ../model2/comp_b.o ../model3/comp_c.o
+MODELS = ./comp_a.o ./comp_b.o ./comp_c.o  
 #OBJS = ../../MCTWrapper/mct_mod.o \
 	   ../../data_def/proc_def.o \
            ../../data_def/comms_def.o \
@@ -11,8 +11,8 @@ MODELS = ../model1/comp_a.o ../model2/comp_b.o ../model3/comp_c.o
 	   ../../procManage/manage.o
 SRC = baseCpl.F90
 EXE = main
-LIB = -I/usr/local/lib -I/usr/local/include -I../../include \
-	-I../model1 -I../model2 -I../model3 
+LIB =  -I../../include -I./ 
+#      -I../model1 -I../model2 -I../model3 
 LIBDIR = ../../lib
 SLIB = -lbcpl
 FFLAG = -L$(LIBDIR)
@@ -22,7 +22,7 @@ $(EXE) : $(OBJ) $(OBJ_M) $(MODELS)
 	$(FFLAG) $(SLIB) -lmct -lmpeu 
 
 $(OBJ) : $(SRC)
-	$(FC) -c $(SRC) $(LIB)
+	$(FC) -c  $(SRC) $(LIB)
 
 $(OBJ_M) : main.F90 
 	$(FC) -c main.F90 $(LIB)
