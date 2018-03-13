@@ -121,7 +121,7 @@ end subroutine gsmap_check
 !------------------------------------------------------
 subroutine mapper_comp_interpolation()
  
-    write(*,*)'haha'
+    !write(*,*)'haha'
 
 end subroutine mapper_comp_interpolation
 

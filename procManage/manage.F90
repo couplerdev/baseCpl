@@ -54,6 +54,11 @@ subroutine init(my_proc)
     !my_proc%mpi_modelb = MPI_COMM_WORLD
     !my_proc%mpi_modelc = MPI_COMM_WORLD
     allocate(my_proc%iamin_model(my_proc%ncomps))
+    do iter = 1, my_proc%ncomps
+        my_proc%iamin_model(iter) = .false.
+    end do
+    my_proc%iamin_model(1) = .true.
+    write(*,*)my_proc%iamin_model
     call deploy_cpl(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
                   my_proc%cplid, my_proc%iamin_model, 0, ierr)
     call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, my_proc%mpi_modela2cpl, &
@@ -75,6 +80,8 @@ subroutine init(my_proc)
     !call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
     !call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, ierr)
 
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    write(*,*)'comm initiated'
     allocate(my_proc%comp_comm(my_proc%ncomps))
     my_proc%comp_comm(my_proc%gloid)         = my_proc%mpi_glocomm
     my_proc%comp_comm(my_proc%cplid)         = my_proc%mpi_cpl
@@ -85,6 +92,8 @@ subroutine init(my_proc)
     my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl
     my_proc%comp_comm(my_proc%modelc2cpl_id) = my_proc%mpi_modelc2cpl
 
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    write(*,*)'comp_comm initiated'
     allocate(my_proc%comp_id(my_proc%ncomps))
     do iter = 1, my_proc%ncomps
         my_proc%comp_id(iter) = iter
@@ -92,6 +101,7 @@ subroutine init(my_proc)
 
     call mct_world_init(my_proc%ncomps, MPI_COMM_WORLD, my_proc%comp_comm, my_proc%comp_id)
 
+    write(*,*)'mct_world_init initiated'
     if(num_rank==0) then
         my_proc%iam_root = .true.
     else
@@ -120,28 +130,51 @@ subroutine init(my_proc)
     !my_proc%iamin_model(my_proc%modela2cpl_id) = my_proc%iamin_modela2cpl  
     !my_proc%iamin_model(my_proc%modelb2cpl_id) = my_proc%iamin_modelb2cpl
     !my_proc%iamin_model(my_proc%modelc2cpl_id) = my_proc%iamin_modelc2cpl
+    my_proc%iamin_cpl = .false.
     if(my_proc%iamin_model(my_proc%cplid))then
+        write(*,*)'Im cpl',num_rank
         call iam_comm_root(my_proc%mpi_cpl, my_proc%iamroot_cpl, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modela_id))then
-        call iam_comm_root(my_proc%mpi_modela, my_proc%iamroot_modela, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modelb_id))then
-        call iam_comm_root(my_proc%mpi_modelb, my_proc%iamroot_modelb, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modelc_id))then
-        call iam_comm_root(my_proc%mpi_modelc, my_proc%iamroot_modelc, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modela2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modela2cpl, my_proc%iamroot_modela2cpl, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modelb2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelb2cpl, my_proc%iamroot_modelb2cpl, ierr)
-    end if
-    if(my_proc%iamin_model(my_proc%modelc2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamroot_modelc2cpl, ierr)
+        my_proc%iamin_cpl = .true.
     end if
 
+    my_proc%iamin_modela = .false.
+    if(my_proc%iamin_model(my_proc%modela_id))then
+        call iam_comm_root(my_proc%mpi_modela, my_proc%iamroot_modela, ierr)
+        my_proc%iamin_modela = .true.
+    end if
+
+    my_proc%iamin_modelb = .false.
+    if(my_proc%iamin_model(my_proc%modelb_id))then
+        call iam_comm_root(my_proc%mpi_modelb, my_proc%iamroot_modelb, ierr)
+        my_proc%iamin_modelb = .true.
+    end if
+
+    my_proc%iamin_modelc = .false.
+    if(my_proc%iamin_model(my_proc%modelc_id))then
+        call iam_comm_root(my_proc%mpi_modelc, my_proc%iamroot_modelc, ierr)
+        my_proc%iamin_modelc = .true.
+    end if
+
+    my_proc%iamin_modela2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modela2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modela2cpl, my_proc%iamroot_modela2cpl, ierr)
+        my_proc%iamin_modela2cpl = .true.
+    end if
+
+    my_proc%iamin_modelb2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modelb2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modelb2cpl, my_proc%iamroot_modelb2cpl, ierr)
+        my_proc%iamin_modelb2cpl = .true.
+    end if
+
+    my_proc%iamin_modelc2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modelc2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamroot_modelc2cpl, ierr)
+        my_proc%iamin_modelc2cpl = .true.
+    end if
+
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    write(*,*)'before mapper_init'
     call mapper_init(my_proc%mapper_Ca2x, ierr)
     call mapper_init(my_proc%mapper_Cx2a, ierr)
     call mapper_init(my_proc%mapper_Cb2x, ierr)

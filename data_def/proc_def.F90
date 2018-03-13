@@ -88,6 +88,7 @@ use comms_def
         logical :: iam_root
 
 
+        logical :: iamin_cpl
         logical :: iamin_modela
         logical :: iamin_modelb
         logical :: iamin_modelc

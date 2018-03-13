@@ -8,7 +8,7 @@ include 'mpif.h'
     integer :: comp(4, 3)
     data comp / & !--- comp_first, comp_last, stride
             0, 0, 0, 0, &
-            2, 2, 2, 2, &
+            3, 2, 2, 2, &
             1, 1, 1, 1/
     public  :: deploy
     public  :: deploy_cpl
@@ -47,13 +47,14 @@ subroutine deploy_cpl(glo_comm, cpl_comm, cpl_id, iam_in, pattern, ierr)
         call deploy_readFile(cpl_id, comp_first, comp_last, stride, ier)
         !write(*,*)cpl_id,comp_first,comp_last,stride,comp(cpl_id-1,1),comp(cpl_id-1,2),comp(cpl_id-1,3)
         peRange(1,1) = comp_first
-        peRange(1,2) = comp_last - 1
+        peRange(1,2) = comp_last 
         peRange(1,3) = stride
         call mpi_group_range_incl(mpi_grp, 1, peRange, new_grp, ier)
         call mpi_comm_create(glo_comm, new_grp, cpl_comm, ier)
         call mpi_group_rank(new_grp, me, ier)
         if(me .ne. MPI_UNDEFINED)then
             iam_in(cpl_id) = .true.
+            write(*,*)'cpl'
         end if
     end if 
     write(*,*)'war protocal initiated'
@@ -104,7 +105,7 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
         !          comp_first, comp_last, stride, comp(1,comp_id-1), comp(2,comp_id-1), comp(3,comp_id-1)
             !--- set up n and peRange
         call mpi_group_range_incl(mpi_grp, 1, peRange, new_grp, ier)
-        write(*,*)'human repeater initiated'
+        write(*,*)'human reaper initiated'
         call mpi_comm_create(glo_comm, new_grp, deploy_comm, ier)
         call mpi_group_rank(new_grp, me, ier)
         if(me .ne. MPI_UNDEFINED)then

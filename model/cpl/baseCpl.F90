@@ -5,8 +5,8 @@ use procm ,only: pm_init => init , clean
 use comms
 use timeM
 use mct_mod
-use comp_b
 use comp_a
+use comp_b
 !use comp_b
 use comp_c
 !use mpi
@@ -58,6 +58,7 @@ subroutine cpl_init()
     
     implicit none
     integer :: ierr
+    integer :: comm_rank
     call pm_init(my_proc)
     call clock_init(EClock)
     
@@ -85,7 +86,9 @@ subroutine cpl_init()
     ! they have no order, but with generator, user can define any
     ! order they want
     !-----------------------------------------------------------------
+    call MPI_Comm_rank(MPI_COMM_WORLD, comm_rank, ierr)
     if(my_proc%iamin_modela)then
+        write(*,*)'a init: Im:', comm_rank
         call a_init_mct(my_proc, my_proc%modela_id, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     end if
 

@@ -69,13 +69,13 @@ subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr)
     type(AttrVect), intent(inout)  :: x2a
     integer, intent(inout)         :: ierr    
 
-    write(*,*) 'a_run'
+    !write(*,*) 'a_run'
 
 end subroutine a_run_mct
 
 subroutine a_final_mct()
 
-    write(*,*) "a final"
+    !write(*,*) "a final"
 
 end subroutine a_final_mct
 
