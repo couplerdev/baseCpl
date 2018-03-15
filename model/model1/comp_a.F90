@@ -68,8 +68,13 @@ subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr)
     type(AttrVect), intent(inout)  :: a2x
     type(AttrVect), intent(inout)  :: x2a
     integer, intent(inout)         :: ierr    
-
-    write(*,*) 'a_run'
+    integer comm_rank,i
+    write(*,*) "a_run"
+    call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
+    do i=1,avect_lsize(a2x)
+        a2x%rAttr(1,i) = x2a%rAttr(1,i) + (comm_rank+1)*1000
+        write(*,*) a2x%rAttr(1,i)
+    enddo
 
 end subroutine a_run_mct
 

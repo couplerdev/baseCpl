@@ -44,7 +44,6 @@ subroutine init(my_proc)
     my_proc%b_size = 100
     my_proc%c_size = 100
     
-
     !----------------------------------------------------------
     ! set up every comp's comm
     !----------------------------------------------------------
@@ -111,7 +110,7 @@ subroutine init(my_proc)
     my_proc%iamin_model(my_proc%modela2cpl_id) = my_proc%iamin_modela2cpl  
     my_proc%iamin_model(my_proc%modelb2cpl_id) = my_proc%iamin_modelb2cpl
     my_proc%iamin_model(my_proc%modelc2cpl_id) = my_proc%iamin_modelc2cpl
-
+    
     call mapper_init(my_proc%mapper_Ca2x, ierr)
     call mapper_init(my_proc%mapper_Cx2a, ierr)
     call mapper_init(my_proc%mapper_Cb2x, ierr)

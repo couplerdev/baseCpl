@@ -58,6 +58,7 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
         mapper%map_type = "copy"
     else 
         mapper%map_type = "rearr"
+        write(*,*) "rearrsplit"
         call gsmap_extend(gsmap_s, gsmap_s_join, mpicom_s, mpicom_join, ID_join)
         call gsmap_extend(gsmap_d, gsmap_d_join, mpicom_d, mpicom_join, ID_join)
 
@@ -85,9 +86,11 @@ subroutine mapper_comp_map(mapper, src, dst, msgtag, ierr)
 
     if(mapper%map_type=="copy")then
         call avect_copy(src, dst)
-    else if(mapper%map_type=="rear")then
+        write(6,*) "copy"
+    else if(mapper%map_type=="rearr")then
         call rearrange(src, dst, mapper%rearr, msgtag)
     else
+        write(6,*) "else"
         call mapper_comp_interpolation()
     end if
 

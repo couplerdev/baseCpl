@@ -105,6 +105,10 @@ subroutine cpl_init()
         call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
         call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, a2x_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
+        
+        call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, x2a_ax, &
+                            my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
+        
         call mapper_rearrsplit_init(my_proc%mapper_Ca2x, my_proc, gsmap_aa, my_proc%modela_id, &
                                      gsmap_ax, my_proc%cplid, my_proc%modela2cpl_id, ierr)
         call mapper_rearrsplit_init(my_proc%mapper_Cx2a, my_proc, gsmap_ax, my_proc%cplid, &
@@ -145,8 +149,10 @@ end subroutine cpl_init
 subroutine cpl_run()
 
     implicit none
-    integer :: ierr
+    integer :: ierr,s,i,comm_rank
     call triger(EClock, stop_clock, "stop_clock") 
+        s = 0
+    call mpi_comm_rank(my_proc%comp_comm(1), comm_rank, ierr)
     do while (.not. stop_clock)
 
         call clock_advance(EClock)
@@ -158,9 +164,24 @@ subroutine cpl_run()
         !----------------------------------------------------------
         !   prep phase
         !----------------------------------------------------------  
+        s = s+1
+        if(s==3) stop_clock = .true.
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
+                if(s == 3) then
+                    write(6,*) 'ina2cpl2: ', my_proc%iamin_modela2cpl, avect_lsize(x2a_ax),  avect_lsize(a2x_aa)
+                    do i=1,avect_lsize(a2x_aa)
+                        x2a_ax%rAttr(1,i) = x2a_ax%rAttr(1,i) + (comm_rank+1)*10000+i
+                        write(6,*) 'cpl_a2x: ',' rank:', comm_rank," ",x2a_ax%rAttr(1,i)
+                    enddo
+                endif
+                call MPI_Barrier(MPI_COMM_WORLD, ierr)
                 call mapper_comp_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
+                if(s == 3) then
+                    do i=1,avect_lsize(a2x_aa)
+                        write(6,*) 'x2a_aa: ',' rank:', comm_rank," ",x2a_aa%rAttr(1,i)
+                    enddo
+                endif
             end if
         end if        
 
@@ -208,6 +229,10 @@ subroutine cpl_run()
             if(my_proc%iamin_modela2cpl)then
                 call mapper_comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, 100+10+3, ierr)
             end if
+                do i=1,10
+                        write(6,*) 'cpla2x: ',' rank:', comm_rank," ",a2x_ax%rAttr(1,i)
+                        call MPI_Barrier(MPI_COMM_WORLD, ierr)
+                    enddo
         end if
 
         if(b_run)then
