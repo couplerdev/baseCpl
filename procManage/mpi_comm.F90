@@ -4,6 +4,7 @@ module mpi_comm
 include "mpif.h"
     public :: union_comm
     public :: iamin_comm_root
+    public :: iam_comm_root
 
 contains
 
@@ -51,5 +52,21 @@ subroutine iamin_comm_root(comm_x, iamin, iamroot, ierr)
     end if
 
 end subroutine iamin_comm_root
+
+subroutine iam_comm_root(comm, iam_root, ierr)
+
+    integer, intent(in)           :: comm
+    logical, intent(inout)        :: iam_root
+    integer, optional, intent(in) :: ierr
+
+    integer :: mpi_grp
+    integer :: rank
+    integer :: ier
+
+    call mpi_comm_group(comm, mpi_grp, ier)
+    call mpi_group_rank(mpi_grp, rank, ier)
+    if(rank .eq. 0)iam_root = .true.
+
+end subroutine iam_comm_root
 
 end module mpi_comm

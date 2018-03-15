@@ -28,6 +28,10 @@ use comms_def
         integer :: a_size
         integer :: b_size
         integer :: c_size
+        ! todo dalaoshe set
+        integer :: a_gsize
+        integer :: b_gsize
+        integer :: c_gsize
         character(len=20) :: iList = "fieldi"
         character(len=20) :: rList = "fieldr"
 
@@ -88,12 +92,14 @@ use comms_def
         logical :: iam_root
 
 
+        logical :: iamin_cpl
         logical :: iamin_modela
         logical :: iamin_modelb
         logical :: iamin_modelc
         logical :: iamin_modela2cpl
         logical :: iamin_modelb2cpl
         logical :: iamin_modelc2cpl
+        logical :: iamroot_cpl
         logical :: iamroot_modela 
         logical :: iamroot_modelb
         logical :: iamroot_modelc

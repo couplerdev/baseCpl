@@ -7,6 +7,7 @@ use timeM
 use mct_mod
 use comp_a
 use comp_b
+!use comp_b
 use comp_c
 !use mpi
 
@@ -57,14 +58,15 @@ subroutine cpl_init()
     
     implicit none
     integer :: ierr
+    integer :: comm_rank
     call pm_init(my_proc)
     call clock_init(EClock)
     
     !-----------------------------------------------------------------
     !  variables comp2x_yy point to relative my_proc%comp2x_yy
     !-----------------------------------------------------------------
-    write(*,*)'init begin'
-    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    !write(*,*)'init begin'
+    !call MPI_Barrier(MPI_COMM_WORLD, ierr)
     a2x_aa => my_proc%a2x_aa
     a2x_ax => my_proc%a2x_ax
     x2a_aa => my_proc%x2a_aa
@@ -84,7 +86,9 @@ subroutine cpl_init()
     ! they have no order, but with generator, user can define any
     ! order they want
     !-----------------------------------------------------------------
+    call MPI_Comm_rank(MPI_COMM_WORLD, comm_rank, ierr)
     if(my_proc%iamin_modela)then
+        write(*,*)'a init: Im:', comm_rank
         call a_init_mct(my_proc, my_proc%modela_id, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     end if
 
@@ -103,10 +107,10 @@ subroutine cpl_init()
                             my_proc%cplid, my_proc%modela2cpl_id)
         write(*,*) 'gsmap_init_ext end'
         call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+
         call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, a2x_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
-        
-        call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, x2a_ax, &
+        call avect_init_ext(my_proc, x2a_aa, my_proc%modela_id, x2a_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
         
         call mapper_rearrsplit_init(my_proc%mapper_Ca2x, my_proc, gsmap_aa, my_proc%modela_id, &
@@ -141,7 +145,8 @@ subroutine cpl_init()
         call mapper_comp_map(my_proc%mapper_Cc2x, c2x_cc, c2x_cx, 100+30+1, ierr)
     end if 
     
-    write(*,*)'init end'
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    write(*,*) '<<============== Rank:',comm_rank,' Init End==================>>'
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
 
 end subroutine cpl_init
@@ -151,8 +156,13 @@ subroutine cpl_run()
     implicit none
     integer :: ierr,s,i,comm_rank
     call triger(EClock, stop_clock, "stop_clock") 
-        s = 0
-    call mpi_comm_rank(my_proc%comp_comm(1), comm_rank, ierr)
+    call mpi_comm_rank(my_proc%comp_comm(my_proc%gloid), comm_rank, ierr)
+    
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    write(*,*) '<<============== Rank:',comm_rank,' Begin Run==================>>'
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    s = 0
+    
     do while (.not. stop_clock)
 
         call clock_advance(EClock)
@@ -166,22 +176,30 @@ subroutine cpl_run()
         !----------------------------------------------------------  
         s = s+1
         if(s==3) stop_clock = .true.
+
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
+                
                 if(s == 3) then
-                    write(6,*) 'ina2cpl2: ', my_proc%iamin_modela2cpl, avect_lsize(x2a_ax),  avect_lsize(a2x_aa)
-                    do i=1,avect_lsize(a2x_aa)
-                        x2a_ax%rAttr(1,i) = x2a_ax%rAttr(1,i) + (comm_rank+1)*10000+i
-                        write(6,*) 'cpl_a2x: ',' rank:', comm_rank," ",x2a_ax%rAttr(1,i)
+                    do i=1,avect_lsize(x2a_ax)
+                        x2a_ax%rAttr(1,i) = x2a_ax%rAttr(1,i) + (comm_rank+1)*10+i
                     enddo
                 endif
-                call MPI_Barrier(MPI_COMM_WORLD, ierr)
-                call mapper_comp_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
-                if(s == 3) then
-                    do i=1,avect_lsize(a2x_aa)
-                        write(6,*) 'x2a_aa: ',' rank:', comm_rank," ",x2a_aa%rAttr(1,i)
-                    enddo
-                endif
+
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                    write(*,*) '<<===X2A_AX Rank:',comm_rank, x2a_ax%rAttr(1,:)
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                    write(*,*) '<<=== Rank:',comm_rank,' Begin A2X Rearrange=======>>'
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                    call mapper_comp_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+                    write(*,*) '<<===X2A_AA Rank:',comm_rank, x2a_aa%rAttr(1,:)
+                call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+
             end if
         end if        
 
@@ -204,7 +222,7 @@ subroutine cpl_run()
         !------------------------------------------------------------
         if(a_run)then
             if(my_proc%iamin_modela)then
-                call a_run_mct(my_proc, my_proc%modela_id, EClock, a2x_aa, x2a_aa, ierr) 
+                call a_run_mct(my_proc, my_proc%modela_id, EClock, a2x_aa, x2a_aa, ierr, gsmap_aa, gsMap_ax) 
             end if
         end if
 
@@ -229,10 +247,6 @@ subroutine cpl_run()
             if(my_proc%iamin_modela2cpl)then
                 call mapper_comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, 100+10+3, ierr)
             end if
-                do i=1,10
-                        write(6,*) 'cpla2x: ',' rank:', comm_rank," ",a2x_ax%rAttr(1,i)
-                        call MPI_Barrier(MPI_COMM_WORLD, ierr)
-                    enddo
         end if
 
         if(b_run)then

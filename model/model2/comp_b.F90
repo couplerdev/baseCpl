@@ -69,7 +69,7 @@ subroutine b_run_mct(my_proc, ID, EClock, b2x, x2b, ierr)
     type(AttrVect), intent(inout)  :: x2b
     integer, intent(inout)         :: ierr    
 
-    write(*,*) 'b_run'
+    !write(*,*) 'b_run'
 
 end subroutine b_run_mct
 
