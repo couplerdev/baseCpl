@@ -42,12 +42,12 @@ subroutine init(my_proc)
     my_proc%modelc = "modelc"
     ! todo
     my_proc%a_size = 10
-    my_proc%b_size = 100
-    my_proc%c_size = 100
+    my_proc%b_size = 10
+    my_proc%c_size = 10
     ! todo
     my_proc%a_gsize = 15
-    my_proc%b_gsize = 100
-    my_proc%c_gsize = 100
+    my_proc%b_gsize = 15
+    my_proc%c_gsize = 15
     
     !----------------------------------------------------------
     ! set up every comp's comm

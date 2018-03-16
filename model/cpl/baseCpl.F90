@@ -105,19 +105,36 @@ subroutine cpl_init()
     if(my_proc%iamin_modela2cpl)then
         call gsmap_init_ext(my_proc, gsmap_aa, my_proc%modela_id, gsmap_ax, &
                             my_proc%cplid, my_proc%modela2cpl_id)
-        write(*,*) 'gsmap_init_ext end'
-        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+
 
         call avect_init_ext(my_proc, a2x_aa, my_proc%modela_id, a2x_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
         call avect_init_ext(my_proc, x2a_aa, my_proc%modela_id, x2a_ax, &
                             my_proc%cplid, gsmap_ax, my_proc%modela2cpl_id)
         
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+            write(*,*) '<<========ModelA2X Rank:', comm_rank,  'AV GSMap Init Over ===========>>'
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+
         call mapper_rearrsplit_init(my_proc%mapper_Ca2x, my_proc, gsmap_aa, my_proc%modela_id, &
                                      gsmap_ax, my_proc%cplid, my_proc%modela2cpl_id, ierr)
         call mapper_rearrsplit_init(my_proc%mapper_Cx2a, my_proc, gsmap_ax, my_proc%cplid, &
                                      gsmap_aa, my_proc%modela_id, my_proc%modela2cpl_id, ierr)
+
         call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+            write(*,*) '<<========ModelA2X Rank:', comm_rank,  'Rearrange Init Over ===========>>'
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+        
+
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+        call mapper_spmat_init(my_proc, my_proc%mapper_SMatx2a, &
+                my_proc%cplid, my_proc%modela_id, &
+                my_proc%modela2cpl_id,&
+                15, 15, 15,&
+                gsmap_ax, gsmap_aa)
+            write(*,*) '<<========ModelA2X Rank:', comm_rank,  ' SmatMapper X2A Init Over ===========>>'
+        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+        
         call mapper_comp_map(my_proc%mapper_Ca2x, a2x_aa, a2x_ax, 100+10+1, ierr) 
     end if
     
@@ -126,6 +143,9 @@ subroutine cpl_init()
                             my_proc%cplid, my_proc%modelb2cpl_id)
         call avect_init_ext(my_proc, b2x_bb, my_proc%modelb_id, b2x_bx, &
                           my_proc%cplid, gsmap_bx, my_proc%modelb2cpl_id)
+        call avect_init_ext(my_proc, x2b_bb, my_proc%modelb_id, x2b_bx, &
+                          my_proc%cplid, gsmap_bx, my_proc%modelb2cpl_id)
+
         call mapper_rearrsplit_init(my_proc%mapper_Cb2x, my_proc, gsmap_bb, my_proc%modelb_id, &
                                      gsmap_bx, my_proc%cplid, my_proc%modelb2cpl_id, ierr)
         call mapper_rearrsplit_init(my_proc%mapper_Cx2b, my_proc, gsmap_bx, my_proc%cplid, &
@@ -138,6 +158,9 @@ subroutine cpl_init()
                             my_proc%cplid, my_proc%modelc2cpl_id)
         call avect_init_ext(my_proc, c2x_cc, my_proc%modelc_id, c2x_cx, &
                             my_proc%cplid, gsmap_cx, my_proc%modelc2cpl_id)
+        call avect_init_ext(my_proc, x2c_cc, my_proc%modelc_id, x2c_cx, &
+                            my_proc%cplid, gsmap_cx, my_proc%modelc2cpl_id)
+
         call mapper_rearrsplit_init(my_proc%mapper_Cc2x, my_proc, gsmap_cc, my_proc%modelc_id, &
                                      gsmap_cx, my_proc%cplid, my_proc%modelc2cpl_id, ierr)
         call mapper_rearrsplit_init(my_proc%mapper_Cx2c, my_proc, gsmap_cx, my_proc%cplid, &
@@ -179,7 +202,6 @@ subroutine cpl_run()
 
         if(a_run)then
             if(my_proc%iamin_modela2cpl)then
-                
                 if(s == 3) then
                     do i=1,avect_lsize(x2a_ax)
                         x2a_ax%rAttr(1,i) = x2a_ax%rAttr(1,i) + (comm_rank+1)*10+i
@@ -187,17 +209,22 @@ subroutine cpl_run()
                 endif
 
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
-                    write(*,*) '<<===X2A_AX Rank:',comm_rank, x2a_ax%rAttr(1,:)
+                    write(*,*) '<<===X2A_AX_VALUE Rank:',comm_rank, x2a_ax%rAttr(1,:)
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
                 
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
-                    write(*,*) '<<=== Rank:',comm_rank,' Begin A2X Rearrange=======>>'
+                    write(*,*) '<<=== Rank:',comm_rank,' Begin X2A_AX TO X2A_AA SMatMul(Rearrange)=======>>'
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
-                    call mapper_comp_map(my_proc%mapper_Cx2a, x2a_ax, x2a_aa, 100+10+2, ierr)
+                    !call mapper_comp_map(my_proc%mapper_Cx2a, 
+                    !x2a_ax, x2a_aa, 100+10+2, ierr)
+                call mapper_comp_interpolation(my_proc, my_proc%mapper_SMatx2a, &
+                    x2a_ax, x2a_aa, my_proc%cplid)
+
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
+
                 
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
-                    write(*,*) '<<===X2A_AA Rank:',comm_rank, x2a_aa%rAttr(1,:)
+                    write(*,*) '<<===X2A_AA_VALUE Rank:',comm_rank, x2a_aa%rAttr(1,:)
                 call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
 
             end if
@@ -222,7 +249,7 @@ subroutine cpl_run()
         !------------------------------------------------------------
         if(a_run)then
             if(my_proc%iamin_modela)then
-                call a_run_mct(my_proc, my_proc%modela_id, EClock, a2x_aa, x2a_aa, ierr, gsmap_aa, gsMap_ax) 
+                call a_run_mct(my_proc, my_proc%modela_id, EClock, a2x_aa, x2a_aa, ierr)
             end if
         end if
 

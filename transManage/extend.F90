@@ -67,6 +67,7 @@ subroutine avect_init_ext(my_proc, AV_s, ID_s, AV_d, ID_d, gsmap_d, ID_join)
 end subroutine avect_init_ext
 
 ! my implemention, need para mct_compid_o
+! need set iam_root
 subroutine gsmap_extend(gsmap_i, gsmap_o, &
               mpi_comm_i,mpi_comm_o, &
               mct_compid_o)
@@ -76,11 +77,12 @@ subroutine gsmap_extend(gsmap_i, gsmap_o, &
     integer,     intent(in) :: mpi_comm_i, mpi_comm_o, &
                                mct_compid_o
     integer :: procs_i, rank_in_comm_i, ngseg_i, gsize_i
+    integer :: rank_in_comm_o
     integer, pointer :: pei(:), peo(:)
     integer, pointer :: start(:), length(:), peloc(:)
     integer  i,j,status,ier
-    call mpi_comm_rank(mpi_comm_o, rank_in_comm_i, ier)
-    if(rank_in_comm_i == 0) then 
+    call mpi_comm_rank(mpi_comm_o, rank_in_comm_o, ier)
+    if(rank_in_comm_o == 0) then 
         ngseg_i = gsmap_i%ngseg
         gsize_i = gsmap_i%gsize
         allocate(start(ngseg_i), length(ngseg_i), peloc(ngseg_i))

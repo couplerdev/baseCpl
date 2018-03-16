@@ -64,7 +64,7 @@ subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
 
 end subroutine a_init_mct
 
-subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr, gsMap_aa, gsMap_ax)
+subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr)
 
     implicit none
     type(proc), intent(inout)      :: my_proc
@@ -75,57 +75,20 @@ subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr, gsMap_aa, gsMap_ax)
     integer, intent(inout)         :: ierr    
     integer comm_rank,i, av_lsize
     
-    type(gsMap), intent(in)       :: gsMap_aa
-    type(gsMap), intent(in)       :: gsMap_ax
-! A2O SparseMatrix elements on root
-    type(SparseMatrix) :: sMat
-! A2O distributed SparseMatrixPlus variables
-    type(SparseMatrixPlus) :: x2asMatPlus
-    integer, dimension(:), pointer :: rows, cols
-    real, dimension(:), pointer :: weights
-    integer num_elements,n, nRows, nCols
 
     call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
     
     call MPI_Barrier(my_proc%comp_comm(ID), ierr)
         av_lsize = avect_lsize(a2x) 
         write(*,*) '<<========I am Model_A Rank:',comm_rank,' Avlsize:',av_lsize,& 
-        ' Run ===========>>'
+        ' Run(ADD 1000*rank) ===========>>'
     call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-
-    if (comm_rank == 0) then
-        num_elements = 15
-        allocate(rows(num_elements), cols(num_elements), &
-                weights(num_elements), stat=ierr)
-        do n=1, num_elements
-            rows(n) = n-1
-            cols(n) = n-1
-            weights(n) = n
-        end do
-        ! dst gsize
-        nRows = 15
-        ! src gsize
-        nCols = 15
-        call sMat_init(sMat,nRows,nCols,num_elements)
-        call sMat_importGRowInd(sMat, rows, size(rows))
-        call sMat_importGColInd(sMat, cols, size(cols))
-        call sMat_importMatrixElts(sMat, weights, size(weights))
-
-        deallocate(rows, cols, weights, stat=ierr)
-    endif
-    
-    call sMatPlus_init(x2asMatPlus, sMat, gsMap_aa, gsMap_aa, &
-           sMat_Xonly, 0, my_proc%comp_comm(ID), ID)
+    do i=1,av_lsize
+        a2x%rAttr(1,i) = x2a%rAttr(1,i) + 1000*(comm_rank+1)
+    enddo
 
     call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-        write(*,*) '<<===== I am Model_A Rank:',comm_rank,' sMat Mult ======>>'
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-
-    call sMatAvect_Mult(x2a, x2asMatPlus, a2x)
-
-
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-        write(*,*) '<<===A2X_AA Rank:',comm_rank, a2x%rAttr(1,:)
+        write(*,*) '<<===A2X_AA_VALUE Rank:',comm_rank, a2x%rAttr(1,:)
     call MPI_Barrier(my_proc%comp_comm(ID), ierr)
 
 

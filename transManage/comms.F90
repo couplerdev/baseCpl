@@ -9,7 +9,7 @@ use proc_def
     public :: mapper_rearrsplit_init
     public :: mapper_spmat_init
     public :: mapper_comp_map
-    private :: mapper_comp_interpolation  
+    public :: mapper_comp_interpolation  
     private :: gsmap_check    
 
 interface mapper_init ; module procedure &
@@ -68,26 +68,43 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
         call gsMap_clean(gsmap_s_join)
         call gsMap_clean(gsmap_d_join)
    else 
-       mapper%map_type = "sparse"
+       mapper%map_type = "spmat"
        write(*,*) "Sparse"
    end if
 
 end subroutine mapper_rearrsplit_init
 
 subroutine mapper_spmat_init(my_proc, mapper,&
-                ID, nRows, nCols, nElements,&
+                ID_s, ID_d, ID_join, &
+                nRows, nCols, nElements,&
                 gsMap_s, gsMap_d)
-    type(proc), intent(in) :: my_proc
-    type(map_mod), intent(in) :: mapper
-    integer, intent(in) :: ID, nElements, nRows, nCols
-    type(gsMap), intent(in) :: gsMap_s, gsMap_d
+    type(proc), intent(inout) :: my_proc
+    type(map_mod), intent(inout) :: mapper
+    integer, intent(in) :: ID_s, ID_d, ID_join 
+    integer, intent(in) :: nElements, nRows, nCols
+    type(gsMap), intent(inout) :: gsMap_s, gsMap_d
     
-    integer comm_rank,ierr,n
+    integer    :: mpicom_s, mpicom_d, mpicom_join
+    type(gsMap) :: gsmap_s_join
+    type(gsMap) :: gsmap_d_join
+
+    integer comm_rank,ierr,n,wr
     integer, dimension(:), pointer :: rows, cols
     real, dimension(:), pointer :: weights
     
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-    if (comm_rank == 0) then
+
+    mpicom_s = my_proc%comp_comm(ID_s)
+    mpicom_d = my_proc%comp_comm(ID_d)
+    mpicom_join = my_proc%comp_comm(ID_join)
+    call gsmap_extend(gsmap_s, gsmap_s_join, mpicom_s, mpicom_join, ID_join)
+    call gsmap_extend(gsmap_d, gsmap_d_join, mpicom_d, mpicom_join, ID_join)
+    call gsmap_check(gsmap_s_join, gsmap_d_join)
+
+
+    call mpi_comm_rank(my_proc%comp_comm(ID_s), comm_rank, ierr)
+    
+    
+    if (my_proc%iamin_model(ID_s) .and. comm_rank == 0 ) then
         allocate(rows(nElements), cols(nElements), &
                 weights(nElements), stat=ierr)
         do n=1, nElements
@@ -95,18 +112,24 @@ subroutine mapper_spmat_init(my_proc, mapper,&
             cols(n) = n-1
             weights(n) = n
         end do
-
+        mapper%map_type = "spmat"
         call sMat_init(mapper%sMat,nRows,nCols,nElements)
-!        call sMat_importGRowInd(mapper%sMat, rows, size(rows))
-!        call sMat_importGColInd(mapper%sMat, cols, size(cols))
-!        call sMat_importMatrixElts(mapper%sMat, weights, size(weights))
-
+        call sMat_importGRowInd(mapper%sMat, rows, size(rows))
+        call sMat_importGColInd(mapper%sMat, cols, size(cols))
+        call sMat_importMatrixElts(mapper%sMat, weights, size(weights))
         deallocate(rows, cols, weights, stat=ierr)
     endif
 
-!    call sMatPlus_init(mapper%sMatPlus, &
-!           mapper%sMat, gsMap_s, gsMap_d, &
-!           sMat_Xonly, 0, my_proc%comp_comm(ID), ID)
+
+    call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
+    call sMatPlus_init(mapper%sMatPlus, &
+           mapper%sMat, gsMap_s_join, gsMap_d_join, &
+           sMat_Xonly, 0, my_proc%comp_comm(ID_s), ID_s)
+        write(*,*) '<<=SpmatPlus Init:', comm_rank, wr, ' OVER ==>>'
+    call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
+
+    call gsMap_clean(gsmap_s_join)
+    call gsMap_clean(gsmap_d_join)
 
 end subroutine mapper_spmat_init
 
@@ -126,7 +149,7 @@ subroutine mapper_comp_map(mapper, src, dst, msgtag, ierr)
         call rearrange(src, dst, mapper%rearr, msgtag)
     else
         write(6,*) "else"
-        call mapper_comp_interpolation()
+        !call mapper_comp_interpolation()
     end if
 
 end subroutine mapper_comp_map
@@ -157,9 +180,16 @@ end subroutine gsmap_check
 !------------------------------------------------------
 !   interpolation only based sparse matrix muliplation
 !------------------------------------------------------
-subroutine mapper_comp_interpolation()
- 
-    !write(*,*)'haha'
+subroutine mapper_comp_interpolation(my_proc, mapper,&
+                AV_s, AV_d, ID_s)
+    type(proc), intent(inout) :: my_proc
+    type(map_mod), intent(inout) :: mapper
+    type(AttrVect), intent(inout) :: AV_s, AV_d
+    integer, intent(in) :: ID_s
+    integer comm_rank, ierr
+    call mpi_comm_rank(my_proc%comp_comm(ID_s), comm_rank, ierr)
+    call sMatAvect_Mult(AV_s, mapper%sMatPlus, AV_d)
+    call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
 
 end subroutine mapper_comp_interpolation
 

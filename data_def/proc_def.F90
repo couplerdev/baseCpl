@@ -54,6 +54,10 @@ use comms_def
         type(map_mod)  :: mapper_Cx2a
         type(map_mod)  :: mapper_Cx2b
         type(map_mod)  :: mapper_Cx2c
+        
+        !sparse mat 
+        type(map_mod)  :: mapper_SMatx2a
+        type(map_mod)  :: mapper_SMata2x
 
         !------------------------------------------------------
         ! define relative comm variables

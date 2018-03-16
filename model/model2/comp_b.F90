@@ -36,9 +36,8 @@ subroutine b_init_mct(my_proc, ID, EClock, gsMap_bb, b2x_bb, x2b_bb, ierr)
     integer               :: root = 0
     integer               :: comm_rank
     integer               :: comm_size
-    integer               :: lsize
+    integer               :: lsize,gsize
     
-    lsize = 100
    
     call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
     call mpi_comm_size(my_proc%comp_comm(ID), comm_size, ierr)
@@ -46,8 +45,10 @@ subroutine b_init_mct(my_proc, ID, EClock, gsMap_bb, b2x_bb, x2b_bb, ierr)
     allocate(start(1))
     allocate(length(1))
 
-    start(1) = comm_rank*(lsize/comm_size)
-    length(1) = lsize - (comm_rank)*(lsize/comm_size)
+    gsize = my_proc%c_gsize
+    lsize = gsize / comm_size
+    start(1) = comm_rank * lsize
+    length(1) = lsize
 
     call gsMap_init(gsMap_bb, start, length, root, my_proc%comp_comm(ID), ID)
     

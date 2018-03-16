@@ -36,7 +36,7 @@ subroutine c_init_mct(my_proc, ID, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
     integer               :: root = 0
     integer               :: comm_rank
     integer               :: comm_size
-    integer               :: lsize
+    integer               :: lsize,gsize
     
     lsize = 100
    
@@ -46,8 +46,10 @@ subroutine c_init_mct(my_proc, ID, EClock, gsMap_cc, c2x_cc, x2c_cc, ierr)
     allocate(start(1))
     allocate(length(1))
 
-    start(1) = comm_rank*(lsize/comm_size)
-    length(1) = lsize - (comm_rank)*(lsize/comm_size)
+    gsize = my_proc%c_gsize
+    lsize = gsize / comm_size
+    start(1) = comm_rank * lsize
+    length(1) = lsize
 
     call gsMap_init(gsMap_cc, start, length, root, my_proc%comp_comm(ID), ID)
     
