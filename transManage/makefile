@@ -13,6 +13,10 @@ FFLAG = -I/usr/local/include  -I../include -I./
 #	mv *.mod $(INCLDIR)
 #	mv *.a $(LIBDIR)
 
+#comms.o : comms.F90
+#	$(FC) $(FFLAG) -c comms.F90 $(LIB)
+#	mv *.mod *.o $(INCLDIR)
+
 $(OBJ) : $(SRC)
 	$(FC) $(FFLAG) -c $(SRC) $(LIB)
 	mv *.mod *.o $(INCLDIR)
