@@ -29,14 +29,12 @@ subroutine gsmap_init_ext(my_proc, gsmap_s, ID_s, gsmap_d, &
     type(gsMap) gsmap_join
     integer :: mpi_comm_s, mpi_comm_d, mpi_comm_join, mct_compid_d, mct_compid_join
     
-    write(*,*)'my_proc:', my_proc%comp_comm," aa", ID_s,ID_d,ID_join
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
     mpi_comm_join = my_proc%comp_comm(ID_join)
     
     mct_compid_join = my_proc%comp_id(ID_join)
     mct_compid_d = my_proc%comp_id(ID_d)
-    write(*,*)'gsmap init begin'
 
     call gsmap_extend(gsmap_s, gsmap_join,&
                             mpi_comm_s, mpi_comm_join,&
@@ -49,7 +47,7 @@ subroutine gsmap_init_ext(my_proc, gsmap_s, ID_s, gsmap_d, &
 
 end subroutine gsmap_init_ext
 
-subroutine avect_init_ext(my_proc, AV_s, ID_s, AV_d, ID_d, gsmap_d, ID_join)
+subroutine avect_init_ext(my_proc, AV_s, ID_s, AV_d, ID_d, gsMap_d, ID_join)
     implicit none
     type(proc),     intent(in)    :: my_proc
     type(AttrVect), intent(inout) :: AV_s
@@ -80,24 +78,44 @@ subroutine gsmap_extend(gsmap_i, gsmap_o, &
     integer :: rank_in_comm_o
     integer, pointer :: pei(:), peo(:)
     integer, pointer :: start(:), length(:), peloc(:)
-    integer  i,j,status,ier
+    integer  i,j,status,ier,rank_s,rank_d,srank,rrank
     call mpi_comm_rank(mpi_comm_o, rank_in_comm_o, ier)
-    if(rank_in_comm_o == 0) then 
-        ngseg_i = gsmap_i%ngseg
-        gsize_i = gsmap_i%gsize
-        allocate(start(ngseg_i), length(ngseg_i), peloc(ngseg_i))
-        do j = 1, ngseg_i
-            length(j)= gsmap_i%length(j)
-            start(j) = gsmap_i%start(j)
-            peloc(j) = gsmap_i%pe_loc(j)
-        enddo
 
-        call gsMap_init(gsMap_o, mct_compid_o, ngseg_i, &
-                            gsize_i, start, length, peloc)
-        deallocate(start, length, peloc)
+
+    ! becast the rank of comm_d who is the root in comm_s
+    rank_s = -1
+    srank = -1
+    if(mpi_comm_i /= MPI_COMM_NULL) &
+        call mpi_comm_rank(mpi_comm_i, rank_s, ier)
+
+
+    ! only in root of mpi_comm_i init
+    if(mpi_comm_i /= MPI_COMM_NULL) then
+        if(rank_s == 0) then 
+            ngseg_i = gsmap_i%ngseg
+            gsize_i = gsmap_i%gsize
+            allocate(start(ngseg_i), length(ngseg_i), peloc(ngseg_i))
+            do j = 1, ngseg_i
+                length(j)= gsmap_i%length(j)
+                start(j) = gsmap_i%start(j)
+                peloc(j) = gsmap_i%pe_loc(j)
+            enddo
+            call gsMap_init(gsMap_o, mct_compid_o, ngseg_i, &
+                                gsize_i, start, length, peloc)
+            deallocate(start, length, peloc)
+        endif
     endif
+    
+    call mpi_comm_rank(mpi_comm_o, rank_d, ier)
+    if(rank_s == 0) then
+        srank = rank_d
+    endif
+    call mpi_allreduce(srank, rrank, &
+        1, MPI_INT, MPI_MAX,& 
+        mpi_comm_o, ier)
+
     ! bcast gsMap of mpi_comm_i to all the pe in mpi_comm_o
-    call gsmap_bcast(gsMap_o, 0, mpi_comm_o, status)
+    call gsmap_bcast(gsMap_o, rrank, mpi_comm_o, status)
     !write(6,*)'status: ', status, " rank:", rank_in_comm_i
     call MPI_Barrier(mpi_comm_o, ier)
 end subroutine gsmap_extend
@@ -110,12 +128,27 @@ subroutine avect_extend(my_proc, AV_s, &
     type(proc)    , intent(in)    :: my_proc
     type(AttrVect), intent(inout) :: AV_s
     integer, intent(in) ::  ID_s, ID_d
-    integer  ::  mpi_comm_s, mpi_comm_d, ier
+    integer  ::  mpi_comm_s, mpi_comm_d, ier,srank,rrank,rank_s,rank_d
     character(len=100) :: iList,rList
 
 
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
+
+    ! becast the rank of comm_d who is the root in comm_s
+    rank_s = -1
+    srank = -1
+    if(my_proc%iamin_model(ID_s)) &
+        call mpi_comm_rank(mpi_comm_s, rank_s, ier)
+
+    call mpi_comm_rank(mpi_comm_d, rank_d, ier)
+    if(rank_s == 0) then
+        srank = rank_d
+    endif
+    call mpi_allreduce(srank, rrank, &
+        1, MPI_INT, MPI_MAX,& 
+    mpi_comm_d, ier)
+
 
     iList = " "
     rList = " "
@@ -123,8 +156,8 @@ subroutine avect_extend(my_proc, AV_s, &
         iList = avect_exportIList2c(AV_s)
         rList = avect_exportRList2c(AV_s)
     endif
-    call mpi_bcast(iList, len(iList), MPI_CHARACTER, 0, mpi_comm_d, ier)
-    call mpi_bcast(rList, len(rList), MPI_CHARACTER, 0, mpi_comm_d, ier)
+    call mpi_bcast(iList, len(iList), MPI_CHARACTER, rrank, mpi_comm_d, ier)
+    call mpi_bcast(rList, len(rList), MPI_CHARACTER, rrank, mpi_comm_d, ier)
     if(.not. my_proc%iamin_model(ID_s)) then
         if(len_trim(iList) > 0 .and. len_trim(rList) > 0) then
           call avect_init(AV_s,rList=rList,iList=iList, lsize=0)
@@ -300,11 +333,28 @@ subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID_d, lsize)
     integer,        intent(in)      :: ID_d
     integer,        intent(in)      :: lsize
     integer ::  mpi_comm_s, mpi_comm_d
-    integer pid_in_d,ier
-    character(len=100) :: iList,rList
+    integer pid_in_d,ier, rank_s, rank_d, srank, rrank
+    character(len=1000) :: iList,rList
     
     mpi_comm_s = my_proc%comp_comm(ID_s)
     mpi_comm_d = my_proc%comp_comm(ID_d)
+    
+    ! becast the rank of comm_d who is the root in comm_s
+    rank_s = -1
+    srank = -1
+    if(my_proc%iamin_model(ID_s)) &
+        call mpi_comm_rank(mpi_comm_s, rank_s, ier)
+
+    call mpi_comm_rank(mpi_comm_d, rank_d, ier)
+    if(rank_s == 0) then
+        srank = rank_d
+    endif
+    call mpi_allreduce(srank, rrank, &
+        1, MPI_INT, MPI_MAX,& 
+    mpi_comm_d, ier)
+
+
+
     iList = " "
     rList = " "
     if(my_proc%iamin_model(ID_s)) then
@@ -312,8 +362,13 @@ subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID_d, lsize)
         rList = avect_exportRList2c(AV_s)
     endif
 
-    call mpi_bcast(iList, len(iList), MPI_CHARACTER, 0, mpi_comm_d, ier)
-    call mpi_bcast(rList, len(rList), MPI_CHARACTER, 0, mpi_comm_d, ier)
+
+
+    call mpi_bcast(iList, len(iList), MPI_CHARACTER, rrank, mpi_comm_d, ier)
+    call mpi_bcast(rList, len(rList), MPI_CHARACTER, rrank, mpi_comm_d, ier)
+
+
+
 
     if(len_trim(iList) > 0 .and. len_trim(rList) > 0) then
         call avect_init(AV_d,rList=rList,iList=iList, lsize=lsize)

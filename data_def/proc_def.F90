@@ -56,6 +56,17 @@ use comms_def
         type(map_mod)  :: mapper_Cx2c
         
         !sparse mat 
+        type(map_mod)  :: mapper_SMata2b
+        type(map_mod)  :: mapper_SMata2c
+
+        type(map_mod)  :: mapper_SMatb2a
+        type(map_mod)  :: mapper_SMatb2c
+
+        type(map_mod)  :: mapper_SMatc2a
+        type(map_mod)  :: mapper_SMatc2b
+
+
+
         type(map_mod)  :: mapper_SMatx2a
         type(map_mod)  :: mapper_SMata2x
 

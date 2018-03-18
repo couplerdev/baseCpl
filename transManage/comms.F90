@@ -10,6 +10,7 @@ use proc_def
     public :: mapper_spmat_init
     public :: mapper_comp_map
     public :: mapper_comp_interpolation  
+    public :: mapper_comp_avMerge
     private :: gsmap_check    
 
 interface mapper_init ; module procedure &
@@ -58,7 +59,6 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
         mapper%map_type = "copy"
     else if(1 == 1) then 
         mapper%map_type = "rearr"
-        write(*,*) "rearrsplit"
         call gsmap_extend(gsmap_s, gsmap_s_join, mpicom_s, mpicom_join, ID_join)
         call gsmap_extend(gsmap_d, gsmap_d_join, mpicom_d, mpicom_join, ID_join)
 
@@ -74,36 +74,31 @@ subroutine mapper_rearrsplit_init(mapper, my_proc, gsmap_s, ID_s, gsmap_d, ID_d,
 
 end subroutine mapper_rearrsplit_init
 
+
+! Build sMat, gsMap_s, gsMap_d must In comp_comm(ID_s)
+! 
 subroutine mapper_spmat_init(my_proc, mapper,&
-                ID_s, ID_d, ID_join, &
+                ID_s, &
                 nRows, nCols, nElements,&
                 gsMap_s, gsMap_d)
     type(proc), intent(inout) :: my_proc
     type(map_mod), intent(inout) :: mapper
-    integer, intent(in) :: ID_s, ID_d, ID_join 
-    integer, intent(in) :: nElements, nRows, nCols
+    integer, intent(in) :: ID_s
+    integer, intent(in) :: nRows ! gsMap_d%gSize
+    integer, intent(in) :: nCols ! gsMap_s%gSize
+    integer, intent(in) :: nElements ! nums of elem which is not zero
     type(gsMap), intent(inout) :: gsMap_s, gsMap_d
     
-    integer    :: mpicom_s, mpicom_d, mpicom_join
-    type(gsMap) :: gsmap_s_join
-    type(gsMap) :: gsmap_d_join
 
-    integer comm_rank,ierr,n,wr
+    integer comm_rank,ierr,n
     integer, dimension(:), pointer :: rows, cols
     real, dimension(:), pointer :: weights
     
 
-    mpicom_s = my_proc%comp_comm(ID_s)
-    mpicom_d = my_proc%comp_comm(ID_d)
-    mpicom_join = my_proc%comp_comm(ID_join)
-    call gsmap_extend(gsmap_s, gsmap_s_join, mpicom_s, mpicom_join, ID_join)
-    call gsmap_extend(gsmap_d, gsmap_d_join, mpicom_d, mpicom_join, ID_join)
-    call gsmap_check(gsmap_s_join, gsmap_d_join)
 
 
     call mpi_comm_rank(my_proc%comp_comm(ID_s), comm_rank, ierr)
-    
-    
+
     if (my_proc%iamin_model(ID_s) .and. comm_rank == 0 ) then
         allocate(rows(nElements), cols(nElements), &
                 weights(nElements), stat=ierr)
@@ -112,44 +107,41 @@ subroutine mapper_spmat_init(my_proc, mapper,&
             cols(n) = n-1
             weights(n) = n
         end do
-        mapper%map_type = "spmat"
         call sMat_init(mapper%sMat,nRows,nCols,nElements)
+
         call sMat_importGRowInd(mapper%sMat, rows, size(rows))
         call sMat_importGColInd(mapper%sMat, cols, size(cols))
         call sMat_importMatrixElts(mapper%sMat, weights, size(weights))
         deallocate(rows, cols, weights, stat=ierr)
     endif
+    mapper%map_type = "spmat"
 
 
     call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
     call sMatPlus_init(mapper%sMatPlus, &
-           mapper%sMat, gsMap_s_join, gsMap_d_join, &
+           mapper%sMat, gsMap_s, gsMap_d, &
            sMat_Xonly, 0, my_proc%comp_comm(ID_s), ID_s)
-        write(*,*) '<<=SpmatPlus Init:', comm_rank, wr, ' OVER ==>>'
     call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
 
-    call gsMap_clean(gsmap_s_join)
-    call gsMap_clean(gsmap_d_join)
 
 end subroutine mapper_spmat_init
 
-subroutine mapper_comp_map(mapper, src, dst, msgtag, ierr)
+subroutine mapper_comp_map(mapper, src, dst, msgtag,  ierr, rList)
     
     implicit none
-    type(map_mod),  intent(in)              :: mapper
+    type(map_mod),  intent(inout)              :: mapper
     type(AttrVect), intent(inout)           :: src
     type(AttrVect), intent(inout)           :: dst
     integer,        optional,   intent(in)  :: msgtag
     integer,        optional,   intent(inout) :: ierr
+    character(len=*),optional,   intent(in)  :: rList
 
     if(mapper%map_type=="copy")then
         call avect_copy(src, dst)
-        write(6,*) "copy"
     else if(mapper%map_type=="rearr")then
         call rearrange(src, dst, mapper%rearr, msgtag)
-    else
-        write(6,*) "else"
-        !call mapper_comp_interpolation()
+    else if(mapper%map_type=="spmat")then
+        call mapper_comp_avNorm(mapper, src, dst,  rList)
     end if
 
 end subroutine mapper_comp_map
@@ -180,17 +172,49 @@ end subroutine gsmap_check
 !------------------------------------------------------
 !   interpolation only based sparse matrix muliplation
 !------------------------------------------------------
-subroutine mapper_comp_interpolation(my_proc, mapper,&
-                AV_s, AV_d, ID_s)
-    type(proc), intent(inout) :: my_proc
+subroutine mapper_comp_interpolation(mapper,&
+                AV_s, AV_d)
     type(map_mod), intent(inout) :: mapper
     type(AttrVect), intent(inout) :: AV_s, AV_d
-    integer, intent(in) :: ID_s
     integer comm_rank, ierr
-    call mpi_comm_rank(my_proc%comp_comm(ID_s), comm_rank, ierr)
+    !call mpi_comm_rank(my_proc%comp_comm(ID_s), comm_rank, ierr)
     call sMatAvect_Mult(AV_s, mapper%sMatPlus, AV_d)
-    call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
+    !call MPI_Barrier(my_proc%comp_comm(ID_s), ierr)
 
 end subroutine mapper_comp_interpolation
+
+
+subroutine mapper_comp_avNorm(mapper,&
+                AV_s, AV_d, rList)
+    type(map_mod), intent(inout) :: mapper
+    type(AttrVect), intent(inout) :: AV_s, AV_d
+    character(len=*),optional, intent(in)    :: rList 
+    integer comm_rank, ierr
+    if (present(rList)) then
+        call sMatAvect_Mult(AV_s, mapper%sMatPlus, AV_d, rList=rList)
+    else
+        call sMatAvect_Mult(AV_s, mapper%sMatPlus, AV_d)
+    endif
+
+end subroutine mapper_comp_avNorm
+
+
+subroutine mapper_comp_avMerge( &
+                s1, s2, s3, AV_d, field)
+    type(AttrVect), intent(in) :: s1,s2,s3
+    type(AttrVect), intent(inout) :: AV_d
+    character(len=*), intent(in)    :: field
+    integer ix1,ix2,ix3,ix_d, lsize,i
+    ix1 = avect_indexRA(s1, field)
+    ix2 = avect_indexRA(s2, field)
+    ix3 = avect_indexRA(s3, field)
+    ix_d = avect_indexRA(AV_d, field)
+    lsize = avect_lsize(AV_d) 
+    do i=1,lsize
+        AV_d%rAttr(ix_d,i) = &
+           (s1%rAttr(ix1,i) + s2%rAttr(ix2,i) + s3%rAttr(ix3,i)) / 3.0
+    enddo
+
+end subroutine mapper_comp_avMerge
 
 end module comms

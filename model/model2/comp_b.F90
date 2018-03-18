@@ -45,7 +45,7 @@ subroutine b_init_mct(my_proc, ID, EClock, gsMap_bb, b2x_bb, x2b_bb, ierr)
     allocate(start(1))
     allocate(length(1))
 
-    gsize = my_proc%c_gsize
+    gsize = my_proc%b_gsize
     lsize = gsize / comm_size
     start(1) = comm_rank * lsize
     length(1) = lsize
@@ -69,8 +69,24 @@ subroutine b_run_mct(my_proc, ID, EClock, b2x, x2b, ierr)
     type(AttrVect), intent(inout)  :: b2x
     type(AttrVect), intent(inout)  :: x2b
     integer, intent(inout)         :: ierr    
-
+    integer comm_rank,i, av_lsize
     !write(*,*) 'b_run'
+    
+    call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
+    
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+        av_lsize = avect_lsize(b2x) 
+!        write(*,*) '<<========I am Model_B Rank:',comm_rank,' Avlsize:',av_lsize,& 
+!        ' Run(ADD 100*rank) ===========>>'
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+
+    do i=1,av_lsize
+        b2x%rAttr(1,i) = x2b%rAttr(1,i) + 100*(comm_rank+1)
+    enddo
+
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+!        write(*,*) '<<===A2X_AA_VALUE Rank:',comm_rank, a2x%rAttr(1,:)
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
 
 end subroutine b_run_mct
 

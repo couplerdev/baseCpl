@@ -42,9 +42,6 @@ subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
     call mpi_comm_size(my_proc%comp_comm(ID), comm_size, ierr)
 
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-    write(*,*) '<<========I am Model_A Rank:',comm_rank,' Init ===========>>'
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
     
     allocate(start(1))
     allocate(length(1))
@@ -78,18 +75,19 @@ subroutine a_run_mct(my_proc, ID, EClock, a2x, x2a, ierr)
 
     call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
     
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
         av_lsize = avect_lsize(a2x) 
-        write(*,*) '<<========I am Model_A Rank:',comm_rank,' Avlsize:',av_lsize,& 
-        ' Run(ADD 1000*rank) ===========>>'
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+!        write(*,*) '<<========I am Model_A Rank:',comm_rank,' Avlsize:',av_lsize,& 
+!        ' Run(ADD 1000*rank) ===========>>'
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+ 
     do i=1,av_lsize
         a2x%rAttr(1,i) = x2a%rAttr(1,i) + 1000*(comm_rank+1)
     enddo
 
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
-        write(*,*) '<<===A2X_AA_VALUE Rank:',comm_rank, a2x%rAttr(1,:)
-    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+!    call MPI_Barrier(my_proc%comp_comm(ID), ierr)
+!        write(*,*) '<<===A2X_AA_VALUE Rank:',comm_rank, a2x%rAttr(1,:)
+ !   call MPI_Barrier(my_proc%comp_comm(ID), ierr)
 
 
 end subroutine a_run_mct
