@@ -23,40 +23,38 @@ use comms_def
         ! define model variables
         !-----------------------------------------------
         character(len=20) :: modela
+        character(len=20) :: modelb
+        character(len=20) :: modelc
         integer :: a_size
+        integer :: b_size
+        integer :: c_size
+        ! todo dalaoshe set
         integer :: a_gsize
+        integer :: b_gsize
+        integer :: c_gsize
+        character(len=20) :: iList = "fieldi"
+        character(len=20) :: rList = "fieldr"
+
         type(AttrVect) :: a2x_aa
         type(AttrVect) :: a2x_ax
         type(AttrVect) :: x2a_aa
         type(AttrVect) :: x2a_ax
-        type(map_mod)  :: mapper_Ca2x
-        type(map_mod)  :: mapper_Cx2a
-        character(len=20) :: modelb
-        integer :: b_size
-        integer :: b_gsize
         type(AttrVect) :: b2x_bb
         type(AttrVect) :: b2x_bx
         type(AttrVect) :: x2b_bb
         type(AttrVect) :: x2b_bx
-        type(map_mod)  :: mapper_Cb2x
-        type(map_mod)  :: mapper_Cx2b
-        character(len=20) :: modelc
-        integer :: c_size
-        integer :: c_gsize
         type(AttrVect) :: c2x_cc
         type(AttrVect) :: c2x_cx
         type(AttrVect) :: x2c_cc
         type(AttrVect) :: x2c_cx
+
+        type(map_mod)  :: mapper_Ca2x
+        type(map_mod)  :: mapper_Cb2x
         type(map_mod)  :: mapper_Cc2x
+        type(map_mod)  :: mapper_Cx2a
+        type(map_mod)  :: mapper_Cx2b
         type(map_mod)  :: mapper_Cx2c
-
-        character(len=20) :: iList = "fieldi"
-        character(len=20) :: rList = "fieldr"
-
         
-        type(map_mod)  :: a
-        type(map_mod)  :: b
-        type(map_mod)  :: c
         !sparse mat 
         type(map_mod)  :: mapper_SMata2b
         type(map_mod)  :: mapper_SMata2c
@@ -69,6 +67,8 @@ use comms_def
 
 
 
+        type(map_mod)  :: mapper_SMatx2a
+        type(map_mod)  :: mapper_SMata2x
 
         !------------------------------------------------------
         ! define relative comm variables
@@ -76,10 +76,10 @@ use comms_def
         integer :: mpi_glocomm
         integer :: mpi_cpl
         integer :: mpi_modela
-        integer :: mpi_modela2cpl
         integer :: mpi_modelb
-        integer :: mpi_modelb2cpl
         integer :: mpi_modelc
+        integer :: mpi_modela2cpl
+        integer :: mpi_modelb2cpl
         integer :: mpi_modelc2cpl
 
         !-------------------------------------------------------
@@ -89,13 +89,12 @@ use comms_def
         !-------------------------------------------------------
         integer :: gloid         = 1
         integer :: cplid         = 2
-        integer :: modela_id = 3
+        integer :: modela_id     = 3
+        integer :: modelb_id     = 4
+        integer :: modelc_id     = 5
         integer :: modela2cpl_id = 6
-        integer :: modelb_id = 4
         integer :: modelb2cpl_id = 7
-        integer :: modelc_id = 5
         integer :: modelc2cpl_id = 8
-
         integer, dimension(:), pointer :: comp_comm
         integer, dimension(:), pointer :: comp_id
         ! judge if in model_a/b/c
@@ -106,25 +105,25 @@ use comms_def
         !-------------------------------------------------------
 
         logical :: iam_root
+
+
         logical :: iamin_cpl
-        logical :: iamroot_cpl
-
         logical :: iamin_modela
-        logical :: iamin_modela2cpl
-        logical :: iamroot_modela
-        logical :: iamroot_modela2cpl
-        logical :: a_run
         logical :: iamin_modelb
-        logical :: iamin_modelb2cpl
-        logical :: iamroot_modelb
-        logical :: iamroot_modelb2cpl
-        logical :: b_run
         logical :: iamin_modelc
+        logical :: iamin_modela2cpl
+        logical :: iamin_modelb2cpl
         logical :: iamin_modelc2cpl
+        logical :: iamroot_cpl
+        logical :: iamroot_modela 
+        logical :: iamroot_modelb
         logical :: iamroot_modelc
+        logical :: iamroot_modela2cpl
+        logical :: iamroot_modelb2cpl
         logical :: iamroot_modelc2cpl
+        logical :: a_run
+        logical :: b_run
         logical :: c_run
-
 
     end type proc
 

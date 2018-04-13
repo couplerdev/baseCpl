@@ -25,9 +25,8 @@ subroutine init(my_proc)
     integer :: num_size 
     integer :: iter
 
-
     my_proc%num_models = 3
-    my_proc%num_comms = 8
+    my_proc%num_comms = my_proc%num_models*2+2
     my_proc%num_flags = -1
     
     
@@ -54,52 +53,54 @@ subroutine init(my_proc)
     ! set up every comp's comm
     !----------------------------------------------------------
     my_proc%mpi_glocomm = MPI_COMM_WORLD
-
+    !my_proc%mpi_cpl = MPI_COMM_WORLD
+    !my_proc%mpi_modela = MPI_COMM_WORLD
+    !my_proc%mpi_modelb = MPI_COMM_WORLD
+    !my_proc%mpi_modelc = MPI_COMM_WORLD
     allocate(my_proc%iamin_model(my_proc%ncomps))
     do iter = 1, my_proc%ncomps
         my_proc%iamin_model(iter) = .false.
     end do
     my_proc%iamin_model(1) = .true.
 
-    ! deploy_cpl
     call deploy_cpl(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
                   my_proc%cplid, my_proc%iamin_model, 0, ierr)
 
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela,&
-                my_proc%mpi_modela2cpl, &
-                my_proc%modela_id, my_proc%cplid, &
-                my_proc%modela2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb,&
-                my_proc%mpi_modelb2cpl, &
-                my_proc%modelb_id, my_proc%cplid, &
-                my_proc%modelb2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc,&
-                my_proc%mpi_modelc2cpl, &
-                my_proc%modelc_id, my_proc%cplid, &
-                my_proc%modelc2cpl_id, my_proc%iamin_model, 0, ierr)
-
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, my_proc%mpi_modela2cpl, &
+                my_proc%modela_id, my_proc%cplid, my_proc%modela2cpl_id, my_proc%iamin_model, 0, ierr)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, &
+                my_proc%modelb_id, my_proc%cplid, my_proc%modelb2cpl_id, my_proc%iamin_model, 0, ierr)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, &
+                my_proc%modelc_id, my_proc%cplid, my_proc%modelc2cpl_id, my_proc%iamin_model, 0, ierr)
 
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*), "my_world_rank:", num_rank, " my_in_model", my_proc%iamin_model
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_cpl, &
+    !            my_proc%cplid, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modela, &
+    !            my_proc%modela_id, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb, &
+    !            my_proc%modelb_id, 0)
+    !call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc, &
+    !            my_proc%modelc_id, 0)
 
+    !call union_comm(my_proc%mpi_cpl, my_proc%mpi_modela, my_proc%mpi_modela2cpl, ierr)
+    !call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelb, my_proc%mpi_modelb2cpl, ierr)
+    !call union_comm(my_proc%mpi_cpl, my_proc%mpi_modelc, my_proc%mpi_modelc2cpl, ierr)
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*)'comm initiated'
     allocate(my_proc%comp_comm(my_proc%ncomps))
     my_proc%comp_comm(my_proc%gloid)         = my_proc%mpi_glocomm
     my_proc%comp_comm(my_proc%cplid)         = my_proc%mpi_cpl
-
-
     my_proc%comp_comm(my_proc%modela_id)     = my_proc%mpi_modela
-    my_proc%comp_comm(my_proc%modela2cpl_id) = my_proc%mpi_modela2cpl  
-
     my_proc%comp_comm(my_proc%modelb_id)     = my_proc%mpi_modelb
-    my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl  
-
     my_proc%comp_comm(my_proc%modelc_id)     = my_proc%mpi_modelc
-    my_proc%comp_comm(my_proc%modelc2cpl_id) = my_proc%mpi_modelc2cpl  
+    my_proc%comp_comm(my_proc%modela2cpl_id) = my_proc%mpi_modela2cpl  
+    my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl
+    my_proc%comp_comm(my_proc%modelc2cpl_id) = my_proc%mpi_modelc2cpl
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*)'comp_comm initiated'
@@ -116,7 +117,29 @@ subroutine init(my_proc)
     else
         my_proc%iam_root = .false.
     end if
+    !---may exist bugs for process to identify itself
+    !call iamin_comm_root(my_proc%mpi_modela, my_proc%iamin_modela, &
+    !                     my_proc%iamroot_modela, ierr)
+    !call iamin_comm_root(my_proc%mpi_modelb, my_proc%iamin_modelb, &
+    !                     my_proc%iamroot_modelb, ierr)
+    !call iamin_comm_root(my_proc%mpi_modelc, my_proc%iamin_modelc, &
+    !                     my_proc%iamroot_modelc, ierr)
+    !call iamin_comm_root(my_proc%mpi_modela2cpl, my_proc%iamin_modela2cpl, &
+    !                     my_proc%iamroot_modela2cpl, ierr)
+    !call iamin_comm_root(my_proc%mpi_modelb2cpl, my_proc%iamin_modelb2cpl, &
+    !                     my_proc%iamroot_modelb2cpl, ierr)
+    !call iamin_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamin_modelc2cpl, &
+    !                     my_proc%iamroot_modelc2cpl, ierr)
 
+    !allocate(my_proc%iamin_model(my_proc%ncomps))
+    !my_proc%iamin_model(my_proc%gloid)         = .true.
+    !my_proc%iamin_model(my_proc%cplid)         = .true.
+    !my_proc%iamin_model(my_proc%modela_id)     = my_proc%iamin_modela
+    !my_proc%iamin_model(my_proc%modelb_id)     = my_proc%iamin_modelb
+    !my_proc%iamin_model(my_proc%modelc_id)     = my_proc%iamin_modelc
+    !my_proc%iamin_model(my_proc%modela2cpl_id) = my_proc%iamin_modela2cpl  
+    !my_proc%iamin_model(my_proc%modelb2cpl_id) = my_proc%iamin_modelb2cpl
+    !my_proc%iamin_model(my_proc%modelc2cpl_id) = my_proc%iamin_modelc2cpl
     my_proc%iamin_cpl = .false.
     if(my_proc%iamin_model(my_proc%cplid))then
         write(*,*)'Im cpl',num_rank
@@ -130,24 +153,10 @@ subroutine init(my_proc)
         my_proc%iamin_modela = .true.
     end if
 
-    my_proc%iamin_modela2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modela2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modela2cpl, &
-            my_proc%iamroot_modela2cpl, ierr)
-        my_proc%iamin_modela2cpl = .true.
-    end if
-
     my_proc%iamin_modelb = .false.
     if(my_proc%iamin_model(my_proc%modelb_id))then
         call iam_comm_root(my_proc%mpi_modelb, my_proc%iamroot_modelb, ierr)
         my_proc%iamin_modelb = .true.
-    end if
-
-    my_proc%iamin_modelb2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modelb2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelb2cpl, &
-            my_proc%iamroot_modelb2cpl, ierr)
-        my_proc%iamin_modelb2cpl = .true.
     end if
 
     my_proc%iamin_modelc = .false.
@@ -156,27 +165,34 @@ subroutine init(my_proc)
         my_proc%iamin_modelc = .true.
     end if
 
+    my_proc%iamin_modela2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modela2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modela2cpl, my_proc%iamroot_modela2cpl, ierr)
+        my_proc%iamin_modela2cpl = .true.
+    end if
+
+    my_proc%iamin_modelb2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modelb2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modelb2cpl, my_proc%iamroot_modelb2cpl, ierr)
+        my_proc%iamin_modelb2cpl = .true.
+    end if
+
     my_proc%iamin_modelc2cpl = .false.
     if(my_proc%iamin_model(my_proc%modelc2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelc2cpl, &
-            my_proc%iamroot_modelc2cpl, ierr)
+        call iam_comm_root(my_proc%mpi_modelc2cpl, my_proc%iamroot_modelc2cpl, ierr)
         my_proc%iamin_modelc2cpl = .true.
     end if
 
-
-
+    
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*)'before mapper_init'
 
-
     call mapper_init(my_proc%mapper_Ca2x, ierr)
     call mapper_init(my_proc%mapper_Cx2a, ierr)
-
     call mapper_init(my_proc%mapper_Cb2x, ierr)
     call mapper_init(my_proc%mapper_Cx2b, ierr)
-
     call mapper_init(my_proc%mapper_Cc2x, ierr)
-    call mapper_init(my_proc%mapper_Cx2c, ierr)
+    call mapper_init(my_proc%mapper_Cx2c, ierr) 
 
     my_proc%nothing = .false.
 
@@ -207,4 +223,3 @@ subroutine clean(my_proc)
 end subroutine clean
 
 end module procM
-
