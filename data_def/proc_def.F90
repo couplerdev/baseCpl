@@ -29,17 +29,8 @@ use comms_def
         type(AttrVect) :: a2x_ax
         type(AttrVect) :: x2a_aa
         type(AttrVect) :: x2a_ax
-        type(map_mod)  :: mapper_Ca2x
-        type(map_mod)  :: mapper_Cx2a
-        character(len=20) :: modelb
-        integer :: b_size
-        integer :: b_gsize
-        type(AttrVect) :: b2x_bb
-        type(AttrVect) :: b2x_bx
-        type(AttrVect) :: x2b_bb
-        type(AttrVect) :: x2b_bx
-        type(map_mod)  :: mapper_Cb2x
-        type(map_mod)  :: mapper_Cx2b
+        type(map_mod)  :: Mapper_Ca2x
+        type(map_mod)  :: Mapper_Cx2a
         character(len=20) :: modelc
         integer :: c_size
         integer :: c_gsize
@@ -47,16 +38,25 @@ use comms_def
         type(AttrVect) :: c2x_cx
         type(AttrVect) :: x2c_cc
         type(AttrVect) :: x2c_cx
-        type(map_mod)  :: mapper_Cc2x
-        type(map_mod)  :: mapper_Cx2c
+        type(map_mod)  :: Mapper_Cc2x
+        type(map_mod)  :: Mapper_Cx2c
+        character(len=20) :: modelb
+        integer :: b_size
+        integer :: b_gsize
+        type(AttrVect) :: b2x_bb
+        type(AttrVect) :: b2x_bx
+        type(AttrVect) :: x2b_bb
+        type(AttrVect) :: x2b_bx
+        type(map_mod)  :: Mapper_Cb2x
+        type(map_mod)  :: Mapper_Cx2b
 
         character(len=20) :: iList = "fieldi"
         character(len=20) :: rList = "fieldr"
 
         
         type(map_mod)  :: a
-        type(map_mod)  :: b
         type(map_mod)  :: c
+        type(map_mod)  :: b
         !sparse mat 
         type(map_mod)  :: mapper_SMata2b
         type(map_mod)  :: mapper_SMata2c
@@ -77,10 +77,10 @@ use comms_def
         integer :: mpi_cpl
         integer :: mpi_modela
         integer :: mpi_modela2cpl
-        integer :: mpi_modelb
-        integer :: mpi_modelb2cpl
         integer :: mpi_modelc
         integer :: mpi_modelc2cpl
+        integer :: mpi_modelb
+        integer :: mpi_modelb2cpl
 
         !-------------------------------------------------------
         ! To support the ncomps used in mct_world_init
@@ -91,10 +91,10 @@ use comms_def
         integer :: cplid         = 2
         integer :: modela_id = 3
         integer :: modela2cpl_id = 6
-        integer :: modelb_id = 4
-        integer :: modelb2cpl_id = 7
-        integer :: modelc_id = 5
-        integer :: modelc2cpl_id = 8
+        integer :: modelc_id = 4
+        integer :: modelc2cpl_id = 7
+        integer :: modelb_id = 5
+        integer :: modelb2cpl_id = 8
 
         integer, dimension(:), pointer :: comp_comm
         integer, dimension(:), pointer :: comp_id
@@ -114,16 +114,16 @@ use comms_def
         logical :: iamroot_modela
         logical :: iamroot_modela2cpl
         logical :: a_run
-        logical :: iamin_modelb
-        logical :: iamin_modelb2cpl
-        logical :: iamroot_modelb
-        logical :: iamroot_modelb2cpl
-        logical :: b_run
         logical :: iamin_modelc
         logical :: iamin_modelc2cpl
         logical :: iamroot_modelc
         logical :: iamroot_modelc2cpl
         logical :: c_run
+        logical :: iamin_modelb
+        logical :: iamin_modelb2cpl
+        logical :: iamroot_modelb
+        logical :: iamroot_modelb2cpl
+        logical :: b_run
 
 
     end type proc
