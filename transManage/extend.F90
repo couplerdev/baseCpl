@@ -379,4 +379,114 @@ subroutine avect_create(my_proc, AV_s, ID_s, AV_d, ID_d, lsize)
     endif
 end subroutine avect_create
 
+subroutine save_model_av(my_proc, AV, gsMap_AV, ID, time)
+    implicit none
+    type(proc),     intent(in)      :: my_proc
+    type(AttrVect), intent(in)   :: AV
+    type(gsMap), intent(in)   :: gsMap_AV
+    integer,        intent(in)      :: ID
+    integer,        intent(in)      :: time
+    integer ::  mpi_comm
+    integer i, fd, ierr, nlseg, comm_rank
+    INTEGER(KIND=MPI_OFFSET_KIND) :: offset
+    integer, dimension(:),pointer :: points
+    integer, dimension(MPI_STATUS_SIZE) :: status
+    character(len=1000) :: check_point_path
+
+    mpi_comm = my_proc%comp_comm(ID)
+    if(mpi_comm /= MPI_COMM_NULL) then
+        check_point_path = "file.txt"
+
+        call mpi_comm_rank(mpi_comm, comm_rank, ierr)
+        nlseg = gsMap_lsize(gsMap_AV, mpi_comm)        
+        call gsMap_order(gsMap_AV,comm_rank,points)
+
+        call MPI_File_Open(mpi_comm, &
+            check_point_path, MPI_MODE_WRONLY + MPI_MODE_CREATE, &
+            MPI_INFO_NULL, fd, ierr)
+        if (ierr /= MPI_SUCCESS) write(*,*) 'Open error on rank ', comm_rank
+        call MPI_Barrier(mpi_comm, ierr)
+
+        write(*,*) ' rank',comm_rank, ' write', AV%rAttr(1,:), nlseg
+
+        do i=1,nlseg
+            offset = points(i) * 8
+            call MPI_File_Write_At(&
+                    fd,offset, &
+                    AV%rAttr(1,i), 1, MPI_DOUBLE_PRECISION,&
+                    status, ierr)
+        end do
+
+        if (ierr /= MPI_SUCCESS) &
+            write(*,*) 'Write error on rank ', comm_rank, ' ', offset
+        call MPI_File_Close(fd, ierr)
+    endif
+end subroutine save_model_av
+
+subroutine log_msg(my_proc, ID, msg, log_path)
+    implicit none
+    type(proc),     intent(in)      :: my_proc
+    integer,        intent(in)      :: ID
+    character(len=*), intent(in) :: msg
+    character(len=*), intent(in) :: log_path
+    character, pointer :: msgs(:)
+    character, pointer :: fmsgs(:)
+    integer ::  mpi_comm
+    integer i, ierr, comm_rank, comm_size, j
+    character(len=22) txt_time
+
+    integer date_time(8)
+    character*10 b(3)
+    call date_and_time(b(1), b(2), b(3), date_time)
+
+    mpi_comm = my_proc%comp_comm(ID)
+
+    if(mpi_comm /= MPI_COMM_NULL) then
+        call mpi_comm_rank(mpi_comm, comm_rank, ierr)
+        call mpi_comm_size(mpi_comm, comm_size, ierr)
+        allocate(msgs(comm_size * len(msg)))
+        allocate(fmsgs(comm_size * len(msg) + 22))
+        call mpi_gather(msg, len(msg), MPI_CHARACTER, &
+            msgs, len(msg), MPI_CHARACTER, &
+            0, mpi_comm, ierr)
+        if(comm_rank == 0) then
+            open(3, position='Append', file=log_path)
+            write(txt_time,"(I4,A1,I2,A1,I2,A1,I2,A1,I2,A1,I2,A2)") &
+                date_time(1),'-',&
+                date_time(2),'-',&
+                date_time(3),' ',&
+                date_time(5),'-',&
+                date_time(6),'-',date_time(7),': '
+            write(3,*) txt_time,msgs
+            close(3)
+        endif
+        call MPI_Barrier(mpi_comm, ierr)
+        
+        deallocate(msgs)
+    endif
+end subroutine log_msg
+
+
+subroutine log_run_msg(my_proc, ID, log_path, time)
+    implicit none
+    type(proc),     intent(in)      :: my_proc
+    integer,        intent(in)      :: ID
+    character(len=*), intent(in) :: log_path
+    integer,        intent(in)      :: time
+    character(len=30) ::  msg
+    character(len=4) ::  txt_rank
+    integer :: comm_rank, mpi_comm, ierr
+    mpi_comm = my_proc%comp_comm(ID)
+
+    if(mpi_comm /= MPI_COMM_NULL) then
+        call mpi_comm_rank(mpi_comm, comm_rank, ierr)
+        write(txt_rank,"(I4)") comm_rank
+        msg = 'COMM_RANK:' // txt_rank // ' RUN'
+        call MPI_Barrier(mpi_comm, ierr)
+        call log_msg(my_proc, ID, msg, log_path)
+    endif
+end subroutine log_run_msg
+
+
+
 end module extend

@@ -64,6 +64,7 @@ use comp_b
     integer, dimension(2) :: arraygsize, arraysubsize
     integer, dimension(:),pointer :: points
     INTEGER(KIND=MPI_OFFSET_KIND) :: offset
+     character(len=4) :: msg
 contains
 
 subroutine cpl_init()
@@ -522,28 +523,34 @@ call mapper_comp_map(mapper=my_proc%mapper_SMatb2a,rList='x',src=b2x_bx,dst=b2x_
         end do
 
         call MPI_File_Close(fin, ierr)
-
-        call MPI_File_Open(my_proc%mpi_modela2cpl, "file.txt", MPI_MODE_WRONLY + MPI_MODE_CREATE, MPI_INFO_NULL, fhandle, ierr)
-        if (ierr /= MPI_SUCCESS) write(*,*) 'Open error on rank ', comm_rank
-
-        do i=1,2
-        tmp_data(i) = x2a_ax%rAttr(1,i)
-         write(*,*) 'write rank',comm_rank, ' i',i,  tmp_data(i), offset
-        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
-        end do
-
-        do i=1,ngseg
-        offset = points(i) * 8
-        call MPI_File_Write_At(fhandle,&
-                             offset, &
-                             x2a_ax%rAttr(1,i), 1, MPI_DOUBLE_PRECISION &
-                             , status, ierr)
-        end do
-        !end if
-
-        if (ierr /= MPI_SUCCESS) write(*,*) 'Write error on rank ', comm_rank, ' ', offset
-        call MPI_File_Close(fhandle, ierr)
+        call save_model_av(my_proc, x2a_ax, gsMap_ax, my_proc%modela2cpl_id, s)
+        if(comm_rank == 0) msg = "1230"
+        if(comm_rank == 1) msg = "1231"
+        if(comm_rank == 2) msg = "1232"
+        if(comm_rank == 3) msg = "1233"
+        !call log_msg(my_proc,my_proc%modela2cpl_id, msg,"file2.txt" )
+!        call MPI_File_Open(my_proc%mpi_modela2cpl, "file.txt", MPI_MODE_WRONLY + MPI_MODE_CREATE, MPI_INFO_NULL, fhandle, ierr)
+!        if (ierr /= MPI_SUCCESS) write(*,*) 'Open error on rank ', comm_rank
+!
+!        do i=1,2
+!        tmp_data(i) = x2a_ax%rAttr(1,i)
+!         write(*,*) 'write rank',comm_rank, ' i',i,  tmp_data(i), offset
+!        call MPI_Barrier(my_proc%mpi_modela2cpl, ierr)
+!        end do
+!
+!        do i=1,ngseg
+!        offset = points(i) * 8
+!        call MPI_File_Write_At(fhandle,&
+!                             offset, &
+!                             x2a_ax%rAttr(1,i), 1, MPI_DOUBLE_PRECISION &
+!                             , status, ierr)
+!        end do
+!        !end if
+!
+!        if (ierr /= MPI_SUCCESS) write(*,*) 'Write error on rank ', comm_rank, ' ', offset
+!        call MPI_File_Close(fhandle, ierr)
         endif
+        call log_run_msg(my_proc,my_proc%modela2cpl_id, "file2.txt" , s)
     endif
 
     end do
