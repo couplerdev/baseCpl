@@ -550,7 +550,16 @@ call mapper_comp_map(mapper=my_proc%mapper_SMatb2a,rList='x',src=b2x_bx,dst=b2x_
 !        if (ierr /= MPI_SUCCESS) write(*,*) 'Write error on rank ', comm_rank, ' ', offset
 !        call MPI_File_Close(fhandle, ierr)
         endif
-        call log_run_msg(my_proc,my_proc%modela2cpl_id, "file2.txt" , s)
+        call log_run_msg(my_proc,my_proc%modela2cpl_id, "file2.txt" , s) !LOG TEST
+        if(s == 10 .and. comm_rank == 0) then
+            write(*,*) x2a_ax%rAttr(1,:)
+            write(*,*) x2a_ax%rAttr(2,:)
+            write(*,*) x2a_ax%iAttr(1,:)
+            write(*,*) x2a_ax%iAttr(2,:)
+            write(*,*) x2a_ax%iAttr(3,:)
+            call write_netcdf(my_proc, my_proc%modela2cpl_id, "netcf.nc", s, x2a_ax, gsMap_ax)
+            call read_netcdf(my_proc, my_proc%modela2cpl_id, "netcf.nc", s, x2a_ax, gsMap_ax)
+        end if
     endif
 
     end do

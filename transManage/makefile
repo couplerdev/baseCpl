@@ -5,8 +5,8 @@ SRC =  extend.F90 comms.F90
 LIB_A = libcomm.a
 LIBDIR = ../lib
 INCLDIR = ../include
-LIB = -lmct -lmpeu 
-FFLAG = -I/usr/local/include  -I../include -I./
+LIB = -lmct -lmpeu -lnetcdff
+FFLAG = -I/usr/local/include  -I../include -I./ -I/usr/local/netcdf4/include -L../lib
 
 #$(LIB_A) : $(OBJ)
 #	$(AR) rcs $(LIB_A) $(OBJ)

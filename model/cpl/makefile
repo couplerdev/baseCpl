@@ -11,15 +11,15 @@ MODELS = ./comp_a.o ./comp_b.o ./comp_c.o
 	   ../../procManage/manage.o
 SRC = baseCpl.F90
 EXE = main
-LIB =  -I../../include -I./ 
+LIB =  -I../../include -I./ -I/usr/local/netcdf4/include
 #      -I../model1 -I../model2 -I../model3 
 LIBDIR = ../../lib
-SLIB = -lbcpl
-FFLAG = -L$(LIBDIR)
+SLIB = -lbcpl 
+FFLAG = -L$(LIBDIR) -L/usr/local/netcdf4/lib -I/usr/local/netcdf4/include
 
 $(EXE) : $(OBJ) $(OBJ_M) $(MODELS)
 	$(FC) $(MODELS) $(OBJ_M) $(OBJ)  -o $(EXE) \
-	$(FFLAG) $(SLIB) -lmct -lmpeu 
+	$(FFLAG) $(SLIB) -lmct -lmpeu  -lnetcdff
 
 $(OBJ) : $(SRC)
 	$(FC) -c  $(SRC) $(LIB)

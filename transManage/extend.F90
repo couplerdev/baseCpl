@@ -7,6 +7,7 @@ use mct_mod
 use proc_def
     implicit none
     include 'mpif.h'    
+    include 'netcdf.inc'
     public :: gsmap_init_ext
     public :: gsmap_extend
     public :: gsmap_create
@@ -434,7 +435,6 @@ subroutine log_msg(my_proc, ID, msg, log_path)
     integer ::  mpi_comm
     integer i, ierr, comm_rank, comm_size, j
     character(len=22) txt_time
-
     integer date_time(8)
     character*10 b(3)
     call date_and_time(b(1), b(2), b(3), date_time)
@@ -481,12 +481,195 @@ subroutine log_run_msg(my_proc, ID, log_path, time)
     if(mpi_comm /= MPI_COMM_NULL) then
         call mpi_comm_rank(mpi_comm, comm_rank, ierr)
         write(txt_rank,"(I4)") comm_rank
-        msg = 'COMM_RANK:' // txt_rank // ' RUN'
+        msg = 'COMM_RANK:' // txt_rank // ' STATUS: RUN'
         call MPI_Barrier(mpi_comm, ierr)
         call log_msg(my_proc, ID, msg, log_path)
     endif
 end subroutine log_run_msg
 
+
+
+subroutine read_netcdf(my_proc, ID, check_point_path, time, AV, gsMap_AV)
+    !读取id model的全网格数据，并根据在GSMAP上的网格数据分布 设置到对应AV
+    implicit none
+    type(proc),     intent(in)      :: my_proc
+    integer,        intent(in)      :: ID
+    character(len=*), intent(in) :: check_point_path
+    integer,        intent(in)      :: time
+    type(AttrVect), intent(in)      :: AV
+    type(gsMap), intent(in)      :: gsMap_AV
+    integer :: comm_rank, mpi_comm, nlseg, gsize, ierr 
+    integer :: ncid, rvarid, ivarid,  j,i
+    integer, dimension(:),pointer :: points
+    type(AttrVect)      :: sAV
+    character(len=100) :: iList,rList
+    character(len=100),dimension(100) :: iList_s, rList_s
+    integer ::ilist_len,rlist_len
+
+
+    
+    iList = avect_exportIList2c(AV)
+    rList = avect_exportRList2c(AV)
+    call StringSplit(rList,":",rList_s,rlist_len) 
+    call StringSplit(iList,":",iList_s,ilist_len) 
+
+    write(*,*) "List: ", trim(rList),' ', trim(iList), gsMap_AV%gsize
+    !todo 
+    call avect_init(sAV,rList=trim(rList),iList=trim(iList), lsize=2)!gsMap_AV%gsize)
+
+    call check(nf_open(trim(check_point_path),nf_nowrite,ncid))
+    write(*,*) 'read open ok:'
+    call check(nf_inq_varid(ncid, 'rdata', rvarid)) 
+    call check(nf_inq_varid(ncid, 'idata', ivarid))     
+
+    write(*,*) 'get var ok:'
+    call check(nf_get_var_real(ncid,rvarid,sAV%rAttr))
+    call check(nf_get_var_int(ncid,ivarid,sAV%iAttr))
+    write(*,*) 'read data ok'
+
+   
+    mpi_comm = my_proc%comp_comm(ID)
+    if(mpi_comm /= MPI_COMM_NULL) then
+        call mpi_comm_rank(mpi_comm, comm_rank, ierr)
+        nlseg = gsMap_lsize(gsMap_AV, mpi_comm)        
+        call gsMap_order(gsMap_AV,comm_rank,points)
+
+        do j=1,rlist_len 
+            do i=1,nlseg
+                AV%rAttr(j,i) = sAV%rAttr(j,points(i)+1)
+            end do
+        end do
+
+        do j=1,ilist_len 
+            do i=1,nlseg
+                AV%iAttr(j,i) = sAV%iAttr(j,points(i)+1)
+            end do
+        end do
+
+        write(*,*) 'scatter data ok'
+    endif
+
+    write(*,*) AV%rAttr(1,:)
+    write(*,*) AV%rAttr(2,:)
+    write(*,*) AV%iAttr(1,:)
+    write(*,*) AV%iAttr(2,:)
+    write(*,*) AV%iAttr(3,:)
+
+end subroutine read_netcdf
+
+subroutine write_netcdf(my_proc, ID, log_path, time, AV, gsMap_AV)
+    implicit none
+    include 'netcdf.inc'
+    type(proc),     intent(in)      :: my_proc
+    integer,        intent(in)      :: ID
+    character(len=*), intent(in) :: log_path
+    integer,        intent(in)      :: time
+    type(AttrVect), intent(in)      :: AV
+    type(gsMap), intent(in)      :: gsMap_AV
+    integer :: comm_rank, mpi_comm, ierr, lsize
+    integer :: ncid, ivarid, rvarid
+    integer :: list_len,i
+    integer,pointer :: rdimsid(:), idimsid(:)
+    character(len=100) :: iList,rList
+    character(len=100),dimension(100) :: iList_s, rList_s
+    integer ::ilist_len,rlist_len
+    
+    iList = avect_exportIList2c(AV)
+    rList = avect_exportRList2c(AV)
+    call StringSplit(rList,":",rList_s,rlist_len) 
+    call StringSplit(iList,":",iList_s,ilist_len) 
+
+    allocate(rdimsid(rlist_len))
+    allocate(idimsid(ilist_len))
+
+    mpi_comm = my_proc%comp_comm(ID)
+    if(mpi_comm /= MPI_COMM_NULL) then
+        lsize = gsMap_lsize(gsMap_AV, mpi_comm)
+        call check(nf_create(log_path, NF_CLOBBER, ncid))
+        write(*,*) " create ok"
+
+        do i=1,rlist_len
+            call check(nf_def_dim(ncid, trim(rList_s(i)), lsize+1, rdimsid(i)))
+        end do
+
+        write(*,*) " def rdims ok"
+
+        do i=1,ilist_len
+            call check(nf_def_dim(ncid, trim(iList_s(i)), lsize+1, idimsid(i)))
+        end do
+        write(*,*) " def idims ok"
+
+        call check(nf_def_var(ncid, "rdata", NF_float, rlist_len, rdimsid, rvarid))
+
+        call check(nf_def_var(ncid, "idata", NF_int, ilist_len, idimsid, ivarid))
+
+        write(*,*) " def var ok"
+        ierr=nf_enddef(ncid) 
+        write(*,*) " def ok", AV%rAttr(1,:)
+        
+        call check(nf_put_var_real(ncid, rvarid, AV%rAttr))
+        call check(nf_put_var_int(ncid, ivarid, AV%iAttr))
+        call check(nf_close(ncid))
+    end if
+
+    deallocate(rdimsid)
+    deallocate(idimsid)
+end subroutine write_netcdf
+
+
+subroutine check(status)
+integer, intent ( in) :: status
+
+if(status /= nf_noerr) then
+  print *, trim(nf_strerror(status))
+  stop 2
+end if
+end subroutine check
+
+subroutine StringSplit(InStr,delimiter,StrArray,nsize)  
+!----------------------------------------------  
+!---将字符串InStr进行分割,结果放入StrArray中  
+!---delimiter::分隔符号,例如';,,' 使用;和,分割字符串  
+!---nsize:分割数目  
+!---吴徐平2011-04-29(wxp07@qq.com)  
+!----------------------------------------------  
+implicit none  
+character(len = *) , Intent( IN ) :: InStr  
+character(len = *)  , Intent( IN ) :: delimiter  
+character(len = LEN(InStr)),dimension(LEN(InStr)),Intent( OUT ) :: StrArray  
+integer, Intent( OUT ) :: nsize ! Effective Size of StrArray  
+integer:: i,j ! loop variable  
+integer:: istart ! split index for Start Position  
+nsize=0  
+istart=1  
+do i=1,LEN(InStr)  
+    do j=1,LEN(delimiter)  
+        if (InStr(i:i) == delimiter(j:j)) then  
+            if (istart == i) then  
+            istart=i+1 ! ---可防止分隔符相连的情况  
+            end if  
+            if (istart<i) then  
+                nsize=nsize+1  
+                StrArray(nsize)=InStr(istart:i-1)  
+                istart=i+1  
+            end if  
+        end if  
+    end do  
+end do  
+
+! ---匹配最后一个子字符串  
+if (nsize>0) then  
+    if (istart<LEN(InStr)) then  
+        nsize=nsize+1  
+        StrArray(nsize)=InStr(istart:LEN(InStr))  
+    end if  
+end if  
+! ---如果无可分割的子字符串,则包含整个字符串为数组的第一元素  
+if ( (nsize<1) .AND. (LEN(TRIM(InStr)) > 0 )) then  
+        nsize=1  
+        StrArray(1)=InStr  
+end if  
+end subroutine StringSplit  
 
 
 end module extend
