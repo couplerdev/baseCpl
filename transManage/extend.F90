@@ -558,8 +558,9 @@ subroutine read_netcdf(my_proc, ID, check_point_path, time, AV, gsMap_AV)
 end subroutine read_netcdf
 
 subroutine write_netcdf(my_proc, ID, log_path, time, AV, gsMap_AV)
+    !todo
+    !将AV数据写入netcdf文件， 需要增加AV gather步骤, 即需要将AV转为全局AV
     implicit none
-    include 'netcdf.inc'
     type(proc),     intent(in)      :: my_proc
     integer,        intent(in)      :: ID
     character(len=*), intent(in) :: log_path
