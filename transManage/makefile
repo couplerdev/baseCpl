@@ -1,12 +1,12 @@
 FC = mpif90
 AR = ar
-OBJ =  extend.o comms.o
-SRC =  extend.F90 comms.F90
+OBJ =  extend.o  comms.F90
+SRC =  extend.F90 comms.F90 
 LIB_A = libcomm.a
 LIBDIR = ../lib
 INCLDIR = ../include
 LIB = -lmct -lmpeu -lnetcdff
-FFLAG = -I/usr/local/include  -I../include -I./ -I/usr/local/netcdf4/include -L../lib
+FFLAG = -I/usr/local/include  -I../include -I./ -I/usr/local/include -L../lib
 
 #$(LIB_A) : $(OBJ)
 #	$(AR) rcs $(LIB_A) $(OBJ)

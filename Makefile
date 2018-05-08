@@ -1,6 +1,7 @@
 FC = mpif90
 AR = ar
 LIB_A = libbcpl.a
+ABSDIR = $(shell pwd)
 SRC  = ./include/*.o
 LIBDIR = ./lib
 path0 = MCTWrapper
@@ -8,22 +9,27 @@ path1 = data_def
 path2 = timeManage
 path3 = transManage
 path4 = procManage
-model1 = ./model/model1
-model2 = ./model/model2
-model3 = ./model/model3
+models=$(shell ls -l ./model|grep ^d|grep -v 'cpl'|awk '{print $$9}')
 MAIN = ./model/cpl
 
 
 .PHONY : all
 all :
+	@echo $(ABSDIR)
+	@echo $(models)
 	make -C $(path0)
 	make -C $(path1)
 	make -C $(path2)
 	make -C	$(path3) 
 	make -C $(path4)
-	make -C $(model1)
-	make -C $(model2)
-	make -C $(model3)
+	@echo make models
+	@for dir in $(models);\
+	do\
+		cd ./model/$$dir;\
+		make;\
+		cd -;\
+	done
+	@echo end make models
 	$(AR) rcs $(LIB_A) $(SRC)
 	rm ./include/*.o
 	mv $(LIB_A) $(LIBDIR) 	
