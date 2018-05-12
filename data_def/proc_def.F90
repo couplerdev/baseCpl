@@ -13,7 +13,7 @@ use comms_def
         integer :: num_models
         integer :: my_rank
         integer :: my_size
-        integer :: ncomps = 8
+        integer :: ncomps = 10
         !-----------------------------------------------
         ! define flags
         !-----------------------------------------------
@@ -49,6 +49,15 @@ use comms_def
         type(AttrVect) :: x2b_bx
         type(map_mod)  :: Mapper_Cb2x
         type(map_mod)  :: Mapper_Cx2b
+        character(len=20) :: modelatm
+        integer :: atm_size
+        integer :: atm_gsize
+        type(AttrVect) :: atm2x_atmatm
+        type(AttrVect) :: atm2x_atmx
+        type(AttrVect) :: x2atm_atmatm
+        type(AttrVect) :: x2atm_atmx
+        type(map_mod)  :: Mapper_Catm2x
+        type(map_mod)  :: Mapper_Cx2atm
 
         character(len=20) :: iList = "fieldi"
         character(len=20) :: rList = "fieldr"
@@ -57,6 +66,7 @@ use comms_def
         type(map_mod)  :: a
         type(map_mod)  :: c
         type(map_mod)  :: b
+        type(map_mod)  :: atm
         !sparse mat 
         type(map_mod)  :: mapper_SMata2b
         type(map_mod)  :: mapper_SMata2c
@@ -81,6 +91,8 @@ use comms_def
         integer :: mpi_modelc2cpl
         integer :: mpi_modelb
         integer :: mpi_modelb2cpl
+        integer :: mpi_modelatm
+        integer :: mpi_modelatm2cpl
 
         !-------------------------------------------------------
         ! To support the ncomps used in mct_world_init
@@ -90,11 +102,13 @@ use comms_def
         integer :: gloid         = 1
         integer :: cplid         = 2
         integer :: modela_id = 3
-        integer :: modela2cpl_id = 6
+        integer :: modela2cpl_id = 7
         integer :: modelc_id = 4
-        integer :: modelc2cpl_id = 7
+        integer :: modelc2cpl_id = 8
         integer :: modelb_id = 5
-        integer :: modelb2cpl_id = 8
+        integer :: modelb2cpl_id = 9
+        integer :: modelatm_id = 6
+        integer :: modelatm2cpl_id = 10
 
         integer, dimension(:), pointer :: comp_comm
         integer, dimension(:), pointer :: comp_id
@@ -124,6 +138,11 @@ use comms_def
         logical :: iamroot_modelb
         logical :: iamroot_modelb2cpl
         logical :: b_run
+        logical :: iamin_modelatm
+        logical :: iamin_modelatm2cpl
+        logical :: iamroot_modelatm
+        logical :: iamroot_modelatm2cpl
+        logical :: atm_run
 
 
     end type proc

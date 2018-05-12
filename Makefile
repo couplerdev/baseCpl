@@ -11,6 +11,7 @@ path4 = procManage
 model1 = ./model/model1
 model2 = ./model/model2
 model3 = ./model/model3
+model4 = ./model/atm
 MAIN = ./model/cpl
 
 
@@ -24,6 +25,7 @@ all :
 	make -C $(model1)
 	make -C $(model2)
 	make -C $(model3)
+	make -C $(model4)
 	$(AR) rcs $(LIB_A) $(SRC)
 	rm ./include/*.o
 	mv $(LIB_A) $(LIBDIR) 	
@@ -40,5 +42,6 @@ clean :
 	make clean -C $(model1)
 	make clean -C $(model2)
 	make clean -C $(model3)
+	make clean -C $(model4)
 	make clean -C $(MAIN)
 	rm ./main

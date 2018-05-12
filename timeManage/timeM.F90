@@ -11,9 +11,12 @@ module timeM
         integer :: interval
     end type Clock
     integer :: total_days =  1 
-    integer :: time_a_run     =  3
-    integer :: time_b_run     =  7
-    integer :: time_c_run     =  19
+
+    integer :: time_a_run = 3
+    integer :: time_c_run = 7
+    integer :: time_b_run = 5
+    integer :: time_atm_run = 9
+
 
     public :: clock_init
     public :: clock_advance
@@ -89,9 +92,25 @@ subroutine triger(EClock, flag, flag_name)
         tmp_m = mod(60, time_a_run)
         tmp_h = mod(60*60, time_a_run)
         tmp_d = mod(tmp_h*24, time_a_run)
-        tmp_mod = mod(EClock%seconds, time_a_run) + mod(EClock%minites*tmp_m, time_a_run) + &
-                  mod(EClock%hours*tmp_h, time_a_run) + mod(EClock%days*tmp_d, time_a_run)
+        tmp_mod = mod(EClock%seconds, time_a_run) +&
+mod(EClock%minites*tmp_m, time_a_run) + &
+                  mod(EClock%hours*tmp_h, time_a_run) + &
+mod(EClock%days*tmp_d, time_a_run)
         tmp_mod = mod(tmp_mod, time_a_run)
+        if(tmp_mod == 0)then
+            flag = .true.
+        end if
+    end if
+
+    if(flag_name=='c_run')then
+        tmp_m = mod(60, time_c_run)
+        tmp_h = mod(60*60, time_c_run)
+        tmp_d = mod(tmp_h*24, time_c_run)
+        tmp_mod = mod(EClock%seconds, time_c_run) +&
+mod(EClock%minites*tmp_m, time_c_run) + &
+                  mod(EClock%hours*tmp_h, time_c_run) + &
+mod(EClock%days*tmp_d, time_c_run)
+        tmp_mod = mod(tmp_mod, time_c_run)
         if(tmp_mod == 0)then
             flag = .true.
         end if
@@ -99,27 +118,33 @@ subroutine triger(EClock, flag, flag_name)
 
     if(flag_name=='b_run')then
         tmp_m = mod(60, time_b_run)
-        tmp_h = mod(tmp_m*60, time_b_run) 
+        tmp_h = mod(60*60, time_b_run)
         tmp_d = mod(tmp_h*24, time_b_run)
-        tmp_mod = mod(EClock%seconds, time_b_run) + mod(EClock%minites*tmp_m, time_b_run) + & 
-                  mod(EClock%hours*tmp_h, time_b_run) + mod(EClock%days*tmp_d, time_b_run)
+        tmp_mod = mod(EClock%seconds, time_b_run) +&
+mod(EClock%minites*tmp_m, time_b_run) + &
+                  mod(EClock%hours*tmp_h, time_b_run) + &
+mod(EClock%days*tmp_d, time_b_run)
         tmp_mod = mod(tmp_mod, time_b_run)
-        if(tmp_mod == 0) then
+        if(tmp_mod == 0)then
             flag = .true.
         end if
     end if
 
-    if(flag_name=='c_run')then
-        tmp_m = mod(60, time_c_run) 
-        tmp_h = mod(tmp_m*60, time_c_run)
-        tmp_d = mod(tmp_h*24, time_c_run)
-        tmp_mod = mod(EClock%seconds, time_c_run) + mod(EClock%minites*tmp_m, time_c_run) + &
-                  mod(EClock%hours*tmp_h, time_c_run) + mod(EClock%days*tmp_d, time_c_run)
-        tmp_mod = mod(tmp_mod, time_c_run)
-        if(tmp_mod == 0 )then
+    if(flag_name=='atm_run')then
+        tmp_m = mod(60, time_atm_run)
+        tmp_h = mod(60*60, time_atm_run)
+        tmp_d = mod(tmp_h*24, time_atm_run)
+        tmp_mod = mod(EClock%seconds, time_atm_run) +&
+mod(EClock%minites*tmp_m, time_atm_run) + &
+                  mod(EClock%hours*tmp_h, time_atm_run) + &
+mod(EClock%days*tmp_d, time_atm_run)
+        tmp_mod = mod(tmp_mod, time_atm_run)
+        if(tmp_mod == 0)then
             flag = .true.
         end if
     end if
+
+
 end subroutine triger
 
 subroutine clock_print(EClock)

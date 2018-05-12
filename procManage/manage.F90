@@ -26,8 +26,8 @@ subroutine init(my_proc)
     integer :: iter
 
 
-    my_proc%num_models = 3
-    my_proc%num_comms = 8
+    my_proc%num_models = 4
+    my_proc%num_comms = 10
     my_proc%num_flags = -1
     
     
@@ -49,6 +49,7 @@ subroutine init(my_proc)
     my_proc%a_gsize = 8
     my_proc%c_gsize = 16
     my_proc%b_gsize = 12
+    my_proc%atm_gsize = 12
     
     !----------------------------------------------------------
     ! set up every comp's comm
@@ -77,6 +78,10 @@ subroutine init(my_proc)
                 my_proc%mpi_modelb2cpl, &
                 my_proc%modelb_id, my_proc%cplid, &
                 my_proc%modelb2cpl_id, my_proc%iamin_model, 0, ierr)
+    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelatm,&
+                my_proc%mpi_modelatm2cpl, &
+                my_proc%modelatm_id, my_proc%cplid, &
+                my_proc%modelatm2cpl_id, my_proc%iamin_model, 0, ierr)
 
 
 
@@ -100,6 +105,9 @@ subroutine init(my_proc)
 
     my_proc%comp_comm(my_proc%modelb_id)     = my_proc%mpi_modelb
     my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl  
+
+    my_proc%comp_comm(my_proc%modelatm_id)     = my_proc%mpi_modelatm
+    my_proc%comp_comm(my_proc%modelatm2cpl_id) = my_proc%mpi_modelatm2cpl  
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*)'comp_comm initiated'
@@ -163,6 +171,19 @@ subroutine init(my_proc)
         my_proc%iamin_modelb2cpl = .true.
     end if
 
+    my_proc%iamin_modelatm = .false.
+    if(my_proc%iamin_model(my_proc%modelatm_id))then
+        call iam_comm_root(my_proc%mpi_modelatm, my_proc%iamroot_modelatm, ierr)
+        my_proc%iamin_modelatm = .true.
+    end if
+
+    my_proc%iamin_modelatm2cpl = .false.
+    if(my_proc%iamin_model(my_proc%modelatm2cpl_id))then
+        call iam_comm_root(my_proc%mpi_modelatm2cpl, &
+            my_proc%iamroot_modelatm2cpl, ierr)
+        my_proc%iamin_modelatm2cpl = .true.
+    end if
+
 
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
@@ -177,6 +198,9 @@ subroutine init(my_proc)
 
     call mapper_init(my_proc%mapper_Cb2x, ierr)
     call mapper_init(my_proc%mapper_Cx2b, ierr)
+
+    call mapper_init(my_proc%mapper_Catm2x, ierr)
+    call mapper_init(my_proc%mapper_Cx2atm, ierr)
 
     my_proc%nothing = .false.
 
