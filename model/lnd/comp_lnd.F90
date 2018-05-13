@@ -1,21 +1,21 @@
-module comp_atm
+module comp_lnd
 use mct_mod
 use timeM
 use proc_def
-    implicit none
-    integer  :: comp_id
-    !---------------------------------------------------------
-    ! notice that the fields of a2x and x2a maybe different
-    ! but here we just assume they are same
-    !---------------------------------------------------------
-    integer,parameter :: CXX=4096
-    character(CXX) :: fld_ar=''
-    character(CXX) :: fld_ai=''
-    character(*),parameter :: model_name='atm'
+  implicit none
+  integer  :: comp_id
+  !---------------------------------------------------------
+  ! notice that the fields of a2x and x2a maybe different
+  ! but here we just assume they are same
+  !---------------------------------------------------------
+  integer,parameter :: CXX=4096
+  character(CXX) :: fld_ar=''
+  character(CXX) :: fld_ai=''
+  character(*),parameter :: model_name='lnd'
 
-    public :: atm_init_mct
-    public :: atm_run_mct
-    public :: atm_final_mct
+  public :: lnd_init_mct
+  public :: lnd_run_mct
+  public :: lnd_final_mct
 
 contains
 
@@ -23,17 +23,17 @@ contains
 !  a_init_mct, init gsmap_aa, avect, avect init with zero, but not init
 !  dom at present
 !-------------------------------------------------------------------------
-subroutine atm_init_mct(my_proc, ID, EClock, &
-    gsMap_atmatm, atm2x_atmatm, x2atm_atmatm, &
+subroutine lnd_init_mct(my_proc, ID, EClock, &
+    gsMap_lndlnd, lnd2x_lndlnd, x2lnd_lndlnd, &
     domain, ierr)
 
     implicit none
     type(proc), intent(inout)        :: my_proc
     integer, intent(in)              :: ID
     type(Clock), intent(in)          :: EClock
-    type(gsMap), intent(inout)       :: gsMap_atmatm
-    type(AttrVect), intent(inout)    :: atm2x_atmatm
-    type(AttrVect), intent(inout)    :: x2atm_atmatm
+    type(gsMap), intent(inout)       :: gsMap_lndlnd
+    type(AttrVect), intent(inout)    :: lnd2x_lndlnd
+    type(AttrVect), intent(inout)    :: x2lnd_lndlnd
     type(gGrid), intent(inout)              :: domain
     integer,  intent(inout)          :: ierr
     integer ::local_comm,i
@@ -58,13 +58,13 @@ subroutine atm_init_mct(my_proc, ID, EClock, &
 
     !--- formats ---
     integer               :: logunit
-    character(*), parameter :: F00   = "('(atm_init_mct) ',8a)"
-    character(*), parameter :: F01   = "('(atm_init_mct) ',a,4i8)"
-    character(*), parameter :: F02   = "('(atm_init_mct) ',a,4es13.6)"
-    character(*), parameter :: F03   = "('(atm_init_mct) ',a,i8,a)"
-    character(*), parameter :: F90   = "('(atm_init_mct ',73('='))"
-    character(*), parameter :: F91   = "('(atm_init_mct) ',73('-'))"
-    character(*), parameter :: subName = "(atm_init_mct) "
+    character(*), parameter :: F00   = "('(lnd_init_mct) ',8a)"
+    character(*), parameter :: F01   = "('(lnd_init_mct) ',a,4i8)"
+    character(*), parameter :: F02   = "('(lnd_init_mct) ',a,4es13.6)"
+    character(*), parameter :: F03   = "('(lnd_init_mct) ',a,i8,a)"
+    character(*), parameter :: F90   = "('(lnd_init_mct ',73('='))"
+    character(*), parameter :: F91   = "('(lnd_init_mct) ',73('-'))"
+    character(*), parameter :: subName = "(lnd_init_mct) "
 
     
     local_comm = my_proc%comp_comm(ID)
@@ -85,7 +85,7 @@ subroutine atm_init_mct(my_proc, ID, EClock, &
 !---
     logunit = 0
     if (comm_rank == root) then
-       write(logunit,*  ) ' Read in Xatm input from file= xatm_in'
+       write(logunit,*  ) ' Read in Xlnd input from file= xlnd_in'
        write(logunit,F00)
        write(logunit,F00) '         Model  :  ',trim(model_name)
        write(logunit,F01) '           NGX  :  ',ngx
@@ -120,11 +120,11 @@ subroutine atm_init_mct(my_proc, ID, EClock, &
 !---
 ! Init MCT Global seg map
 !---
-  call gsMap_init(gsMap_atmatm, start, length, root, local_comm, ID)
+  call gsMap_init(gsMap_lndlnd, start, length, root, local_comm, ID)
 !---
 ! Init MCT Domain todo(now is use constant number to init domain data),
 !---
-  call atm_domain_init(local_comm, gsMap_atmatm, domain)
+  call lnd_domain_init(local_comm, gsMap_lndlnd, domain)
 !----
 !Init Attrvect
 !----
@@ -138,46 +138,46 @@ subroutine atm_init_mct(my_proc, ID, EClock, &
   call seq_flds_add(fld_ar, 'Sa_dens')
   call seq_flds_add(fld_ar, 'Sa_ptem')
 
-  call avect_init(atm2x_atmatm, iList=fld_ai, rList=fld_ar, lsize=lsize)
-  call avect_init(x2atm_atmatm, iList=fld_ai, rList=fld_ar, lsize=lsize)
+  call avect_init(lnd2x_lndlnd, iList=fld_ai, rList=fld_ar, lsize=lsize)
+  call avect_init(x2lnd_lndlnd, iList=fld_ai, rList=fld_ar, lsize=lsize)
  
-  call avect_zero(atm2x_atmatm)
-  call avect_zero(x2atm_atmatm) 
+  call avect_zero(lnd2x_lndlnd)
+  call avect_zero(x2lnd_lndlnd) 
 
-end subroutine atm_init_mct
+end subroutine lnd_init_mct
 
-subroutine atm_run_mct(my_proc, ID, EClock, atm2x, x2atm, ierr)
+subroutine lnd_run_mct(my_proc, ID, EClock, lnd2x, x2lnd, ierr)
 
     implicit none
     type(proc), intent(inout)      :: my_proc
     integer,    intent(in)         :: ID
     type(Clock), intent(in)        :: EClock
-    type(AttrVect), intent(inout)  :: atm2x
-    type(AttrVect), intent(inout)  :: x2atm
+    type(AttrVect), intent(inout)  :: lnd2x
+    type(AttrVect), intent(inout)  :: x2lnd
     integer, intent(inout)         :: ierr    
     integer comm_rank,i, av_lsize, n_rflds, n_iflds, n,nf
     
 
     call mpi_comm_rank(my_proc%comp_comm(ID), comm_rank, ierr)
     
-    av_lsize = avect_lsize(atm2x) 
-    n_rflds = avect_nRattr(x2atm)
-    n_iflds = avect_nRattr(x2atm)
+    av_lsize = avect_lsize(lnd2x) 
+    n_rflds = avect_nRattr(x2lnd)
+    n_iflds = avect_nRattr(x2lnd)
 
     do nf=1,n_rflds
       do n=1,av_lsize
-        atm2x%rAttr(nf,n) = (nf*100)                   
+        lnd2x%rAttr(nf,n) = (nf*100)                   
       enddo
     enddo
 
 
-end subroutine atm_run_mct
+end subroutine lnd_run_mct
 
-subroutine atm_final_mct()
+subroutine lnd_final_mct()
 
     !write(*,*) "a final"
 
-end subroutine atm_final_mct
+end subroutine lnd_final_mct
 
 
 subroutine seq_flds_add(outfld, str)
@@ -198,10 +198,10 @@ end subroutine seq_flds_add
 
 !--- todo
 
-subroutine atm_domain_init(mpicomm, gsMap_atmatm, domain)
+subroutine lnd_domain_init(mpicomm, gsMap_lndlnd, domain)
 
   integer    , intent(in)   :: mpicomm
-  type(gsMap), intent(in)   :: gsMap_atmatm
+  type(gsMap), intent(in)   :: gsMap_lndlnd
   type(gGrid), intent(inout)             :: domain
 
   !---local variables---
@@ -212,10 +212,10 @@ subroutine atm_domain_init(mpicomm, gsMap_atmatm, domain)
   call gGrid_init(GGrid=domain, &
       CoordChars=trim('x:y:z'), &
       otherchars=trim('lat:lon:area:frac:mask:aream'),&
-      lsize=gsMap_lsize(gsMap_atmatm, mpicomm))
+      lsize=gsMap_lsize(gsMap_lndlnd, mpicomm))
   call avect_zero(domain%data)
 
-  lsize=gsMap_lsize(gsMap_atmatm, mpicomm)
+  lsize=gsMap_lsize(gsMap_lndlnd, mpicomm)
 
   allocate(data(lsize))
   allocate(idata(lsize))
@@ -234,4 +234,4 @@ subroutine atm_domain_init(mpicomm, gsMap_atmatm, domain)
 
 end subroutine
 
-end module comp_atm
+end module comp_lnd

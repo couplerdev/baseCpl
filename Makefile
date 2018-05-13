@@ -12,6 +12,8 @@ model1 = ./model/model1
 model2 = ./model/model2
 model3 = ./model/model3
 model4 = ./model/atm
+model5 = ./model/ocn
+model6 = ./model/lnd
 MAIN = ./model/cpl
 
 
@@ -26,6 +28,8 @@ all :
 	make -C $(model2)
 	make -C $(model3)
 	make -C $(model4)
+	make -C $(model5)
+	make -C $(model6)
 	$(AR) rcs $(LIB_A) $(SRC)
 	rm ./include/*.o
 	mv $(LIB_A) $(LIBDIR) 	
@@ -43,5 +47,7 @@ clean :
 	make clean -C $(model2)
 	make clean -C $(model3)
 	make clean -C $(model4)
+	make clean -C $(model5)
+	make clean -C $(model6)
 	make clean -C $(MAIN)
 	rm ./main

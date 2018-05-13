@@ -6,12 +6,12 @@ module deploy_mod
     implicit none
 include 'mpif.h'
     integer :: defaulToAll = 1
-    integer :: comp(5, 3)
+    integer :: comp(7, 3)
     data comp / & !--- comp_first, comp_last, stride
-                                                                           
-        0,0,2,2,2,&
-        3,1,3,3,3,&
-        1,1,1,1,1/
+                                                                                                         
+        0,0,2,2,2,2,0,&
+        3,1,3,3,3,3,1,&
+        1,1,1,1,1,1,1/
     public  :: deploy
     public  :: deploy_cpl
     public  :: deploy_readFile

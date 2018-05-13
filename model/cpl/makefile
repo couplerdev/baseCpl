@@ -1,7 +1,7 @@
 FC = mpif90
 OBJ_M = main.o
 OBJ = baseCpl.o 
-MODELS = ./comp_a.o ./comp_b.o ./comp_c.o ./comp_atm.o
+MODELS = ./comp_a.o ./comp_b.o ./comp_c.o ./comp_atm.o ./comp_ocn.o ./comp_lnd.o
 #OBJS = ../../MCTWrapper/mct_mod.o \
 	   ../../data_def/proc_def.o \
            ../../data_def/comms_def.o \
