@@ -46,5 +46,8 @@ clean :
 	make clean -C $(model1)
 	make clean -C $(model2)
 	make clean -C $(model3)
+	make clean -C $(model4)
+	make clean -C $(model5)
+	make clean -C $(model6)
 	make clean -C $(MAIN)
 	rm ./main

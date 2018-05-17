@@ -20,7 +20,7 @@ contains
 !  a_init_mct, init gsmap_aa, avect, avect init with zero, but not init
 !  dom at present
 !-------------------------------------------------------------------------
-subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
+subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, domain,ierr)
 
     implicit none
     type(proc), intent(inout)        :: my_proc
@@ -29,6 +29,7 @@ subroutine a_init_mct(my_proc, ID, EClock, gsMap_aa, a2x_aa, x2a_aa, ierr)
     type(gsMap), intent(inout)       :: gsMap_aa
     type(AttrVect), intent(inout)    :: a2x_aa
     type(AttrVect), intent(inout)    :: x2a_aa
+    type(gGrid), intent(inout)              :: domain
     integer,  intent(inout)          :: ierr
   
     integer, allocatable  :: start(:)

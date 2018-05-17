@@ -1,5 +1,5 @@
 GFORTRAN module version '10' created from timeM.F90
-MD5:749ed258b5c8eb2abdd38aada2dd8322 -- If you edit this, you'll get what you deserve.
+MD5:f987a1893d9ee4117c296bbba65510cd -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () () ()
 () () ())
@@ -44,19 +44,28 @@ DECL UNKNOWN 0 0 SUBROUTINE) (UNKNOWN 0 0 0 0 UNKNOWN ()) 21 0 (22) () 0
 23 'time_a_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
 () 0 0)
-24 'time_b_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+24 'time_atm_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
 () 0 0)
-25 'time_c_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+25 'time_b_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
 () 0 0)
-26 'timem' 'timem' '' 1 ((MODULE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+26 'time_c_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+27 'time_lnd_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+28 'time_ocn_run' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
+() 0 0)
+29 'timem' 'timem' '' 1 ((MODULE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
 UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () () 0 () () () 0 0)
-27 'total_days' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+30 'total_days' 'timem' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () ()
 () 0 0)
-28 'triger' 'timem' '' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL
-UNKNOWN 0 0 SUBROUTINE) (UNKNOWN 0 0 0 0 UNKNOWN ()) 29 0 (30 31 32) ()
+31 'triger' 'timem' '' 1 ((PROCEDURE UNKNOWN-INTENT MODULE-PROC DECL
+UNKNOWN 0 0 SUBROUTINE) (UNKNOWN 0 0 0 0 UNKNOWN ()) 32 0 (33 34 35) ()
 0 () () () 0 0)
 11 'eclock' '' '' 10 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
@@ -70,14 +79,15 @@ DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
 OPTIONAL DUMMY) (INTEGER 4 0 0 0 INTEGER ()) 0 0 () () 0 () () () 0 0)
 22 'eclock' '' '' 21 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
-30 'eclock' '' '' 29 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
+33 'eclock' '' '' 32 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 DUMMY) (DERIVED 2 0 0 0 DERIVED ()) 0 0 () () 0 () () () 0 0)
-31 'flag' '' '' 29 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
+34 'flag' '' '' 32 ((VARIABLE INOUT UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 DUMMY) (LOGICAL 4 0 0 0 LOGICAL ()) 0 0 () () 0 () () () 0 0)
-32 'flag_name' '' '' 29 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
+35 'flag_name' '' '' 32 ((VARIABLE IN UNKNOWN-PROC UNKNOWN UNKNOWN 0 0
 DUMMY) (CHARACTER 1 0 0 0 CHARACTER (())) 0 0 () () 0 () () () 0 0)
 )
 
 ('Clock' 0 2 'clock' 0 8 'clock_advance' 0 9 'clock_info' 0 12
-'clock_init' 0 16 'clock_print' 0 20 'time_a_run' 0 23 'time_b_run' 0 24
-'time_c_run' 0 25 'timem' 0 26 'total_days' 0 27 'triger' 0 28)
+'clock_init' 0 16 'clock_print' 0 20 'time_a_run' 0 23 'time_atm_run' 0
+24 'time_b_run' 0 25 'time_c_run' 0 26 'time_lnd_run' 0 27 'time_ocn_run'
+0 28 'timem' 0 29 'total_days' 0 30 'triger' 0 31)

@@ -13,7 +13,7 @@ use comms_def
         integer :: num_models
         integer :: my_rank
         integer :: my_size
-        integer :: ncomps = 8
+        integer :: ncomps = 14
         !-----------------------------------------------
         ! define flags
         !-----------------------------------------------
@@ -49,6 +49,33 @@ use comms_def
         type(AttrVect) :: x2b_bx
         type(map_mod)  :: Mapper_Cb2x
         type(map_mod)  :: Mapper_Cx2b
+        character(len=20) :: modelocn
+        integer :: ocn_size
+        integer :: ocn_gsize
+        type(AttrVect) :: ocn2x_ocnocn
+        type(AttrVect) :: ocn2x_ocnx
+        type(AttrVect) :: x2ocn_ocnocn
+        type(AttrVect) :: x2ocn_ocnx
+        type(map_mod)  :: Mapper_Cocn2x
+        type(map_mod)  :: Mapper_Cx2ocn
+        character(len=20) :: modelatm
+        integer :: atm_size
+        integer :: atm_gsize
+        type(AttrVect) :: atm2x_atmatm
+        type(AttrVect) :: atm2x_atmx
+        type(AttrVect) :: x2atm_atmatm
+        type(AttrVect) :: x2atm_atmx
+        type(map_mod)  :: Mapper_Catm2x
+        type(map_mod)  :: Mapper_Cx2atm
+        character(len=20) :: modellnd
+        integer :: lnd_size
+        integer :: lnd_gsize
+        type(AttrVect) :: lnd2x_lndlnd
+        type(AttrVect) :: lnd2x_lndx
+        type(AttrVect) :: x2lnd_lndlnd
+        type(AttrVect) :: x2lnd_lndx
+        type(map_mod)  :: Mapper_Clnd2x
+        type(map_mod)  :: Mapper_Cx2lnd
 
         character(len=20) :: iList = "fieldi"
         character(len=20) :: rList = "fieldr"
@@ -57,6 +84,9 @@ use comms_def
         type(map_mod)  :: a
         type(map_mod)  :: c
         type(map_mod)  :: b
+        type(map_mod)  :: ocn
+        type(map_mod)  :: atm
+        type(map_mod)  :: lnd
         !sparse mat 
         type(map_mod)  :: mapper_SMata2b
         type(map_mod)  :: mapper_SMata2c
@@ -81,6 +111,12 @@ use comms_def
         integer :: mpi_modelc2cpl
         integer :: mpi_modelb
         integer :: mpi_modelb2cpl
+        integer :: mpi_modelocn
+        integer :: mpi_modelocn2cpl
+        integer :: mpi_modelatm
+        integer :: mpi_modelatm2cpl
+        integer :: mpi_modellnd
+        integer :: mpi_modellnd2cpl
 
         !-------------------------------------------------------
         ! To support the ncomps used in mct_world_init
@@ -90,11 +126,17 @@ use comms_def
         integer :: gloid         = 1
         integer :: cplid         = 2
         integer :: modela_id = 3
-        integer :: modela2cpl_id = 6
+        integer :: modela2cpl_id = 9
         integer :: modelc_id = 4
-        integer :: modelc2cpl_id = 7
+        integer :: modelc2cpl_id = 10
         integer :: modelb_id = 5
-        integer :: modelb2cpl_id = 8
+        integer :: modelb2cpl_id = 11
+        integer :: modelocn_id = 6
+        integer :: modelocn2cpl_id = 12
+        integer :: modelatm_id = 7
+        integer :: modelatm2cpl_id = 13
+        integer :: modellnd_id = 8
+        integer :: modellnd2cpl_id = 14
 
         integer, dimension(:), pointer :: comp_comm
         integer, dimension(:), pointer :: comp_id
@@ -124,6 +166,21 @@ use comms_def
         logical :: iamroot_modelb
         logical :: iamroot_modelb2cpl
         logical :: b_run
+        logical :: iamin_modelocn
+        logical :: iamin_modelocn2cpl
+        logical :: iamroot_modelocn
+        logical :: iamroot_modelocn2cpl
+        logical :: ocn_run
+        logical :: iamin_modelatm
+        logical :: iamin_modelatm2cpl
+        logical :: iamroot_modelatm
+        logical :: iamroot_modelatm2cpl
+        logical :: atm_run
+        logical :: iamin_modellnd
+        logical :: iamin_modellnd2cpl
+        logical :: iamroot_modellnd
+        logical :: iamroot_modellnd2cpl
+        logical :: lnd_run
 
 
     end type proc

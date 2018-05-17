@@ -19,6 +19,8 @@ use m_attrvect ,only: avect_getRList => getRList
 use m_attrvect ,only: avect_exportIList2c => exportIListToChar
 use m_attrvect ,only: avect_exportRList2c => exportRListToChar
 
+use m_attrvect ,only: avect_nRattr => nRattr
+
 use m_GeneralGrid ,only: gGrid => GeneralGrid
 use m_GeneralGrid ,only: gGrid_init => init
 use m_GeneralGrid ,only: gGrid_clean => clean
@@ -26,6 +28,9 @@ use m_GeneralGrid ,only: gGrid_dims => dims
 use m_GeneralGrid ,only: gGrid_lsize => lsize
 use m_GeneralGrid ,only: gGrid_indexIA => indexIA
 use m_GeneralGrid ,only: gGrid_indexRA => indexRA
+
+use m_GeneralGrid ,only: gGrid_importRAttr => importRAttr
+use m_GeneralGrid ,only: gGrid_importIAttr => importIAttr
 
 use m_Transfer ,only: mct_send => Send
 use m_Transfer ,only: mct_recv => Recv
