@@ -2,36 +2,41 @@ module mrg_mod
 
 use mct_mod
 use proc_def
-use comms
+!use comms
 use mpi_comm
 
     implicit none
-include"mpif.h"
      
     !----------------------------------------------------
     !   add user define subroutine
     !----------------------------------------------------
     public :: mrg_x2atm
-    public :: mrg_x2lnd
-    public :: mrg_x2ocn
+    !public :: mrg_x2lnd
+    !public :: mrg_x2ocn
 
 contains
 
-subroutine mrg_x2atm(my_proc, x2atm_atm, ocn2x_atm, lnd2x_atm)
+subroutine mrg_x2atm(my_proc, x2atm_atm, ocn2x_atm, lnd2x_atm, fractions_a)
 
-    type(proc,) intent(inout)      :: my_proc 
-    type(AttrVect), intent(inout)  :: xatm_atm
-    type(AttrVect), intent(inout)  :: x2ocn_atm
-    type(AttrVect), intent(inout)  :: x2lnd_atm
+    type(proc), intent(inout)      :: my_proc 
+    type(AttrVect), intent(inout)  :: x2atm_atm
+    type(AttrVect), intent(inout)  :: ocn2x_atm
+    type(AttrVect), intent(inout)  :: lnd2x_atm
+    type(AttrVect), intent(inout)  :: fractions_a
     
     character(len=100) :: field_atm
     character(len=100) :: field_ocn
     character(len=100) :: field_lnd
-    
-    integer :: n, ka, kl, ko
-
+    character(len=100) :: itemc_atm
+    character(len=100) :: itemc_lnd
+    character(len=100) :: itemc_ocn   
+ 
+    integer :: n, ka, kl, ko, kof, klf
+    integer :: lsize
+    real   :: fracl, fraco
     logical :: iamroot
     logical :: first_time = .true.
+    logical :: mct_usevector = .false.
     logical, pointer, save :: lmerge(:), omerge(:)
     integer, pointer, save :: lindx(:), oindx(:)
     integer, save          :: naflds, klflds, noflds
@@ -41,10 +46,10 @@ subroutine mrg_x2atm(my_proc, x2atm_atm, ocn2x_atm, lnd2x_atm)
     if (first_time)then
         
          naflds = avect_nRattr(x2atm_atm)
-         klflds = avect_nRattr(lnd2x_lnd)
-         noflds = avect_nRattr(ocn2x_ocn)
+         klflds = avect_nRattr(lnd2x_atm)
+         noflds = avect_nRattr(ocn2x_atm)
 
-         allocate(lindex(naflds), lmerge(naflds))
+         allocate(lindx(naflds), lmerge(naflds))
          allocate(oindx(naflds), omerge(naflds)) 
    
          lindx(:) = 0
@@ -127,7 +132,7 @@ subroutine mrg_x2atm(my_proc, x2atm_atm, ocn2x_atm, lnd2x_atm)
          do n = 1, lsize
              fracl = fractions_a%Rattr(klf, n)
              fraco = fractions_a%Rattr(kof, n)
-             if(lindx(ka)>0 .and. fracl > 0._r8) then
+             if(lindx(ka)>0 .and. fracl > 0) then
                  if(lmerge(ka))then
                      x2atm_atm%rAttr(ka, n) = x2atm_atm%rAttr(ka,n) + lnd2x_atm%rAttr(lindx(ka),n)*fracl
                  else
@@ -142,11 +147,11 @@ subroutine mrg_x2atm(my_proc, x2atm_atm, ocn2x_atm, lnd2x_atm)
              !    end if
              !end if
              if (oindx(ka) > 0)then
-                 if(omerge(ka) .and. fraco > 0._r8)then
+                 if(omerge(ka) .and. fraco > 0)then
                      x2atm_atm%rAttr(ka, n) = x2atm_atm%rAttr(ka,n) + ocn2x_atm%rAttr(oindx(ka),n)*fraco
                  end if
                  if(.not. omerge(ka)) then
-                     x2atm_atm%rAttr(ka, n) = ocn2x_atm%rAttr(oindx(ka),n)*fraci
+                     x2atm_atm%rAttr(ka, n) = ocn2x_atm%rAttr(oindx(ka),n)*fraco
                      x2atm_atm%rAttr(ka, n) = x2atm_atm%rAttr(ka, n) + ocn2x_atm%rAttr(oindx(ka),n)*fraco
                 end if
              end if
