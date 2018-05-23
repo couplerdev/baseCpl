@@ -16,7 +16,7 @@ module timeM
     integer :: time_c_run = 7
     integer :: time_b_run = 5
     integer :: time_ocn_run = 7
-    integer :: time_atm_run = 3
+    integer :: time_atm_run = 9
     integer :: time_lnd_run = 7
 
 

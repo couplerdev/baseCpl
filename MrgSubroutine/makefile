@@ -1,7 +1,7 @@
 FC = mpif90
 AR = ar
 LIB_A = libprocm.a
-OBJ =   mrg_mod.o fraction_mod.o
+OBJ =   fraction_mod.o mrg_mod.o
 SRC  = ./mrg_mod.F90 ./fraction_mod.F90
 INCLDIR = ../include
 LIBDIR = ../lib

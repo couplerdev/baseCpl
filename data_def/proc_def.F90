@@ -29,6 +29,7 @@ use comms_def
         type(AttrVect) :: a2x_ax
         type(AttrVect) :: x2a_aa
         type(AttrVect) :: x2a_ax
+        type(gGrid) :: a_grid_domain
         type(map_mod)  :: Mapper_Ca2x
         type(map_mod)  :: Mapper_Cx2a
         character(len=20) :: modelc
@@ -38,6 +39,7 @@ use comms_def
         type(AttrVect) :: c2x_cx
         type(AttrVect) :: x2c_cc
         type(AttrVect) :: x2c_cx
+        type(gGrid) :: c_grid_domain
         type(map_mod)  :: Mapper_Cc2x
         type(map_mod)  :: Mapper_Cx2c
         character(len=20) :: modelb
@@ -47,6 +49,7 @@ use comms_def
         type(AttrVect) :: b2x_bx
         type(AttrVect) :: x2b_bb
         type(AttrVect) :: x2b_bx
+        type(gGrid) :: b_grid_domain
         type(map_mod)  :: Mapper_Cb2x
         type(map_mod)  :: Mapper_Cx2b
         character(len=20) :: modelocn
@@ -56,6 +59,7 @@ use comms_def
         type(AttrVect) :: ocn2x_ocnx
         type(AttrVect) :: x2ocn_ocnocn
         type(AttrVect) :: x2ocn_ocnx
+        type(gGrid) :: ocn_grid_domain
         type(map_mod)  :: Mapper_Cocn2x
         type(map_mod)  :: Mapper_Cx2ocn
         character(len=20) :: modelatm
@@ -65,6 +69,7 @@ use comms_def
         type(AttrVect) :: atm2x_atmx
         type(AttrVect) :: x2atm_atmatm
         type(AttrVect) :: x2atm_atmx
+        type(gGrid) :: atm_grid_domain
         type(map_mod)  :: Mapper_Catm2x
         type(map_mod)  :: Mapper_Cx2atm
         character(len=20) :: modellnd
@@ -74,6 +79,7 @@ use comms_def
         type(AttrVect) :: lnd2x_lndx
         type(AttrVect) :: x2lnd_lndlnd
         type(AttrVect) :: x2lnd_lndx
+        type(gGrid) :: lnd_grid_domain
         type(map_mod)  :: Mapper_Clnd2x
         type(map_mod)  :: Mapper_Cx2lnd
 
@@ -87,15 +93,16 @@ use comms_def
         type(map_mod)  :: ocn
         type(map_mod)  :: atm
         type(map_mod)  :: lnd
-        !sparse mat 
-        type(map_mod)  :: mapper_SMata2b
-        type(map_mod)  :: mapper_SMata2c
-
-        type(map_mod)  :: mapper_SMatb2a
-        type(map_mod)  :: mapper_SMatb2c
-
-        type(map_mod)  :: mapper_SMatc2a
-        type(map_mod)  :: mapper_SMatc2b
+        !sparse mat   emmmm 
+        type(map_mod)   :: mapper_SMata2b
+        type(map_mod)   :: mapper_SMata2c
+        type(map_mod)   :: mapper_SMatc2b
+        type(map_mod)   :: mapper_SMatc2a
+        type(map_mod)   :: mapper_SMatb2c
+        type(map_mod)   :: mapper_SMatb2a
+        type(map_mod)   :: mapper_SMatocn2atm
+        type(map_mod)   :: mapper_Smatatm2ocn
+        type(map_mod)   :: mapper_SMatlnd2atm
 
 
 

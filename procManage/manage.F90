@@ -46,11 +46,11 @@ subroutine init(my_proc)
     my_proc%b_size = 10
     my_proc%c_size = 10
     ! todo
-    my_proc%a_gsize = 8
+    my_proc%a_gsize = 10
     my_proc%c_gsize = 16
-    my_proc%b_gsize = 12
+    my_proc%b_gsize = 10
     my_proc%ocn_gsize = 1000
-    my_proc%atm_gsize = 1000
+    my_proc%atm_gsize = 20
     my_proc%lnd_gsize = 1000
     
     !----------------------------------------------------------

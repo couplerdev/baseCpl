@@ -5,6 +5,8 @@ use procm, only: pm_init => init, clean
 use comms
 use timeM
 use mct_mod
+use mrg_mod
+use fraction_mod
 use comp_a
 use comp_c
 use comp_b
@@ -18,22 +20,16 @@ use comp_lnd
     ! Declare gsMap of each Model
         type(gsMap) :: gsMap_aa
         type(gsMap) :: gsMap_ax
-        type(gGrid) :: a_grid_domain
         type(gsMap) :: gsMap_cc
         type(gsMap) :: gsMap_cx
-        type(gGrid) :: c_grid_domain
         type(gsMap) :: gsMap_bb
         type(gsMap) :: gsMap_bx
-        type(gGrid) :: b_grid_domain
         type(gsMap) :: gsMap_ocnocn
         type(gsMap) :: gsMap_ocnx
-        type(gGrid) :: ocn_grid_domain
         type(gsMap) :: gsMap_atmatm
         type(gsMap) :: gsMap_atmx
-        type(gGrid) :: atm_grid_domain
         type(gsMap) :: gsMap_lndlnd
         type(gsMap) :: gsMap_lndx
-        type(gGrid) :: lnd_grid_domain
 
     ! Declare AttrVect of each Model(c2x_cx,c2x_cc,x2c_cx,x2c_cc)
         type(AttrVect),pointer ::a2x_aa
@@ -69,6 +65,9 @@ use comp_lnd
          type(AttrVect):: c2x_ax
          type(AttrVect):: b2x_cx
          type(AttrVect):: b2x_ax
+         type(AttrVect):: ocn2x_atmx
+         type(AttrVect):: atm2x_ocnx
+         type(AttrVect):: lnd2x_atmx
 
     ! Declare Control Var
 	 logical :: a_run
@@ -78,6 +77,8 @@ use comp_lnd
 	 logical :: atm_run
 	 logical :: lnd_run
 
+    type(AttrVect) :: fraction_atm
+    type(AttrVect) :: fraction_ocn
     
      logical :: stop_clock
      type(clock) :: EClock
@@ -95,10 +96,10 @@ subroutine cpl_init()
     call pm_init(my_proc)
     call clock_init(EClock)
     
-    !---
+    !-------------------------------------------------------------------
     ! !A in 0,1,gsize=8   B in 2,3,gsize=12   C in 2,3,gsize=16
     ! !Cpl in 0,1,2,3
-    !----
+    !-------------------------------------------------------------------
 
     !-------------------------------------------------------------------
     !  !Define Model_AV_MM 
@@ -129,6 +130,11 @@ subroutine cpl_init()
                 x2lnd_lndlnd=> my_proc%x2lnd_lndlnd
                 x2lnd_lndx=> my_proc%x2lnd_lndx
 
+         call fraction_atm_init(my_proc, fraction_atm, my_proc, fraction_ocn, &
+                )
+         call fraction_ocn_init(my_proc, fraction_atm, my_proc, fraction_ocn, &
+                )
+
     call MPI_Comm_rank(MPI_COMM_WORLD, comm_rank, ierr)
 
 
@@ -139,7 +145,6 @@ subroutine cpl_init()
                     call a_init_mct(EClock=EClock&
 ,ID=my_proc%modela_id&
 ,a2x_aa=a2x_aa&
-,domain=a_grid_domain&
 ,gsMap_aa=gsMap_aa&
 ,ierr=ierr&
 ,my_proc=my_proc&
@@ -150,7 +155,6 @@ subroutine cpl_init()
                     call c_init_mct(EClock=EClock&
 ,ID=my_proc%modelc_id&
 ,c2x_cc=c2x_cc&
-,domain=c_grid_domain&
 ,gsMap_cc=gsMap_cc&
 ,ierr=ierr&
 ,my_proc=my_proc&
@@ -161,7 +165,6 @@ subroutine cpl_init()
                     call b_init_mct(EClock=EClock&
 ,ID=my_proc%modelb_id&
 ,b2x_bb=b2x_bb&
-,domain=b_grid_domain&
 ,gsMap_bb=gsMap_bb&
 ,ierr=ierr&
 ,my_proc=my_proc&
@@ -171,7 +174,6 @@ subroutine cpl_init()
                 if(my_proc%iamin_modelocn)then
                     call ocn_init_mct(EClock=EClock&
 ,ID=my_proc%modelocn_id&
-,domain=ocn_grid_domain&
 ,gsMap_ocnocn=gsMap_ocnocn&
 ,ierr=ierr&
 ,my_proc=my_proc&
@@ -183,7 +185,6 @@ subroutine cpl_init()
                     call atm_init_mct(EClock=EClock&
 ,ID=my_proc%modelatm_id&
 ,atm2x_atmatm=atm2x_atmatm&
-,domain=atm_grid_domain&
 ,gsMap_atmatm=gsMap_atmatm&
 ,ierr=ierr&
 ,my_proc=my_proc&
@@ -193,7 +194,6 @@ subroutine cpl_init()
                 if(my_proc%iamin_modellnd)then
                     call lnd_init_mct(EClock=EClock&
 ,ID=my_proc%modellnd_id&
-,domain=lnd_grid_domain&
 ,gsMap_lndlnd=gsMap_lndlnd&
 ,ierr=ierr&
 ,lnd2x_lndlnd=lnd2x_lndlnd&
@@ -471,6 +471,42 @@ subroutine cpl_init()
                                8,&
                                gsMap_bx, gsMap_ax)
 
+        call avect_init_ext(my_proc, x2ocn_ocnx,&
+                            my_proc%cplid, ocn2x_atmx,&
+                            my_proc%cplid, gsMap_atmx, &
+                            my_proc%modelatm2cpl_id)
+
+        call mapper_spmat_init(my_proc,&
+                               my_proc%mapper_SMatocn2atm, &
+                               my_proc%cplid, &
+                               my_proc%atm_gsize, my_proc%ocn_gsize, &
+                               8,&
+                               gsMap_ocnx, gsMap_atmx)
+
+        call avect_init_ext(my_proc, atm2x_atmx,&
+                            my_proc%cplid, atm2x_ocnx,&
+                            my_proc%cplid, gsMap_ocnx, &
+                            my_proc%modelocn2cpl_id)
+
+        call mapper_spmat_init(my_proc,&
+                               my_proc%mapper_Smatatm2ocn, &
+                               my_proc%cplid, &
+                               my_proc%ocn_gsize, my_proc%atm_gsize, &
+                               8,&
+                               gsMap_atmx, gsMap_ocnx)
+
+        call avect_init_ext(my_proc, lnd2x_lndx,&
+                            my_proc%cplid, lnd2x_atmx,&
+                            my_proc%cplid, gsMap_atmx, &
+                            my_proc%modelatm2cpl_id)
+
+        call mapper_spmat_init(my_proc,&
+                               my_proc%mapper_SMatlnd2atm, &
+                               my_proc%cplid, &
+                               my_proc%atm_gsize, my_proc%lnd_gsize, &
+                               8,&
+                               gsMap_atmx, gsMap_atmx)
+
         call MPI_Barrier(MPI_COMM_WORLD, ierr)
         write(*,*) "<<=== Rank:" , comm_rank, &
             " lb2x_ax:", avect_lsize(b2x_ax),&
@@ -541,7 +577,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2a&
 ,msgtag=100+00+2&
-,rList=''&
 ,src=x2a_ax&
 )
 
@@ -569,7 +604,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2c&
 ,msgtag=100+10+2&
-,rList=''&
 ,src=x2c_cx&
 )
 
@@ -597,7 +631,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2b&
 ,msgtag=100+20+2&
-,rList=''&
 ,src=x2b_bx&
 )
 
@@ -625,7 +658,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2ocn&
 ,msgtag=100+30+2&
-,rList=''&
 ,src=x2ocn_ocnx&
 )
 
@@ -653,7 +685,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2atm&
 ,msgtag=100+40+2&
-,rList=''&
 ,src=x2atm_atmx&
 )
 
@@ -681,7 +712,6 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cx2lnd&
 ,msgtag=100+50+2&
-,rList=''&
 ,src=x2lnd_lndx&
 )
 
@@ -791,21 +821,20 @@ subroutine cpl_run()
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Ca2x&
 ,msgtag=100+00+3&
-,rList=''&
 ,src=a2x_aa&
 )
 call mapper_comp_map(dst=a2x_bx&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMata2b&
-,msgtag=100+00+3&
-,rList=''&
+,msgtag=100+00+4&
+,rList='velo:cal'&
 ,src=a2x_ax&
 )
 call mapper_comp_map(dst=a2x_cx&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMata2c&
-,msgtag=100+00+3&
-,rList=''&
+,msgtag=100+00+4&
+,rList='velo:cal'&
 ,src=a2x_ax&
 )
             end if
@@ -816,21 +845,20 @@ call mapper_comp_map(dst=a2x_cx&
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cc2x&
 ,msgtag=100+10+3&
-,rList=''&
 ,src=c2x_cc&
 )
 call mapper_comp_map(dst=c2x_bx&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMatc2b&
-,msgtag=100+10+3&
-,rList=''&
+,msgtag=100+10+4&
+,rList='velo:cal'&
 ,src=c2x_cx&
 )
 call mapper_comp_map(dst=c2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMatc2a&
-,msgtag=100+10+3&
-,rList=''&
+,msgtag=100+10+4&
+,rList='velo:cal'&
 ,src=c2x_cx&
 )
             end if
@@ -841,21 +869,20 @@ call mapper_comp_map(dst=c2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cb2x&
 ,msgtag=100+20+3&
-,rList=''&
 ,src=b2x_bb&
 )
 call mapper_comp_map(dst=b2x_cx&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMatb2c&
-,msgtag=100+20+3&
-,rList=''&
+,msgtag=100+20+4&
+,rList='velo:cal'&
 ,src=b2x_bx&
 )
 call mapper_comp_map(dst=b2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%mapper_SMatb2a&
-,msgtag=100+20+3&
-,rList=''&
+,msgtag=100+20+4&
+,rList='velo:cal'&
 ,src=b2x_bx&
 )
             end if
@@ -866,8 +893,14 @@ call mapper_comp_map(dst=b2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Cocn2x&
 ,msgtag=100+30+3&
-,rList=''&
 ,src=ocn2x_ocnocn&
+)
+call mapper_comp_map(dst=ocn2x_atmx&
+,ierr=ierr&
+,mapper=my_proc%mapper_SMatocn2atm&
+,msgtag=100+30+4&
+,rList='velo:cal'&
+,src=ocn2x_ocnx&
 )
             end if
         end if
@@ -877,8 +910,14 @@ call mapper_comp_map(dst=b2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Catm2x&
 ,msgtag=100+40+3&
-,rList=''&
 ,src=atm2x_atmatm&
+)
+call mapper_comp_map(dst=atm2x_ocnx&
+,ierr=ierr&
+,mapper=my_proc%mapper_Smatatm2ocn&
+,msgtag=100+40+4&
+,rList='velo:cal'&
+,src=atm2x_atmx&
 )
             end if
         end if
@@ -888,8 +927,14 @@ call mapper_comp_map(dst=b2x_ax&
 ,ierr=ierr&
 ,mapper=my_proc%Mapper_Clnd2x&
 ,msgtag=100+50+3&
-,rList=''&
 ,src=lnd2x_lndlnd&
+)
+call mapper_comp_map(dst=lnd2x_atmx&
+,ierr=ierr&
+,mapper=my_proc%mapper_SMatlnd2atm&
+,msgtag=100+50+4&
+,rList='velo:cal'&
+,src=lnd2x_lndx&
 )
             end if
         end if
@@ -906,10 +951,14 @@ call mapper_comp_map(dst=b2x_ax&
     if(my_proc%iamin_cpl) then
         if(s==10) then
             ! merge *2x_ax --> x2a_ax in rfield "x", cal the mean of all
-            call mapper_comp_avMerge(a2x_ax, b2x_ax, c2x_ax, x2a_ax, "x")
+            !call mapper_comp_avMerge(a2x_ax, b2x_ax, c2x_ax, x2a_ax, "x")
             call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
                     write(*,*) '<<===X2A_AX_Merge_VALUE Rank:',comm_rank, x2a_ax%rAttr(1,:)
-                !call mrg_a(a2x_ax, b2x_ax, c2x_ax)
+                call mrg_a(a2x_ax, b2x_ax, c2x_ax)
+                call mrg_x2ocn(my_proc, x2ocn_ocnx, atm2x_ocnx, fraction_ocn, &
+        )
+                call mrg_x2atm(my_proc, x2atm_atmx, ocn2x_atmx, lnd2x_atmx, &
+          fractions_atm)
             call MPI_Barrier(my_proc%comp_comm(my_proc%modela2cpl_id), ierr)
         endif
     endif
