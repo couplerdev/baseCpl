@@ -26,8 +26,8 @@ subroutine init(my_proc)
     integer :: iter
 
 
-    my_proc%num_models = 6
-    my_proc%num_comms = 14
+    my_proc%num_models = 2
+    my_proc%num_comms = 6
     my_proc%num_flags = -1
     
     
@@ -39,19 +39,15 @@ subroutine init(my_proc)
     !call mct_world_init(ncomps, MPI_COMM_WORLD, comms, comps) ! comms? comps?
 
     my_proc%modela = "modela"
-    my_proc%modelb = "modelb"
-    my_proc%modelc = "modelc"
     ! todo
     my_proc%a_size = 10
-    my_proc%b_size = 10
-    my_proc%c_size = 10
+
+    my_proc%modelb = "modelb"
     ! todo
-    my_proc%a_gsize = 10
-    my_proc%c_gsize = 16
-    my_proc%b_gsize = 10
-    my_proc%ocn_gsize = 1000
-    my_proc%atm_gsize = 20
-    my_proc%lnd_gsize = 1000
+    my_proc%b_size = 10
+    ! todo
+    my_proc%a_gsize = 12
+    my_proc%b_gsize = 12
     
     !----------------------------------------------------------
     ! set up every comp's comm
@@ -72,26 +68,10 @@ subroutine init(my_proc)
                 my_proc%mpi_modela2cpl, &
                 my_proc%modela_id, my_proc%cplid, &
                 my_proc%modela2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelc,&
-                my_proc%mpi_modelc2cpl, &
-                my_proc%modelc_id, my_proc%cplid, &
-                my_proc%modelc2cpl_id, my_proc%iamin_model, 0, ierr)
     call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelb,&
                 my_proc%mpi_modelb2cpl, &
                 my_proc%modelb_id, my_proc%cplid, &
                 my_proc%modelb2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelocn,&
-                my_proc%mpi_modelocn2cpl, &
-                my_proc%modelocn_id, my_proc%cplid, &
-                my_proc%modelocn2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modelatm,&
-                my_proc%mpi_modelatm2cpl, &
-                my_proc%modelatm_id, my_proc%cplid, &
-                my_proc%modelatm2cpl_id, my_proc%iamin_model, 0, ierr)
-    call deploy(my_proc%mpi_glocomm, my_proc%mpi_modellnd,&
-                my_proc%mpi_modellnd2cpl, &
-                my_proc%modellnd_id, my_proc%cplid, &
-                my_proc%modellnd2cpl_id, my_proc%iamin_model, 0, ierr)
 
 
 
@@ -101,7 +81,7 @@ subroutine init(my_proc)
 
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
-    write(*,*)'comm initiated'
+    !write(*,*)'comm initiated'
     allocate(my_proc%comp_comm(my_proc%ncomps))
     my_proc%comp_comm(my_proc%gloid)         = my_proc%mpi_glocomm
     my_proc%comp_comm(my_proc%cplid)         = my_proc%mpi_cpl
@@ -110,20 +90,8 @@ subroutine init(my_proc)
     my_proc%comp_comm(my_proc%modela_id)     = my_proc%mpi_modela
     my_proc%comp_comm(my_proc%modela2cpl_id) = my_proc%mpi_modela2cpl  
 
-    my_proc%comp_comm(my_proc%modelc_id)     = my_proc%mpi_modelc
-    my_proc%comp_comm(my_proc%modelc2cpl_id) = my_proc%mpi_modelc2cpl  
-
     my_proc%comp_comm(my_proc%modelb_id)     = my_proc%mpi_modelb
     my_proc%comp_comm(my_proc%modelb2cpl_id) = my_proc%mpi_modelb2cpl  
-
-    my_proc%comp_comm(my_proc%modelocn_id)     = my_proc%mpi_modelocn
-    my_proc%comp_comm(my_proc%modelocn2cpl_id) = my_proc%mpi_modelocn2cpl  
-
-    my_proc%comp_comm(my_proc%modelatm_id)     = my_proc%mpi_modelatm
-    my_proc%comp_comm(my_proc%modelatm2cpl_id) = my_proc%mpi_modelatm2cpl  
-
-    my_proc%comp_comm(my_proc%modellnd_id)     = my_proc%mpi_modellnd
-    my_proc%comp_comm(my_proc%modellnd2cpl_id) = my_proc%mpi_modellnd2cpl  
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
     write(*,*)'comp_comm initiated'
@@ -161,19 +129,6 @@ subroutine init(my_proc)
         my_proc%iamin_modela2cpl = .true.
     end if
 
-    my_proc%iamin_modelc = .false.
-    if(my_proc%iamin_model(my_proc%modelc_id))then
-        call iam_comm_root(my_proc%mpi_modelc, my_proc%iamroot_modelc, ierr)
-        my_proc%iamin_modelc = .true.
-    end if
-
-    my_proc%iamin_modelc2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modelc2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelc2cpl, &
-            my_proc%iamroot_modelc2cpl, ierr)
-        my_proc%iamin_modelc2cpl = .true.
-    end if
-
     my_proc%iamin_modelb = .false.
     if(my_proc%iamin_model(my_proc%modelb_id))then
         call iam_comm_root(my_proc%mpi_modelb, my_proc%iamroot_modelb, ierr)
@@ -187,68 +142,17 @@ subroutine init(my_proc)
         my_proc%iamin_modelb2cpl = .true.
     end if
 
-    my_proc%iamin_modelocn = .false.
-    if(my_proc%iamin_model(my_proc%modelocn_id))then
-        call iam_comm_root(my_proc%mpi_modelocn, my_proc%iamroot_modelocn, ierr)
-        my_proc%iamin_modelocn = .true.
-    end if
-
-    my_proc%iamin_modelocn2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modelocn2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelocn2cpl, &
-            my_proc%iamroot_modelocn2cpl, ierr)
-        my_proc%iamin_modelocn2cpl = .true.
-    end if
-
-    my_proc%iamin_modelatm = .false.
-    if(my_proc%iamin_model(my_proc%modelatm_id))then
-        call iam_comm_root(my_proc%mpi_modelatm, my_proc%iamroot_modelatm, ierr)
-        my_proc%iamin_modelatm = .true.
-    end if
-
-    my_proc%iamin_modelatm2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modelatm2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modelatm2cpl, &
-            my_proc%iamroot_modelatm2cpl, ierr)
-        my_proc%iamin_modelatm2cpl = .true.
-    end if
-
-    my_proc%iamin_modellnd = .false.
-    if(my_proc%iamin_model(my_proc%modellnd_id))then
-        call iam_comm_root(my_proc%mpi_modellnd, my_proc%iamroot_modellnd, ierr)
-        my_proc%iamin_modellnd = .true.
-    end if
-
-    my_proc%iamin_modellnd2cpl = .false.
-    if(my_proc%iamin_model(my_proc%modellnd2cpl_id))then
-        call iam_comm_root(my_proc%mpi_modellnd2cpl, &
-            my_proc%iamroot_modellnd2cpl, ierr)
-        my_proc%iamin_modellnd2cpl = .true.
-    end if
-
 
 
     call MPI_Barrier(MPI_COMM_WORLD, ierr)
-    write(*,*)'before mapper_init'
+    !write(*,*)'before mapper_init'
 
 
     call mapper_init(my_proc%mapper_Ca2x, ierr)
     call mapper_init(my_proc%mapper_Cx2a, ierr)
 
-    call mapper_init(my_proc%mapper_Cc2x, ierr)
-    call mapper_init(my_proc%mapper_Cx2c, ierr)
-
     call mapper_init(my_proc%mapper_Cb2x, ierr)
     call mapper_init(my_proc%mapper_Cx2b, ierr)
-
-    call mapper_init(my_proc%mapper_Cocn2x, ierr)
-    call mapper_init(my_proc%mapper_Cx2ocn, ierr)
-
-    call mapper_init(my_proc%mapper_Catm2x, ierr)
-    call mapper_init(my_proc%mapper_Cx2atm, ierr)
-
-    call mapper_init(my_proc%mapper_Clnd2x, ierr)
-    call mapper_init(my_proc%mapper_Cx2lnd, ierr)
 
     my_proc%nothing = .false.
 
@@ -262,18 +166,9 @@ subroutine clean(my_proc)
 
     call avect_clean(my_proc%a2x_aa)
     call avect_clean(my_proc%x2a_aa)
-    call avect_clean(my_proc%a2x_ax)
-    call avect_clean(my_proc%x2a_ax)
     call avect_clean(my_proc%b2x_bb)
     call avect_clean(my_proc%x2b_bb)
-    call avect_clean(my_proc%b2x_bx)
-    call avect_clean(my_proc%x2b_bx)
-    call avect_clean(my_proc%c2x_cc)
-    call avect_clean(my_proc%x2c_cc)
-    call avect_clean(my_proc%c2x_cx)
-    call avect_clean(my_proc%x2c_cx)
- 
-    
+
     call MPI_Finalize(ierr) 
 
 end subroutine clean

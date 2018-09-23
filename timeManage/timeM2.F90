@@ -7,13 +7,13 @@ module timeM
         integer :: hours
         integer :: days
         !integer :: months
-        !integer :: years
-        integer :: interval
+        !integer :: yearsi      ! all base zero 
+        integer :: interval = 1 ! detimine the step
     end type Clock
     integer :: total_days =  1 
 
-    integer :: time_a_run = 3
-    integer :: time_b_run = 5
+    integer :: a_seconds=
+    integer :: a_minites=  
 
 
     public :: clock_init
@@ -25,21 +25,20 @@ subroutine clock_init(EClock, interval)
  
     implicit none
     type(Clock), intent(inout)    :: EClock
+    type(Clock), intent(inout)
     integer, optional, intent(in) :: interval
  
-    EClock_global%seconds = 0 
-    EClock_global%minites = 0
-    EClock_global%hours   = 0
-    EClock_global%days    = 0
+    EClock_global%seconds = a_seconds 
+    EClock_global%minites = a_minites
+    EClock_global%hours   = a_hours
+    EClock_global%days    = a_days
     !EClock%months  = 0 
     !EClock%years   = 0 ! from base so far
-
-    if(present(interval))then
-        EClock%interval = interval
+    if(present(interval))EClock%interval = interval
     else
-        EClock%interval = 1
+        EClock%interval = EClock%seconds+(EClock%minites+(EClock%hours+EClock%days*24)*60)*60
     end if
-
+    EClock%total = total_days
 end subroutine
 
 subroutine clock_advance(EClock)
@@ -67,12 +66,12 @@ subroutine clock_advance(EClock)
 
 end subroutine clock_advance
 
-subroutine triger(EClock, flag, flag_name)
+subroutine triger(EClock, EClock_a, a_run)
 
     implicit none
     type(Clock), intent(in)       :: EClock
-    logical, intent(inout)        :: flag
-    character(len=*),  intent(in) :: flag_name
+    type(Clock), intent(in)       :: EClock_a
+    logical, intent(inout)        :: a_run
     integer                       :: tmp_m
     integer                       :: tmp_h
     integer                       :: tmp_d 
@@ -85,7 +84,7 @@ subroutine triger(EClock, flag, flag_name)
             flag=.true.
         end if
     end if
-
+    tmp_run = EClock_a%interval
     if(flag_name=='a_run')then
         tmp_m = mod(60, time_a_run)
         tmp_h = mod(60*60, time_a_run)

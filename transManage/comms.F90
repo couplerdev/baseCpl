@@ -126,6 +126,57 @@ subroutine mapper_spmat_init(my_proc, mapper,&
 
 end subroutine mapper_spmat_init
 
+!----------------------------------------
+!  read weight from nfl weight to init spmat
+!----------------------------------------
+
+!subroutine mapper_spmat_init(mapper, gsmap_src, gsmap_dst, mpicom, &
+!                       maprcfile, maprcname, maprctype, samegrid, string)
+!    implicit none
+!
+!    type(map_mod),     intent(inout)  :: mapper
+!    type(gsmap),       intent(in)     :: gsmap_src
+!    type(gsmap),       intent(in)     :: gsmap_dst
+!    integer,           intent(in)     :: mpicom
+!    character(len=*),  intent(in)     :: maprcfile
+!    character(len=*),  intent(in)     :: maprcname
+!    character(len=*),  intent(in)     :: maprctype
+!    logical,           intent(in)     :: samegrid
+!    character(len=*),  intent(in), optional :: string
+!
+!    integer   :: ssize, dsize
+!   
+!    call sMAtPInitnc(mapper%sMatPlus, gsmap_src, gsmap_dst, &
+!                   trim(maprcfile), trim(maprcname), trim(maprctype), mpicom)
+!
+    
+
+
+!end subroutine mapper_spmat_init
+
+!subroutine mapper_spmat_init(my_proc, mapper,&
+!                          ID_s, gsmap_src, gsmap_dst,&
+!                          grid_src, grid_dst, map_type)
+!    implicit none
+!    type(proc),        intent(inout)   :: my_proc
+!    type(map_mod),     intent(inout)   :: mapper
+!    integer,           intent(inout)   :: ID_s
+!    type(gsmap),       intent(in)      :: gsmap_src, gsmap_dst
+!    type(gGrid),       intent(in)      :: grid_src, grid_dst
+!    character(len=20), intent(in)      :: map_type
+
+!    if(map_type=="spmat")then
+!        exit()
+!    endif
+!    mapper%dom_s=>grid_src
+!    mapper%dom_d=>grid_dst
+!    mapper%gsmap_s = gsmap_src
+!    mapper%gsmap_d = gsmap_dst
+!    mapper%map_type = map_type
+
+
+!end subroutine mapper_spmat_init
+
 subroutine mapper_comp_map(mapper, src, dst, msgtag,  ierr, rList)
     
     implicit none

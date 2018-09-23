@@ -6,12 +6,12 @@ module deploy_mod
     implicit none
 include 'mpif.h'
     integer :: defaulToAll = 1
-    integer :: comp(4, 3)
+    integer :: comp(3, 3)
     data comp / & !--- comp_first, comp_last, stride
-                                                            
-        0,0,2,2,&
-        3,1,3,3,&
-        1,1,1,1/
+                                             
+        0,0,0,&
+        3,3,2,&
+        1,1,1/
     public  :: deploy
     public  :: deploy_cpl
     public  :: deploy_readFile
@@ -59,7 +59,7 @@ subroutine deploy_cpl(glo_comm, cpl_comm, cpl_id, iam_in, pattern, ierr)
             write(*,*)'cpl'
         end if
     end if 
-    write(*,*)'war protocal initiated'
+    !write(*,*)'war protocal initiated'
 
 end subroutine deploy_cpl
 
@@ -96,7 +96,7 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
         deploy_join_comm = glo_comm
         iam_in(comp_id) = .true.
     else
-        write(*,*)'war module upgraded'
+        !write(*,*)'war module upgraded'
         call mpi_comm_group(glo_comm, mpi_grp, ier)
         call mpi_comm_size(glo_comm, comm_size, ier)
         call deploy_readFile(comp_id, comp_first, comp_last, stride, ier)
@@ -107,7 +107,7 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
         !          comp_first, comp_last, stride, comp(1,comp_id-1), comp(2,comp_id-1), comp(3,comp_id-1)
             !--- set up n and peRange
         call mpi_group_range_incl(mpi_grp, 1, peRange, new_grp, ier)
-        write(*,*)'human reaper initiated'
+        !write(*,*)'human reaper initiated'
         call mpi_comm_create(glo_comm, new_grp, deploy_comm, ier)
         call mpi_group_rank(new_grp, me, ier)
         if(me .ne. MPI_UNDEFINED)then
@@ -115,7 +115,7 @@ subroutine deploy(glo_comm, deploy_comm, deploy_join_comm, &
         end if
 
         call MPI_Barrier(MPI_COMM_WORLD, ier)
-        write(*,*)'check'
+        !write(*,*)'check'
         call deploy_readFile(cpl_id, comp_first, comp_last, stride, ier)
         peRange(1,1) = comp_first
         peRange(1,2) = comp_last

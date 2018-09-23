@@ -61,13 +61,24 @@ use m_Router ,only: router_init => init
 
 use m_SparseMatrix, only : SparseMatrix
 use m_SparseMatrix, only : sMat_init => init
+use m_SparseMatrix, only : sMat_clean => clean
+use m_SparseMatrix, only : sMat_vecinit => vecinit
 use m_SparseMatrix, only : sMat_importGRowInd => importGlobalRowIndices
 use m_SparseMatrix, only : sMat_importGColInd => importGlobalColumnIndices
 use m_SparseMatrix, only : sMat_importMatrixElts => importMatrixElements
+use m_SparseMatrix, only : sMat_indexIA => indexIA
+use m_SparseMatrix, only : sMat_indexRA => indexRA
+use m_SparseMatrix, only : sMat_lsize => lsize
+use m_SparseMatrix, only : sMat_nrows => nRows
+use m_SParseMatrix, only : sMat_ncols => nCols
+use m_SparseMatrix, only : sMat_GNumEl => GlobalNumElements
 use m_SparseMatrixPlus, only : SparseMatrixPlus
 use m_SparseMatrixPlus, only : sMatPlus_init => init
 use m_SparseMatrixPlus, only : sMatPlus_clean => clean
 use m_SparseMatrixPlus, only : sMat_Xonly => Xonly ! Decompose matrix by row
+
+
+
 !---Matrix-Vector multiply methods
 use m_MatAttrVectMul, only: sMatAvect_Mult => sMatAvMult
 
